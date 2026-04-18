@@ -1,0 +1,8 @@
+.env
+__pycache__/
+*.pth
+*.gguf
+ting_ling_ling_checkpoints/
+ting-ling-ling-hf-final/
+.DS_Store
+*.pyc
