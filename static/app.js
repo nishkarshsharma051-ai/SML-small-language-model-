@@ -197,10 +197,13 @@ async function sendMessage() {
     const el = appendMessage('ai', reply);
     scrollBottom();
 
-    // Auto-speak if in Voice Assistant mode
-    if (assistantActive) {
-      const speakBtn = el.querySelector('.action-btn[onclick*="speakText"]');
-      if (speakBtn) speakText(speakBtn);
+    // Update brain source indicator
+    if (data.source) {
+      const sourceTag = document.getElementById('brain-source');
+      if (sourceTag) {
+        sourceTag.textContent = data.source;
+        sourceTag.className = 'source-tag ' + data.source.toLowerCase();
+      }
     }
   } catch (err) {
     typingEl.remove();

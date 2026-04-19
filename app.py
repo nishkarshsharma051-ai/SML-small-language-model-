@@ -42,7 +42,10 @@ def chat():
 
     try:
         answer = brain.ask(question)
-        return jsonify({"reply": answer})
+        return jsonify({
+            "reply": answer,
+            "source": brain.source
+        })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

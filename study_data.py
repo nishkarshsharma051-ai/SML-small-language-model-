@@ -6,72 +6,91 @@ Contains structured data for History, English, and Science.
 # ─── HISTORY KNOWLEDGE ────────────────────────────────────────────────────────
 HISTORY = {
     "world war 2": {
-        "summary": "World War II (1939–1945) was a global conflict between the Allies (UK, USA, USSR, China) and the Axis (Germany, Japan, Italy).",
-        "causes": "Main causes included the Treaty of Versailles' harsh terms on Germany, the rise of fascism (Hitler/Mussolini), and Japanese expansionism.",
+        "summary": "World War II (1939–1945) was a global conflict that involved the vast majority of the world's countries and all of the great powers—organized into two opposing military alliances: the Allies and the Axis.",
+        "causes": "Long-term causes included the harsh Treaty of Versailles, the failure of the League of Nations, the Great Depression, and the aggressive expansionism of Nazi Germany (Lebensraum), Fascist Italy, and Imperial Japan.",
         "key_dates": [
-            "1939: Germany invades Poland (Start)",
-            "1941: Pearl Harbor (USA enters)",
-            "1944: D-Day (Allied invasion of France)",
-            "1945: Hiroshima/Nagasaki bombings and Axis surrender."
+            "Sept 1, 1939: Germany invades Poland, triggering the war.",
+            "June 1941: Operation Barbarossa begins (Invasion of USSR).",
+            "Dec 7, 1941: Pearl Harbor attack brings the USA into the conflict.",
+            "June 6, 1944: D-Day (Invasion of Normandy).",
+            "May 8, 1945: V-E Day (Victory in Europe).",
+            "Aug 1945: Atomic bombings of Hiroshima and Nagasaki.",
+            "Sept 2, 1945: V-J Day (Victory over Japan)."
         ],
-        "impact": "Led to the Cold War, the creation of the United Nations, and the end of European colonialism."
+        "impact": "The war led to the rise of the United States and the Soviet Union as global superpowers, the beginning of the Cold War, the decolonization of Africa and Asia, and the establishment of the United Nations to prevent future conflicts."
     },
     "french revolution": {
-        "summary": "The French Revolution (1789–1799) overthrew the absolute monarchy and established a republic based on 'Liberty, Equality, Fraternity'.",
-        "causes": "Social inequality (The Three Estates), financial crisis, and Enlightenment ideas.",
+        "summary": "The French Revolution (1789–1799) was a period of far-reaching social and political upheaval in France that fundamentally changed the course of modern history, replacing absolute monarchy with democratic principles.",
+        "causes": "Stagnant economy, extreme social inequality between the three Estates, the influence of Enlightenment philosophers (Voltaire, Rousseau), and enormous national debt.",
         "key_events": [
-            "1789: Storming of the Bastille",
-            "1793: Execution of King Louis XVI",
-            "1793-94: The Reign of Terror (Robespierre)"
+            "July 14, 1789: Storming of the Bastille, symbolic start of the revolution.",
+            "Aug 1789: Declaration of the Rights of Man and of the Citizen.",
+            "1792: Proclamation of the First French Republic.",
+            "Jan 1793: Execution of King Louis XVI.",
+            "1793-1794: Reign of Terror led by Maximilien Robespierre and the Committee of Public Safety.",
+            "1799: Napoleon Bonaparte's coup d'état ends the revolution."
         ],
-        "result": "Rise of Napoleon Bonaparte and the spread of democratic ideals across Europe."
+        "result": "The revolution spread liberal and democratic ideas throughout Europe and introduced the Napoleonic Code, which influenced civil law systems worldwide."
     },
-    "industrial revolution": {
-        "summary": "The transition to new manufacturing processes in Europe and the US (1760–1840).",
-        "innovations": "Steam engine (James Watt), Spinning Jenny, and the factory system.",
-        "impact": "Rapid urbanization, rise of capitalism, and shift from agrarian to industrial societies."
-    },
-    "ancient egypt": {
-        "summary": "A civilization in Northeast Africa along the Nile River, famous for pyramids, pharaohs, and hieroglyphs.",
-        "key_features": "Pharaohs were god-kings; Pyramids served as tombs; Mummification preserved the body for the afterlife."
+    "ancient rome": {
+        "summary": "Ancient Rome progressed from a small town on the Tiber River into an expansive empire that dominated the Mediterranean world for centuries.",
+        "periods": "Kingdom (753–509 BC), Republic (509–27 BC), and Empire (27 BC–476 AD).",
+        "legacy": "Development of Latin (the base of Romance languages), Roman Law (Twelve Tables), engineering marvels (aqueducts, roads, Colosseum), and the spread of Christianity."
     }
 }
 
 # ─── ENGLISH KNOWLEDGE ────────────────────────────────────────────────────────
 ENGLISH = {
-    "simile": "A comparison using 'like' or 'as'. Example: 'He stands like a tower.'",
-    "metaphor": "A direct comparison stating one thing IS another. Example: 'The world is a stage.'",
-    "personification": "Giving human qualities to non-human things. Example: 'The wind whispered through the trees.'",
-    "alliteration": "The repetition of consonant sounds at the beginning of words. Example: 'Peter Piper picked a peck...'",
-    "hyperbole": "Extreme exaggeration for effect. Example: 'I've told you a million times.'",
-    "essay structure": {
-        "intro": "Hook, background info, and a clear thesis statement.",
-        "body": "Paragraphs starting with topic sentences, followed by evidence and analysis.",
-        "conclusion": "Restate thesis in a new way, summarize points, and provide a final thought."
+    "figures of speech": {
+        "simile": "A comparison using 'like' or 'as'. Example: 'The mystery of his mind is as deep as the ocean.'",
+        "metaphor": "A direct comparison stating one thing IS another. Example: 'Hope is the thing with feathers.'",
+        "personification": "Attributing human traits to non-human entities. Example: 'The old floorboards groaned under the weight of the past.'",
+        "alliteration": "The repetition of consonant sounds at the beginning of words. Example: 'A big black bug bit a big black bear.'",
+        "oxymoron": "A figure of speech in which apparently contradictory terms appear in conjunction. Example: 'Deafening silence' or 'Bitter sweet'."
     },
-    "grammar rules": {
-        "punctuation": "Commas are for pauses; semicolons join two independent clauses; colons introduce lists or explanations.",
-        "tenses": "Past Simple (I walked), Present Simple (I walk), Future (I will walk)."
+    "literary analysis": {
+        "thesis": "A central statement or claim that an essay argues and supports with evidence.",
+        "theme": "The underlying message or universal idea explored in a literary work (e.g., Man vs. Nature, The Loss of Innocence).",
+        "symbolism": "The use of objects, characters, or colors to represent abstract ideas (e.g., a green light for hope in The Great Gatsby)."
     }
 }
 
 # ─── MATHEMATICS CONCEPTS ────────────────────────────────────────────────────
 MATH_CONCEPTS = {
-    "pythagorean theorem": "In a right triangle, a² + b² = c², where c is the hypotenuse.",
-    "quadratic formula": "x = [-b ± sqrt(b² - 4ac)] / 2a. Used to find roots of ax² + bx + c = 0.",
-    "calculus basics": "Differentiation finds the rate of change (slope); Integration finds the area under a curve.",
-    "circle area": "Area = πr², where r is the radius.",
-    "circle circumference": "Circumference = 2πr."
+    "pythagorean theorem": {
+        "formula": "a² + b² = c²",
+        "explanation": "In a right-angled triangle, the square of the hypotenuse (the side opposite the right angle) is equal to the sum of the squares of the other two sides.",
+        "applications": "Used in navigation, construction, and geometry to find distances."
+    },
+    "quadratic equations": {
+        "general_form": "ax² + bx + c = 0",
+        "quadratic_formula": "x = [-b ± sqrt(b² - 4ac)] / 2a",
+        "discriminant": "D = b² - 4ac. If D > 0, 2 real roots; If D = 0, 1 real root; If D < 0, 0 real roots (complex roots)."
+    },
+    "calculus basics": {
+        "derivative": "f'(x) = lim(h->0) [f(x+h) - f(x)] / h. Represens the instantaneous rate of change or the slope of the tangent line.",
+        "integral": "The anti-derivative. Represents the area under a curve. Fundamental Theorem of Calculus: ∫[a,b] f(x)dx = F(b) - F(a)."
+    },
+    "euler's identity": "e^(iπ) + 1 = 0. Often called the most beautiful equation in mathematics because it links five fundamental mathematical constants: 0, 1, e, i, and π."
 }
 
 # ─── SCIENCE KNOWLEDGE ───────────────────────────────────────────────────────
 SCIENCE = {
-    "photosynthesis": "The process by which plants use sunlight, water, and CO2 to create oxygen and energy (glucose).",
-    "water cycle": "Evaporation, Condensation, Precipitation, and Collection.",
-    "newtons laws": [
-        "1. Inertia: An object stays at rest unless acted upon.",
-        "2. F=ma: Force equals mass times acceleration.",
-        "3. Action/Reaction: Every action has an equal and opposite reaction."
-    ],
-    "periodic table": "A display of chemical elements arranged by atomic number, electron configuration, and chemical properties."
+    "quantum mechanics": {
+        "summary": "The branch of physics that deals with the behavior of matter and light on the atomic and subatomic scale.",
+        "key_principles": [
+            "Wave-Particle Duality: Light and matter exhibit properties of both waves and particles.",
+            "Uncertainty Principle: It is impossible to know both the position and momentum of a particle simultaneously (Heisenberg).",
+            "Superposition: A quantum system can be in multiple states at once until it is observed (Schrödinger's Cat)."
+        ]
+    },
+    "thermodynamics": {
+        "laws": [
+            "0th Law: If two systems are in equilibrium with a third, they are in equilibrium with each other.",
+            "1st Law: Energy cannot be created or destroyed, only transformed (Conservation of Energy).",
+            "2nd Law: The total entropy of an isolated system always increases over time.",
+            "3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum."
+        ]
+    },
+    "photosynthesis": "6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll."
 }
