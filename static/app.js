@@ -10,10 +10,13 @@ const stopSpeechBtn = document.getElementById('stopSpeechBtn');
 const voiceRate    = document.getElementById('voiceRate');
 const rateValue   = document.getElementById('rateValue');
 const sidebar     = document.getElementById('sidebar');
+const voiceAssistantBtn = document.getElementById('voiceAssistantBtn');
 
 let isWaiting = false;
 let modelReady = false;
 let isSpeaking = false;
+let assistantActive = false;
+let recognition = null;
 
 /* ─── Model Status Poll ───────────────────────────────────── */
 async function checkModelStatus() {
@@ -90,6 +93,71 @@ async function stopSpeech() {
 }
 stopSpeechBtn.addEventListener('click', stopSpeech);
 
+/* ─── Voice Assistant (Wake Word & Loop) ───────────────────── */
+function initVoiceAssistant() {
+  if (!('webkitSpeechRecognition' in window)) {
+    voiceAssistantBtn.style.display = 'none';
+    return;
+  }
+
+  recognition = new webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = false;
+  recognition.lang = 'en-US';
+
+  recognition.onresult = (event) => {
+    const result = event.results[event.results.length - 1][0].transcript.toLowerCase().trim();
+    console.log('[Voice] Heard:', result);
+
+    if (!isWaiting && !isSpeaking) {
+      if (result.includes('hi ting ling ling') || result.includes('ting ling ling')) {
+        // Wake word detected!
+        playStatusSound('listen');
+        appendMessage('ai', "I'm listening...");
+      } else if (assistantActive) {
+        // Already active, treat as question
+        userInput.value = result;
+        sendMessage();
+      }
+    }
+  };
+
+  recognition.onend = () => {
+    if (assistantActive) recognition.start();
+  };
+
+  recognition.onerror = (err) => {
+    console.error('[Voice] Error:', err.error);
+    if (err.error === 'not-allowed') {
+      assistantActive = false;
+      voiceAssistantBtn.classList.remove('active');
+      alert('Microphone access denied. Please allow it to use Voice Assistant.');
+    }
+  };
+}
+
+function toggleVoiceAssistant() {
+  if (!recognition) initVoiceAssistant();
+
+  assistantActive = !assistantActive;
+  if (assistantActive) {
+    voiceAssistantBtn.classList.add('active');
+    recognition.start();
+    appendMessage('ai', "Voice Assistant active. Say 'Hi Ting Ling Ling' to start a conversation!");
+  } else {
+    voiceAssistantBtn.classList.remove('active');
+    recognition.stop();
+  }
+}
+
+voiceAssistantBtn.addEventListener('click', toggleVoiceAssistant);
+
+function playStatusSound(type) {
+  // Simple heuristic: change UI state
+  statusDot.classList.add('loading');
+  setTimeout(() => statusDot.classList.remove('loading'), 1000);
+}
+
 /* ─── Send a Suggestion Chip ──────────────────────────────── */
 function sendSuggestion(text) {
   userInput.value = text;
@@ -126,8 +194,14 @@ async function sendMessage() {
     typingEl.remove();
 
     const reply = data.reply || data.error || 'Sorry, something went wrong.';
-    appendMessage('ai', reply);
+    const el = appendMessage('ai', reply);
     scrollBottom();
+
+    // Auto-speak if in Voice Assistant mode
+    if (assistantActive) {
+      const speakBtn = el.querySelector('.action-btn[onclick*="speakText"]');
+      if (speakBtn) speakText(speakBtn);
+    }
   } catch (err) {
     typingEl.remove();
     appendMessage('ai', '❌ Could not reach the server. Make sure `app.py` is running.');
