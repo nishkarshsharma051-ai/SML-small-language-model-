@@ -115,6 +115,40 @@ body {
 }
 .voice-select:focus { border-color: var(--accent); }
 
+.voice-rate {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.rate-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.rate-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.rate-value { font-size: 11px; font-weight: 700; color: var(--accent); background: rgba(66,133,244,0.1); padding: 2px 6px; border-radius: 4px; }
+
+.rate-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+.rate-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(66,133,244,0.4);
+  transition: transform 0.1s;
+}
+.rate-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
 /* ─── Main ───────────────────────────────────────────────────── */
 .main {
   flex: 1;
@@ -134,10 +168,34 @@ body {
   flex-shrink: 0;
 }
 .model-badge {
-  flex: 1;
   font-size: 13px;
   color: var(--text-muted);
 }
+.topbar-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.stop-btn {
+  background: rgba(234, 67, 53, 0.1);
+  border: 1px solid rgba(234, 67, 53, 0.3);
+  color: #ea4335;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  animation: fadeIn 0.3s ease;
+}
+.stop-btn:hover { background: #ea4335; color: #fff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(234,67,53,0.3); }
+.stop-btn svg { width: 14px; height: 14px; }
+.stop-btn.hidden { display: none; }
 .status-dot {
   width: 9px; height: 9px;
   border-radius: 50%;
@@ -185,6 +243,7 @@ body {
   animation: fadeUp 0.6s ease;
 }
 .welcome.hidden { display: none; }
+.hidden { display: none !important; }
 
 .welcome-avatar {
   position: relative;

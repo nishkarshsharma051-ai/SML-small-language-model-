@@ -18,25 +18,28 @@ if API_KEY:
     
     # SYSTEM PROMPT: Defines the "Ting Ling Ling" persona
     SYSTEM_INSTRUCTION = (
-        "You are 'Ting Ling Ling', a specialized Study AI Assistant. "
-        "Your personality is friendly, helpful, and scholarly. "
-        "You specialize in Advanced Mathematics (Calculus, Algebra, Geometry), "
-        "Global History, and English Literature/Grammar. "
-        "\n\nGuidelines:\n"
-        "1. Always introduces yourself as Ting Ling Ling if asked.\n"
-        "2. Use Markdown for formatting (bold text, bullet points, math equations).\n"
-        "3. Provide step-by-step solutions for math problems.\n"
-        "4. Be concise but detailed when explaining historical events.\n"
-        "5. If you see math symbols like x² or 3x, treat them as x^2 and 3*x for calculations."
+        "You are 'Ting Ling Ling', a premier Study AI Assistant specialized in rigorous Academia. "
+        "Your persona is scholarly, precise, and highly intellectual, yet encouraging and mentor-like. "
+        "\n\nMathematical Rigor:\n"
+        "1. Always use LaTeX for ALL mathematical expressions. "
+        "Use single dollar signs for inline math (e.g., $E=mc^2$) and double dollar signs for block math equations.\n"
+        "2. When explaining calculus or algebra, provide the underlying intuition and real-world physical meaning (e.g., equate derivatives to rates of change in physics).\n"
+        "3. Ensure all fractions, exponents, and integrals are properly typeset in LaTeX.\n"
+        "\n\nScholarly Guidelines:\n"
+        "1. Introduce yourself as Ting Ling Ling, your scholarly companion.\n"
+        "2. Use structured Markdown with bold headers and bullet points for clarity.\n"
+        "3. For historical or literary queries, provide nuanced, multi-faceted perspectives rather than simple summaries."
     )
     
     # Initialize the model
     model = genai.GenerativeModel(
-        model_name="gemini-pro-latest",
+        model_name="gemini-1.5-flash", # Use latest Flash for better instruction following
         system_instruction=SYSTEM_INSTRUCTION
     )
 else:
     model = None
+
+from math_solver import math_solver
 
 # ─── THE NEW CLOUD BRAIN ──────────────────────────────────────────────────────
 class TingLingLingBrain:
@@ -53,8 +56,8 @@ class TingLingLingBrain:
         """Dynamically find a model that supports generateContent."""
         try:
             available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
-            # Prioritize Flash for speed, then Pro
-            priorities = ["flash", "pro"]
+            # Prioritize Flash 1.5, then Pro
+            priorities = ["1.5-flash", "pro"]
             sorted_models = []
             for p in priorities:
                 sorted_models.extend([m for m in available_models if p in m.lower()])
@@ -67,13 +70,32 @@ class TingLingLingBrain:
             return sorted_models
         except Exception as e:
             print(f"[Brain] Error listing models: {e}")
-            return ["models/gemini-pro"] # Fallback guess
+            return ["models/gemini-1.5-flash"] # Fallback guess
 
     def ask(self, question):
         if not self.use_cloud:
             return "My Cloud Brain is currently inactive. Please check your API key in the .env file."
 
-        # Get list of possible models
+        # 1. Attempt to solve with Math Engine first
+        math_res = math_solver.solve_request(question)
+        
+        # 2. Construct adjusted prompt if math result exists
+        if math_res:
+            lx_res = math_res.get('latex_result', math_res['result'])
+            print(f"[Brain] Math Engine found LaTeX result: {lx_res}")
+            # We wrap the math result in a specialized prompt for Gemini to explain
+            prompt = (
+                f"The user asked: '{question}'\n\n"
+                f"VERIFIED MATHEMATICAL DERIVATION (LaTeX):\n"
+                f"$${lx_res}$$\n\n"
+                f"Steps taken by the verification engine: {', '.join(math_res['steps'])}\n\n"
+                "Please explain this derivation to the user using your 'Ting Ling Ling' scholarly persona. "
+                "Ensure you use LaTeX for ALL math in your explanation. Mention that this result is mathematically verified."
+            )
+        else:
+            prompt = question
+
+        # 3. Get list of possible models
         models_to_try = self._find_working_model()
         
         errors = []
@@ -84,7 +106,7 @@ class TingLingLingBrain:
                     model_name=model_name,
                     system_instruction=SYSTEM_INSTRUCTION
                 )
-                response = current_model.generate_content(question)
+                response = current_model.generate_content(prompt)
                 
                 if response and response.text:
                     return response.text
@@ -94,6 +116,10 @@ class TingLingLingBrain:
                 if "SAFETY" in err_str:
                     return "I cannot answer that due to safety guidelines. Let's stick to your study topics like math, history, or English!"
                 continue
+
+        # 4. Fallback: If cloud fails but math engine had a result, return math result directly
+        if math_res:
+            return f"I'm having trouble connecting to my full brain, but I've calculated the answer for you: **{math_res['result']}**"
 
         # If all failed
         print(f"[Brain] All models failed: {errors}")

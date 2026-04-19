@@ -30,6 +30,9 @@ def index():
     return render_template("index.html")
 
 
+# Global to track the active voice process
+current_voice_process = None
+
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
@@ -46,11 +49,20 @@ def chat():
 
 @app.route("/speak", methods=["POST"])
 def speak():
+    global current_voice_process
     data = request.get_json()
     text  = data.get("text", "")
     voice = data.get("voice", "daniel")
+    rate  = data.get("rate", 175) # Default natural rate
     if not text:
         return jsonify({"status": "empty"}), 400
+
+    # Stop any existing speech process
+    if current_voice_process and current_voice_process.poll() is None:
+        try:
+            current_voice_process.kill()
+        except:
+            pass
 
     # Use the native Mac 'say' command for voice output
     # It's much more stable than pyttsx3 in this environment
@@ -65,12 +77,25 @@ def speak():
     os_voice = voice_map.get(voice, "Daniel")
     
     # Clean text for shell command
-    clean_text = text[:800].replace('"', '').replace("'", "").replace("\n", " ")
+    clean_text = text[:800].replace('"', '').replace("'", "").replace("\n", " ").replace(";", "")
     
-    # Run in background via subprocess
-    subprocess.Popen(["say", "-v", os_voice, clean_text])
+    # Run in background via subprocess and track it
+    args = ["say", "-v", os_voice, "-r", str(rate), clean_text]
+    current_voice_process = subprocess.Popen(args)
     
     return jsonify({"status": "speaking"})
+
+
+@app.route("/stop", methods=["POST"])
+def stop_speak():
+    global current_voice_process
+    if current_voice_process and current_voice_process.poll() is None:
+        try:
+            current_voice_process.kill()
+            return jsonify({"status": "stopped"})
+        except Exception as e:
+            return jsonify({"status": "error", "message": str(e)}), 500
+    return jsonify({"status": "not_speaking"})
 
 
 def _voice_id(name: str) -> str:

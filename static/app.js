@@ -6,10 +6,14 @@ const sendBtn     = document.getElementById('sendBtn');
 const welcomeScr  = document.getElementById('welcomeScreen');
 const statusDot   = document.getElementById('statusDot');
 const voiceSelect = document.getElementById('voiceSelect');
+const stopSpeechBtn = document.getElementById('stopSpeechBtn');
+const voiceRate    = document.getElementById('voiceRate');
+const rateValue   = document.getElementById('rateValue');
 const sidebar     = document.getElementById('sidebar');
 
 let isWaiting = false;
 let modelReady = false;
+let isSpeaking = false;
 
 /* ─── Model Status Poll ───────────────────────────────────── */
 async function checkModelStatus() {
@@ -68,6 +72,23 @@ function autoResize() {
   userInput.style.height = Math.min(userInput.scrollHeight, 180) + 'px';
 }
 userInput.addEventListener('input', autoResize);
+
+/* ─── Rate Slider ─────────────────────────────────────────── */
+voiceRate.addEventListener('input', () => {
+  rateValue.textContent = voiceRate.value;
+});
+
+/* ─── Stop Speech ─────────────────────────────────────────── */
+async function stopSpeech() {
+  try {
+    await fetch('/stop', { method: 'POST' });
+    isSpeaking = false;
+    stopSpeechBtn.classList.add('hidden');
+  } catch (err) {
+    console.error('Error stopping speech:', err);
+  }
+}
+stopSpeechBtn.addEventListener('click', stopSpeech);
 
 /* ─── Send a Suggestion Chip ──────────────────────────────── */
 function sendSuggestion(text) {
@@ -147,6 +168,19 @@ function appendMessage(role, text) {
       </div>`;
   }
   messages.appendChild(el);
+
+  if (window.renderMathInElement) {
+    renderMathInElement(el, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false},
+        {left: '\\(', right: '\\)', display: false},
+        {left: '\\[', right: '\\]', display: true}
+      ],
+      throwOnError : false
+    });
+  }
+
   scrollBottom();
   return el;
 }
@@ -180,15 +214,24 @@ window.copyText = copyText;
 async function speakText(btn) {
   const text = btn.dataset.text;
   const voice = voiceSelect.value;
+  const rate = voiceRate.value;
+  
+  isSpeaking = true;
+  stopSpeechBtn.classList.remove('hidden');
   btn.textContent = '🎙️ Speaking...';
+  
   try {
     await fetch('/speak', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text, voice })
+      body: JSON.stringify({ text, voice, rate })
     });
   } finally {
-    setTimeout(() => { btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg> Speak`; }, 3000);
+    // We don't immediately hide the stop button because the speech is still playing background
+    // But we restore the button text
+    setTimeout(() => { 
+      btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg> Speak`; 
+    }, 2000);
   }
 }
 window.speakText = speakText;
