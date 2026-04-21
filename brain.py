@@ -1,8 +1,12 @@
 import os
 import threading
 import torch
-import google.generativeai as genai
-from dotenv import load_dotenv
+
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    def load_dotenv():
+        return False
 
 # Local Model Imports
 from model import TingLingLing, TingLingLingConfig
@@ -31,6 +35,7 @@ class TingLingLingBrain:
 
         print(f"[Brain] Cloud Mode: {'ACTIVE' if self.use_cloud else 'INACTIVE (No API Key)'}")
         if self.use_cloud:
+            import google.generativeai as genai
             genai.configure(api_key=API_KEY)
             self.system_instruction = (
                 "You are Ting Ling Ling, a helpful, reliable, general-purpose GPT-style assistant. "
@@ -55,6 +60,7 @@ class TingLingLingBrain:
         """Loads the best available local model weights."""
         if self._load_hf_local():
             self._loaded = True
+            self.source = "Local-HF"
             print("[Brain] HF local brain is online.")
             return True
 
@@ -102,7 +108,7 @@ class TingLingLingBrain:
             self.hf_model = AutoModelForCausalLM.from_pretrained(
                 model_dir,
                 local_files_only=True,
-                torch_dtype=dtype
+                dtype=dtype
             )
             self.hf_model.to(self.device)
             self.hf_model.eval()
@@ -216,7 +222,8 @@ class TingLingLingBrain:
         with self.lock:
             system_text = (
                 "You are Ting Ling Ling, a helpful, reliable, general-purpose assistant. "
-                "Answer coding, math, English, history, science, and everyday questions clearly."
+                "Answer coding, math, English, history, science, and everyday questions clearly. "
+                "For science and astronomy questions, answer directly instead of refusing."
             )
 
             messages = [{"role": "system", "content": system_text}]

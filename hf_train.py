@@ -29,11 +29,12 @@ except ImportError:  # pragma: no cover - optional dependency
     get_peft_model = None
 
 
-DEFAULT_BASE_MODEL = "Qwen/Qwen2.5-3B-Instruct"
+DEFAULT_BASE_MODEL = "Qwen/Qwen2.5-0.5B-Instruct"
 DEFAULT_OUTPUT_DIR = "hf_local_model"
 SYSTEM_PROMPT = (
     "You are Ting Ling Ling, a helpful, reliable, general-purpose assistant. "
-    "Answer coding, math, English, history, science, and everyday questions clearly."
+    "Answer coding, math, English, history, science, and everyday questions clearly. "
+    "For science and astronomy questions, answer directly instead of refusing."
 )
 
 
@@ -164,7 +165,6 @@ def main():
 
     training_args = TrainingArguments(
         output_dir=args.output_dir,
-        overwrite_output_dir=True,
         num_train_epochs=args.epochs,
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=args.batch_size,
@@ -173,7 +173,7 @@ def main():
         logging_steps=10,
         save_steps=100,
         save_total_limit=2,
-        evaluation_strategy="steps" if eval_ds is not None and len(eval_ds) > 0 else "no",
+        eval_strategy="steps" if eval_ds is not None and len(eval_ds) > 0 else "no",
         eval_steps=100 if eval_ds is not None and len(eval_ds) > 0 else None,
         fp16=torch.cuda.is_available(),
         bf16=False,
@@ -181,7 +181,8 @@ def main():
         remove_unused_columns=False,
         push_to_hub=args.push_to_hub,
         hub_model_id=args.hub_model_id,
-        save_safetensors=True,
+        do_train=True,
+        do_eval=eval_ds is not None and len(eval_ds) > 0,
     )
 
     trainer = Trainer(

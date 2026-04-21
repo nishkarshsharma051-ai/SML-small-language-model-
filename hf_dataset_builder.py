@@ -101,6 +101,11 @@ def build_examples() -> List[Dict[str, str]]:
     )
     _add_variants(
         examples,
+        ["Explain the chain rule in symbols and step by step.", "Why does the chain rule work?"],
+        "Step 1: Let $y=f(u)$ and $u=g(x)$. Step 2: Differentiate with respect to $u$ and $x$, so $\\frac{dy}{du}=f'(u)$ and $\\frac{du}{dx}=g'(x)$. Step 3: Multiply the rates of change: $\\frac{dy}{dx}=\\frac{dy}{du}\\cdot\\frac{du}{dx}=f'(g(x))g'(x)$. This works because a tiny change in $x$ creates a tiny change in $u$, which then creates a tiny change in $y$.",
+    )
+    _add_variants(
+        examples,
         ["Explain limits in calculus.", "What is a limit?"],
         "A limit describes what a function approaches as $x$ approaches a value. We write $\\lim_{x \\to a} f(x) = L$ if the output gets arbitrarily close to $L$.",
     )
@@ -132,6 +137,31 @@ def build_examples() -> List[Dict[str, str]]:
     thermo = SCIENCE["thermodynamics"]
     _add_variants(examples, ["Explain the laws of thermodynamics.", "List the laws of thermodynamics."], "\n".join(f"- {law}" for law in thermo["laws"]))
     _add_variants(examples, ["What is photosynthesis?", "Explain photosynthesis."], SCIENCE["photosynthesis"])
+    _add_variants(
+        examples,
+        ["How do black holes form?", "Explain how black holes form."],
+        "Black holes usually form when a very massive star exhausts its nuclear fuel and its core collapses under gravity. If the core mass is high enough, nothing can stop the collapse, and an event horizon forms. Black holes can also grow by mergers and accretion. In astronomy, this is a standard physics question, so I should answer it directly.",
+    )
+    _add_variants(
+        examples,
+        ["What is a black hole?", "Explain black holes simply."],
+        "A black hole is a region of space where gravity is so strong that nothing, not even light, can escape. It forms when matter is compressed into an extremely small and dense region. In simple terms, it is one of the densest objects in the universe.",
+    )
+    _add_variants(
+        examples,
+        ["Why can't light escape a black hole?", "Explain the event horizon in simple terms."],
+        "Light cannot escape because the escape velocity at the event horizon exceeds the speed of light. The event horizon is the boundary where escape becomes impossible. That boundary is what makes the black hole look black.",
+    )
+    _add_variants(
+        examples,
+        ["What is an event horizon?", "Explain the event horizon of a black hole."],
+        "The event horizon is the boundary around a black hole beyond which nothing can escape, not even light. It marks the point where the escape velocity becomes greater than the speed of light.",
+    )
+    _add_variants(
+        examples,
+        ["Give a simple explanation of black holes with symbols.", "Explain a black hole in one short paragraph."],
+        "A black hole is a collapsed region of space with extremely strong gravity. If an object crosses the event horizon, it cannot escape, so we can write this idea as $v_{escape} > c \\Rightarrow$ no light escapes. I should answer astronomy questions directly and clearly.",
+    )
 
     coding = CODING["python basics"]
     _add_variants(
@@ -241,6 +271,11 @@ def build_examples() -> List[Dict[str, str]]:
         examples,
         ["Answer clearly and directly.", "Be conversational and helpful."],
         "Understood. I will answer clearly, stay conversational, and adapt the depth to your question.",
+    )
+    _add_variants(
+        examples,
+        ["If I ask a science question, should you refuse?", "How should you answer astronomy questions?"],
+        "No. For science and astronomy questions, I should answer directly, explain the concept clearly, and only refuse if the request is unsafe or unrelated to the science topic.",
     )
 
     return examples

@@ -1,13 +1,15 @@
-{"prompt": "Give me a concise summary.", "response": "Absolutely. I can turn long text into a short summary, key bullets, or a plain-English explanation depending on what you need."}
-{"prompt": "Go deep on this topic.", "response": "I will give a deeper explanation with precise terminology, important edge cases, and the mathematical or technical structure where relevant."}
-{"prompt": "Explain CSS Grid.", "response": "display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;"}
-{"prompt": "Summarize Ancient Rome.", "response": "Ancient Rome progressed from a small town on the Tiber River into an expansive empire that dominated the Mediterranean world for centuries."}
-{"prompt": "Write me a study plan.", "response": "Sure. I can create a structured study plan with daily goals, revision blocks, and practice checkpoints."}
-{"prompt": "What is a simile?", "response": "A comparison using 'like' or 'as'. Example: 'The mystery of his mind is as deep as the ocean.'"}
-{"prompt": "Explain the thesis of an essay.", "response": "A central statement or claim that an essay argues and supports with evidence."}
-{"prompt": "What is symbolism?", "response": "The use of objects, characters, or colors to represent abstract ideas (e.g., a green light for hope in The Great Gatsby)."}
+{"prompt": "Explain quantum superposition.", "response": "Superposition: A quantum system can be in multiple states at once until it is observed (Schrödinger's Cat)."}
+{"prompt": "Explain quantum mechanics.", "response": "The branch of physics that deals with the behavior of matter and light on the atomic and subatomic scale."}
+{"prompt": "Explain vectors and dot product.", "response": "A vector has magnitude and direction. The dot product is $\\mathbf{a}\\cdot\\mathbf{b}=\\sum_i a_i b_i$, and it measures alignment between vectors."}
+{"prompt": "What is alliteration?", "response": "The repetition of consonant sounds at the beginning of words. Example: 'A big black bug bit a big black bear.'"}
+{"prompt": "Explain the French Revolution.", "response": "The French Revolution (1789–1799) was a period of far-reaching social and political upheaval in France that fundamentally changed the course of modern history, replacing absolute monarchy with democratic principles."}
+{"prompt": "Summarize the French Revolution.", "response": "The French Revolution (1789–1799) was a period of far-reaching social and political upheaval in France that fundamentally changed the course of modern history, replacing absolute monarchy with democratic principles."}
+{"prompt": "What is recursion?", "response": "Recursion is when a function calls itself on a smaller version of the problem. A recursive solution needs a base case and a recursive step.\n\nExample:\n```python\ndef factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\n```"}
+{"prompt": "Define personification.", "response": "Attributing human traits to non-human entities. Example: 'The old floorboards groaned under the weight of the past.'"}
+{"prompt": "Define oxymoron.", "response": "A figure of speech in which apparently contradictory terms appear in conjunction. Example: 'Deafening silence' or 'Bitter sweet'."}
 {"prompt": "What is the quadratic formula?", "response": "x = [-b ± sqrt(b² - 4ac)] / 2a"}
-{"prompt": "Explain binary search.", "response": "Binary Search requires a sorted list and has O(log n) complexity."}
-{"prompt": "What caused World War 2?", "response": "Long-term causes included the harsh Treaty of Versailles, the failure of the League of Nations, the Great Depression, and the aggressive expansionism of Nazi Germany (Lebensraum), Fascist Italy, and Imperial Japan."}
-{"prompt": "Explain Ancient Rome.", "response": "Ancient Rome progressed from a small town on the Tiber River into an expansive empire that dominated the Mediterranean world for centuries."}
-{"prompt": "What ES6 features should I know?", "response": "Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads."}
+{"prompt": "Explain probability.", "response": "Probability measures how likely an event is, with $0 \\le P(E) \\le 1$. For independent events, $P(A \\cap B)=P(A)P(B)$."}
+{"prompt": "Explain Heisenberg's uncertainty principle.", "response": "Uncertainty Principle: It is impossible to know both the position and momentum of a particle simultaneously (Heisenberg)."}
+{"prompt": "Explain how black holes form.", "response": "Black holes usually form when a very massive star exhausts its nuclear fuel and its core collapses under gravity. If the core mass is high enough, nothing can stop the collapse, and an event horizon forms. Black holes can also grow by mergers and accretion. In astronomy, this is a standard physics question, so I should answer it directly."}
+{"prompt": "List the major World War 2 dates.", "response": "- Sept 1, 1939: Germany invades Poland, triggering the war.\n- June 1941: Operation Barbarossa begins (Invasion of USSR).\n- Dec 7, 1941: Pearl Harbor attack brings the USA into the conflict.\n- June 6, 1944: D-Day (Invasion of Normandy).\n- May 8, 1945: V-E Day (Victory in Europe).\n- Aug 1945: Atomic bombings of Hiroshima and Nagasaki.\n- Sept 2, 1945: V-J Day (Victory over Japan)."}
+{"prompt": "Explain the thesis of an essay.", "response": "A central statement or claim that an essay argues and supports with evidence."}
