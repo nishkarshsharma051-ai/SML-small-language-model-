@@ -56,6 +56,16 @@ class TingLingLingBrain:
                 "2. Use structured Markdown with bold headers and bullet points.\n"
             )
 
+    def _fallback_reply(self, question=None, reason=None):
+        """Return a safe response when a model path fails."""
+        base = (
+            "I’m having trouble generating a full answer right now, but I’m still here. "
+            "Please try again, or send a shorter prompt and I’ll handle it."
+        )
+        if reason:
+            base += f" (Reason: {reason})"
+        return base
+
     def load(self):
         """Loads the best available local model weights."""
         if self._load_hf_local():
@@ -131,14 +141,20 @@ class TingLingLingBrain:
 
         # 2. Fallback to Local Brain (or forced Local)
         if self.hf_loaded:
-            self.source = "Local-HF"
-            return self._ask_hf_local(question, history=history)
+            try:
+                self.source = "Local-HF"
+                return self._ask_hf_local(question, history=history)
+            except Exception as e:
+                print(f"[Brain] HF local failed, falling back... Error: {e}")
 
         if self._loaded:
-            self.source = "Local"
-            return self._ask_local(question, history=history)
+            try:
+                self.source = "Local"
+                return self._ask_local(question, history=history)
+            except Exception as e:
+                print(f"[Brain] Local fallback failed, falling back... Error: {e}")
 
-        return "I'm having trouble connecting to both my cloud and local brains. ☁️ Offline mode requires `ting_ling_ling.pth`."
+        return self._fallback_reply(question, "all model paths failed")
 
     def _format_history(self, question, history=None):
         """
@@ -161,9 +177,13 @@ class TingLingLingBrain:
 
     def _ask_cloud(self, question, history=None):
         """Internal method for Gemini API requests."""
-        # Math pre-solver
-        from math_solver import math_solver
-        math_res = math_solver.solve_request(question)
+        try:
+            # Math pre-solver
+            from math_solver import math_solver
+            math_res = math_solver.solve_request(question)
+        except Exception as e:
+            print(f"[Brain] Math pre-solver failed: {e}")
+            math_res = None
         
         prompt = self._format_history(question, history=history)
         if math_res:
@@ -251,22 +271,25 @@ class TingLingLingBrain:
                 )
                 inputs = self.hf_tokenizer(prompt, return_tensors="pt").to(self.device)
 
-            prompt_len = inputs["input_ids"].shape[1]
-            output = self.hf_model.generate(
-                **inputs,
-                max_new_tokens=256,
-                do_sample=True,
-                temperature=0.7,
-                top_p=0.9,
-                repetition_penalty=1.08,
-                pad_token_id=self.hf_tokenizer.eos_token_id,
-                eos_token_id=self.hf_tokenizer.eos_token_id
-            )
+            try:
+                prompt_len = inputs["input_ids"].shape[1]
+                output = self.hf_model.generate(
+                    **inputs,
+                    max_new_tokens=256,
+                    do_sample=True,
+                    temperature=0.7,
+                    top_p=0.9,
+                    repetition_penalty=1.08,
+                    pad_token_id=self.hf_tokenizer.eos_token_id,
+                    eos_token_id=self.hf_tokenizer.eos_token_id
+                )
 
-            new_tokens = output[0][prompt_len:]
-            answer = self.hf_tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
-            prefix = "*(Offline Mode - Local HF Brain)*\n\n"
-            return prefix + answer
+                new_tokens = output[0][prompt_len:]
+                answer = self.hf_tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
+                prefix = "*(Offline Mode - Local HF Brain)*\n\n"
+                return prefix + answer if answer else self._fallback_reply(question, "empty model output")
+            except Exception as e:
+                return self._fallback_reply(question, f"local hf inference error: {e}")
 
 # Singleton
 brain = TingLingLingBrain()

@@ -36,7 +36,9 @@ def index():
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    data = request.get_json()
+    data = request.get_json(silent=True) or {}
+    if not isinstance(data, dict):
+        data = {}
     question = data.get("message", "").strip()
     history = data.get("history", [])
     # Accept 'brain_mode' (cloud or local)
@@ -53,29 +55,40 @@ def chat():
             "source": brain.source
         })
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({
+            "reply": "I hit an unexpected error, but I’m still up. Please try again with a shorter prompt.",
+            "source": "fallback",
+            "error": str(e)
+        }), 200
 
 
 @app.route("/speak", methods=["POST"])
 def speak():
-    data = request.get_json()
+    data = request.get_json(silent=True) or {}
+    if not isinstance(data, dict):
+        data = {}
     text  = data.get("text", "")
     voice = data.get("voice", "daniel")
     rate  = int(data.get("rate", 175))
     if not text:
         return jsonify({"status": "empty"}), 400
 
-    voice_engine.set_voice(voice)
-    voice_engine.rate = rate
-    voice_engine.speak(text)
-    
-    return jsonify({"status": "speaking"})
+    try:
+        voice_engine.set_voice(voice)
+        voice_engine.rate = rate
+        voice_engine.speak(text)
+        return jsonify({"status": "speaking"})
+    except Exception as e:
+        return jsonify({"status": "error", "error": str(e)}), 200
 
 
 @app.route("/stop", methods=["POST"])
 def stop_speak():
-    voice_engine.stop()
-    return jsonify({"status": "stopped"})
+    try:
+        voice_engine.stop()
+        return jsonify({"status": "stopped"})
+    except Exception as e:
+        return jsonify({"status": "error", "error": str(e)}), 200
 
 
 @app.route("/health")

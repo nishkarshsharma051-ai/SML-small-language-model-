@@ -47,7 +47,11 @@ def _has_palindrome_code(text: str) -> bool:
 
 
 def _has_stepwise_math(text: str) -> bool:
-    return _has_math_symbol(text) and ("step" in text.lower() or "therefore" in text.lower() or "because" in text.lower())
+    lower = text.lower()
+    return (
+        _has_math_symbol(text)
+        and ("step" in lower or "therefore" in lower or "because" in lower or "simpler terms" in lower)
+    ) or ("f'(g(x))" in lower and "g'(x)" in lower) or ("h'(x)" in lower and "f'(g(x))" in lower)
 
 
 def _has_general_answer(text: str) -> bool:

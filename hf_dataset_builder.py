@@ -106,6 +106,21 @@ def build_examples() -> List[Dict[str, str]]:
     )
     _add_variants(
         examples,
+        ["What is the chain rule formula?", "Give the chain rule in one line."],
+        "For a composite function $y=f(g(x))$, the chain rule is $\\frac{dy}{dx}=f'(g(x))\\cdot g'(x)$. In Leibniz notation, $\\frac{dy}{dx}=\\frac{dy}{du}\\cdot\\frac{du}{dx}$ when $u=g(x)$.",
+    )
+    _add_variants(
+        examples,
+        ["Show the chain rule on y = sin(x^2).", "Differentiate sin(x^2) using the chain rule."],
+        "Let $y=\\sin(x^2)$. The outer derivative is $\\cos(u)$ and the inner derivative is $2x$, so $\\frac{dy}{dx}=\\cos(x^2)\\cdot 2x = 2x\\cos(x^2)$.",
+    )
+    _add_variants(
+        examples,
+        ["What is a common mistake with the chain rule?", "What should I not do with the chain rule?"],
+        "A common mistake is to divide derivatives or mix up inner and outer functions. The correct rule multiplies them: $\\frac{dy}{dx}=f'(g(x))\\cdot g'(x)$, not a ratio.",
+    )
+    _add_variants(
+        examples,
         ["Explain limits in calculus.", "What is a limit?"],
         "A limit describes what a function approaches as $x$ approaches a value. We write $\\lim_{x \\to a} f(x) = L$ if the output gets arbitrarily close to $L$.",
     )
@@ -123,6 +138,16 @@ def build_examples() -> List[Dict[str, str]]:
         examples,
         ["Explain vectors and dot product.", "What is a dot product?"],
         "A vector has magnitude and direction. The dot product is $\\mathbf{a}\\cdot\\mathbf{b}=\\sum_i a_i b_i$, and it measures alignment between vectors.",
+    )
+    _add_variants(
+        examples,
+        ["Explain matrices and vectors in linear algebra using symbols.", "Use symbols to explain matrices and vectors."],
+        "A matrix $A \\in \\mathbb{R}^{m\\times n}$ is a rectangular array of numbers, and a vector $x \\in \\mathbb{R}^n$ is a list of coordinates. Matrix-vector multiplication is written $Ax=b$, where $A$ transforms the vector $x$ into the vector $b$. In symbols: $A\\mathbf{x}=\\mathbf{b}$ and $\\mathbf{a}\\cdot\\mathbf{b}=\\sum_i a_i b_i$.",
+    )
+    _add_variants(
+        examples,
+        ["Show me a simple linear algebra example.", "Give a matrix-vector example."],
+        "Let $A=\\begin{pmatrix}1 & 2\\\\3 & 4\\end{pmatrix}$ and $x=\\begin{pmatrix}x_1\\\\x_2\\end{pmatrix}$. Then $Ax=\\begin{pmatrix}x_1+2x_2\\\\3x_1+4x_2\\end{pmatrix}$. This shows how matrices transform vectors.",
     )
     _add_variants(
         examples,
