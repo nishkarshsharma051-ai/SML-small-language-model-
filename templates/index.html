@@ -35,10 +35,10 @@
 
     <div class="sidebar-section-label">Quick Prompts</div>
     <nav class="topic-nav">
-      <button class="topic-btn" data-q="Explain Python variable types with examples">🐍 Coding</button>
-      <button class="topic-btn" data-q="What are JavaScript promises and how do I use them?">📜 Web Dev</button>
-      <button class="topic-btn" data-q="Teach me CSS Flexbox centering">🎨 Design</button>
-      <button class="topic-btn" data-q="Explain Big O notation with examples">📂 Algorithms</button>
+      <button class="topic-btn" data-q="Explain recursion in programming with a Python example">🧠 Recursion</button>
+      <button class="topic-btn" data-q="Teach me the chain rule step by step using symbols">∂ Calculus</button>
+      <button class="topic-btn" data-q="Explain OOP with clean Python code examples">🧱 OOP</button>
+      <button class="topic-btn" data-q="Explain linear algebra matrices and vectors">∑ Linear Algebra</button>
     </nav>
 
     <div class="sidebar-footer">
@@ -111,14 +111,31 @@
           <div class="avatar-icon">TL</div>
         </div>
         <h1 class="welcome-title">Hello, I'm <span class="gradient-text">Ting Ling Ling</span></h1>
-        <p class="welcome-subtitle">Your general-purpose assistant. Ask me anything about<br/>
+        <p class="welcome-subtitle">Your general-purpose assistant for advanced code, symbolic math, and structured explanations.<br/>
           <strong>Writing · Coding · Math · Science · Everyday help</strong>
         </p>
+        <div class="feature-strip">
+          <div class="feature-card">
+            <span class="feature-kicker">Code</span>
+            <strong>Detailed examples</strong>
+            <p>Clean, step-by-step answers with edge cases and complexity notes.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-kicker">Math</span>
+            <strong>Universal notation</strong>
+            <p>Uses symbols, formulas, and LaTeX for advanced topics.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-kicker">Tutor</span>
+            <strong>Adaptive teaching</strong>
+            <p>Explains at beginner or advanced level depending on your question.</p>
+          </div>
+        </div>
         <div class="suggestion-chips">
-          <button class="chip" onclick="sendSuggestion('What is the derivative of x² + 3x?')">What is the derivative of x² + 3x?</button>
-          <button class="chip" onclick="sendSuggestion('When did World War 2 end and why?')">When did World War 2 end and why?</button>
-          <button class="chip" onclick="sendSuggestion('Explain the difference between simile and metaphor')">Simile vs Metaphor?</button>
-          <button class="chip" onclick="sendSuggestion('Solve: 2x² - 5x + 3 = 0')">Solve: 2x² - 5x + 3 = 0</button>
+          <button class="chip" onclick="sendSuggestion('Explain the chain rule with symbols and an example')">Chain rule</button>
+          <button class="chip" onclick="sendSuggestion('Explain recursion in programming with a Python example')">Recursion</button>
+          <button class="chip" onclick="sendSuggestion('Explain object-oriented programming with clean code examples')">OOP</button>
+          <button class="chip" onclick="sendSuggestion('Explain matrices and vectors in linear algebra')">Linear algebra</button>
         </div>
       </div>
 

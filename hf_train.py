@@ -29,7 +29,7 @@ except ImportError:  # pragma: no cover - optional dependency
     get_peft_model = None
 
 
-DEFAULT_BASE_MODEL = "Qwen/Qwen2.5-1.5B-Instruct"
+DEFAULT_BASE_MODEL = "Qwen/Qwen2.5-3B-Instruct"
 DEFAULT_OUTPUT_DIR = "hf_local_model"
 SYSTEM_PROMPT = (
     "You are Ting Ling Ling, a helpful, reliable, general-purpose assistant. "
@@ -139,14 +139,15 @@ def main():
             f"{args.train_file} not found. Run `python3 hf_dataset_builder.py` first."
         )
 
-    tokenizer = AutoTokenizer.from_pretrained(args.base_model, use_fast=True)
+    tokenizer = AutoTokenizer.from_pretrained(args.base_model, use_fast=True, trust_remote_code=True)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "right"
 
-    model = AutoModelForCausalLM.from_pretrained(args.base_model)
+    model = AutoModelForCausalLM.from_pretrained(args.base_model, trust_remote_code=True)
     model.config.pad_token_id = tokenizer.pad_token_id
     model.config.use_cache = False
+    model.gradient_checkpointing_enable()
 
     if args.use_lora:
         model = maybe_apply_lora(model, args.base_model, lora_r=8, lora_alpha=16, lora_dropout=0.05)

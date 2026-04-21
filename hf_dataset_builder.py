@@ -94,6 +94,36 @@ def build_examples() -> List[Dict[str, str]]:
     _add_variants(examples, ["What is a derivative?", "Explain derivative."], calculus["derivative"])
     _add_variants(examples, ["What is an integral?", "Explain integral."], calculus["integral"])
     _add_variants(examples, ["What is Euler's identity?", "Explain Euler's identity."], MATH_CONCEPTS["euler's identity"])
+    _add_variants(
+        examples,
+        ["Explain the chain rule.", "What is the chain rule in calculus?"],
+        "If y = f(g(x)), then $\\frac{dy}{dx} = f'(g(x)) \\cdot g'(x)$. In symbols: $\\frac{d}{dx} f(g(x)) = f'(g(x))g'(x)$.",
+    )
+    _add_variants(
+        examples,
+        ["Explain limits in calculus.", "What is a limit?"],
+        "A limit describes what a function approaches as $x$ approaches a value. We write $\\lim_{x \\to a} f(x) = L$ if the output gets arbitrarily close to $L$.",
+    )
+    _add_variants(
+        examples,
+        ["What is a Taylor series?", "Explain Taylor series."],
+        "A Taylor series writes a function as an infinite sum of derivatives around a point: $f(x) = \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n$.",
+    )
+    _add_variants(
+        examples,
+        ["Explain matrices.", "What is a matrix?"],
+        "A matrix is a rectangular array of numbers used for linear transformations, solving systems of equations, and representing data. For example, $A \\in \\mathbb{R}^{m\\times n}$.",
+    )
+    _add_variants(
+        examples,
+        ["Explain vectors and dot product.", "What is a dot product?"],
+        "A vector has magnitude and direction. The dot product is $\\mathbf{a}\\cdot\\mathbf{b}=\\sum_i a_i b_i$, and it measures alignment between vectors.",
+    )
+    _add_variants(
+        examples,
+        ["Explain probability.", "What is probability?"],
+        "Probability measures how likely an event is, with $0 \\le P(E) \\le 1$. For independent events, $P(A \\cap B)=P(A)P(B)$.",
+    )
 
     science = SCIENCE["quantum mechanics"]
     _add_variants(examples, ["Explain quantum mechanics.", "What is quantum mechanics?"], science["summary"])
@@ -136,11 +166,82 @@ def build_examples() -> List[Dict[str, str]]:
     _add_variants(examples, ["Explain Big O notation.", "What is Big O notation?"], alg["big_o"])
     _add_variants(examples, ["What sorting algorithm should I use?", "Compare common sorting algorithms."], alg["sorting"])
     _add_variants(examples, ["How does binary search work?", "Explain binary search."], alg["search"])
+    _add_variants(
+        examples,
+        ["Explain recursion in programming.", "What is recursion?"],
+        "Recursion is when a function calls itself on a smaller version of the problem. A recursive solution needs a base case and a recursive step.\n\nExample:\n```python\ndef factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\n```",
+    )
+    _add_variants(
+        examples,
+        ["Explain object-oriented programming.", "What is OOP?"],
+        "Object-oriented programming organizes code around objects and classes. Core ideas: encapsulation, inheritance, polymorphism, and abstraction.",
+    )
+    _add_variants(
+        examples,
+        ["Explain async and await in JavaScript.", "How does async/await work?"],
+        "async/await lets you write asynchronous code that reads like synchronous code. Use try/catch for errors and await on promises.",
+    )
+    _add_variants(
+        examples,
+        ["Explain memoization.", "What is memoization in algorithms?"],
+        "Memoization stores the results of expensive function calls so repeated inputs can return instantly. It is a common optimization for recursion and dynamic programming.",
+    )
+    _add_variants(
+        examples,
+        ["How do I structure a clean Python project?", "Give me Python project best practices."],
+        "A clean Python project usually separates source code, tests, configuration, and documentation. Use modules, type hints when useful, and keep functions small and focused.",
+    )
+    _add_variants(
+        examples,
+        ["Explain SQL joins.", "What are SQL joins?"],
+        "SQL joins combine rows from multiple tables. Common types are INNER JOIN, LEFT JOIN, RIGHT JOIN, and FULL OUTER JOIN.",
+    )
 
     # General assistant style examples help the model answer more naturally.
     _add_example(examples, "Be concise and answer in plain English.", "Sure. I can answer directly and keep it concise when you ask for brevity.")
     _add_example(examples, "Write code in a clean style.", "I will use clear structure, comments when helpful, and fenced code blocks with the correct language tag.")
     _add_example(examples, "What should you do if you are unsure?", "I should say I am not sure, avoid inventing facts, and ask a clarifying question if needed.")
+    _add_example(examples, "Use universal signs in math.", "I should prefer symbols like ∑, ∫, ∂, ⇒, ∀, ∃, ≤, ≥, and ≈ when they make the explanation clearer.")
+    _add_variants(
+        examples,
+        ["Help me write a professional email.", "Draft a polite email for me."],
+        "Sure. I can help with that. A strong email usually has a clear subject, a brief greeting, the request or purpose in the first sentence, and a polite closing.",
+    )
+    _add_variants(
+        examples,
+        ["Summarize this text in a few bullets.", "Give me a concise summary."],
+        "Absolutely. I can turn long text into a short summary, key bullets, or a plain-English explanation depending on what you need.",
+    )
+    _add_variants(
+        examples,
+        ["Explain this concept like I'm a beginner.", "Teach me from the basics."],
+        "Of course. I will start with the basics, define the terms, then build up to the advanced idea with a simple example.",
+    )
+    _add_variants(
+        examples,
+        ["Explain this concept at an advanced level.", "Go deep on this topic."],
+        "I will give a deeper explanation with precise terminology, important edge cases, and the mathematical or technical structure where relevant.",
+    )
+    _add_variants(
+        examples,
+        ["Brainstorm ideas for a project.", "Give me creative ideas."],
+        "Here are a few directions we could take: a practical build, a creative twist, a minimal version, and a more ambitious version.",
+    )
+    _add_variants(
+        examples,
+        ["Help me debug this code.", "Find the bug in my code."],
+        "I can help debug it. Please share the code, the error message, and what you expected to happen, and I will trace the issue step by step.",
+    )
+    _add_variants(
+        examples,
+        ["Write me a study plan.", "Help me make a revision schedule."],
+        "Sure. I can create a structured study plan with daily goals, revision blocks, and practice checkpoints.",
+    )
+    _add_variants(
+        examples,
+        ["Answer clearly and directly.", "Be conversational and helpful."],
+        "Understood. I will answer clearly, stay conversational, and adapt the depth to your question.",
+    )
 
     return examples
 
