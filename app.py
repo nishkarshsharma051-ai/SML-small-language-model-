@@ -1,5 +1,5 @@
 """
-app.py — Flask server for Ting Ling Ling Study AI
+app.py — Flask server for Ting Ling Ling General Assistant
 """
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -14,8 +14,12 @@ from flask import Flask, request, jsonify, render_template
 torch.set_num_threads(1)
 
 from brain import brain
+from voice_model import VoiceModel
 
 app = Flask(__name__)
+
+# Initialize voice model
+voice_engine = VoiceModel()
 
 # Load synchronously to avoid thread conflicts during init
 try:
@@ -30,18 +34,20 @@ def index():
     return render_template("index.html")
 
 
-# Global to track the active voice process
-current_voice_process = None
-
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
     question = data.get("message", "").strip()
+    history = data.get("history", [])
+    # Accept 'brain_mode' (cloud or local)
+    brain_mode = data.get("brain_mode", "cloud")
+    force_local = (brain_mode == "local")
+    
     if not question:
         return jsonify({"error": "Empty message"}), 400
 
     try:
-        answer = brain.ask(question)
+        answer = brain.ask(question, force_local=force_local, history=history)
         return jsonify({
             "reply": answer,
             "source": brain.source
@@ -52,65 +58,24 @@ def chat():
 
 @app.route("/speak", methods=["POST"])
 def speak():
-    global current_voice_process
     data = request.get_json()
     text  = data.get("text", "")
     voice = data.get("voice", "daniel")
-    rate  = data.get("rate", 175) # Default natural rate
+    rate  = int(data.get("rate", 175))
     if not text:
         return jsonify({"status": "empty"}), 400
 
-    # Stop any existing speech process
-    if current_voice_process and current_voice_process.poll() is None:
-        try:
-            current_voice_process.kill()
-        except:
-            pass
-
-    # Use the native Mac 'say' command for voice output
-    # It's much more stable than pyttsx3 in this environment
-    voice_map = {
-        "daniel": "Daniel",
-        "reed": "Reed",
-        "rocko": "Rocko",
-        "grandpa": "Grandpa",
-        "eddy": "Eddy",
-        "fred": "Fred"
-    }
-    os_voice = voice_map.get(voice, "Daniel")
-    
-    # Clean text for shell command
-    clean_text = text[:800].replace('"', '').replace("'", "").replace("\n", " ").replace(";", "")
-    
-    # Run in background via subprocess and track it
-    args = ["say", "-v", os_voice, "-r", str(rate), clean_text]
-    current_voice_process = subprocess.Popen(args)
+    voice_engine.set_voice(voice)
+    voice_engine.rate = rate
+    voice_engine.speak(text)
     
     return jsonify({"status": "speaking"})
 
 
 @app.route("/stop", methods=["POST"])
 def stop_speak():
-    global current_voice_process
-    if current_voice_process and current_voice_process.poll() is None:
-        try:
-            current_voice_process.kill()
-            return jsonify({"status": "stopped"})
-        except Exception as e:
-            return jsonify({"status": "error", "message": str(e)}), 500
-    return jsonify({"status": "not_speaking"})
-
-
-def _voice_id(name: str) -> str:
-    voices = {
-        "daniel":  "com.apple.voice.compact.en-GB.Daniel",
-        "reed":    "com.apple.eloquence.en-US.Reed",
-        "rocko":   "com.apple.eloquence.en-US.Rocko",
-        "grandpa": "com.apple.eloquence.en-US.Grandpa",
-        "eddy":    "com.apple.eloquence.en-US.Eddy",
-        "fred":    "com.apple.speech.synthesis.voice.Fred",
-    }
-    return voices.get(name, voices["daniel"])
+    voice_engine.stop()
+    return jsonify({"status": "stopped"})
 
 
 @app.route("/health")
@@ -120,7 +85,7 @@ def health():
 
 if __name__ == "__main__":
     print("═" * 55)
-    print("   🤖  Ting Ling Ling — Study AI")
+    print("   🤖  Ting Ling Ling — General Assistant")
     print("   🌐  http://localhost:5001")
     print("═" * 55)
     app.run(host="0.0.0.0", port=5001, debug=False)

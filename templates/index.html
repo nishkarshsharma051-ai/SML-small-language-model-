@@ -3,13 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ting Ling Ling — Study AI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&family=Google+Sans+Mono&display=swap" rel="stylesheet" />
+  <title>Ting Ling Ling — GPT-style Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/static/style.css" />
   <!-- KaTeX for High-Fidelity Math Rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <!-- Prism.js for High-Fidelity Code Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
 </head>
 <body>
   <!-- Sidebar -->
@@ -26,16 +33,12 @@
       </button>
     </div>
 
-    <div class="sidebar-section-label">Study Topics</div>
+    <div class="sidebar-section-label">Quick Prompts</div>
     <nav class="topic-nav">
-      <button class="topic-btn" data-q="Explain calculus derivatives step by step with examples">📐 Calculus</button>
-      <button class="topic-btn" data-q="Teach me quadratic equations with examples">📊 Algebra</button>
-      <button class="topic-btn" data-q="Explain the causes of World War 2">🌍 History</button>
-      <button class="topic-btn" data-q="Explain the French Revolution and its impact">🏰 World History</button>
-      <button class="topic-btn" data-q="Explain grammar rules: tenses and punctuation">✍️ English Grammar</button>
-      <button class="topic-btn" data-q="How do I write a good essay? Give me a structure">📝 Essay Writing</button>
-      <button class="topic-btn" data-q="Explain the Pythagorean theorem with examples">📏 Geometry</button>
-      <button class="topic-btn" data-q="Explain trigonometry: sin, cos, tan with examples">📡 Trigonometry</button>
+      <button class="topic-btn" data-q="Explain Python variable types with examples">🐍 Coding</button>
+      <button class="topic-btn" data-q="What are JavaScript promises and how do I use them?">📜 Web Dev</button>
+      <button class="topic-btn" data-q="Teach me CSS Flexbox centering">🎨 Design</button>
+      <button class="topic-btn" data-q="Explain Big O notation with examples">📂 Algorithms</button>
     </nav>
 
     <div class="sidebar-footer">
@@ -49,6 +52,18 @@
           <option value="eddy">Eddy (Clear)</option>
           <option value="fred">Fred (Classic)</option>
         </select>
+      </div>
+
+      <div class="brain-config">
+        <span class="config-label">🧠 Brain Mode</span>
+        <div class="mode-toggle">
+          <span class="mode-text" id="modeLocalLabel">Local</span>
+          <label class="switch">
+            <input type="checkbox" id="brainModeToggle">
+            <span class="slider round"></span>
+          </label>
+          <span class="mode-text" id="modeCloudLabel">Cloud</span>
+        </div>
       </div>
 
       <div class="voice-rate">
@@ -69,7 +84,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
       <div class="topbar-center">
-        <span class="model-badge">Ting Ling Ling · Study AI · v1.0</span>
+        <span class="model-badge">Ting Ling Ling · General Assistant · v1.0</span>
         
         <button class="voice-assistant-toggle" id="voiceAssistantBtn" title="Enable Voice Assistant (Hi Ting Ling Ling)">
           <div class="voice-pulse" id="voicePulse"></div>
@@ -96,8 +111,8 @@
           <div class="avatar-icon">TL</div>
         </div>
         <h1 class="welcome-title">Hello, I'm <span class="gradient-text">Ting Ling Ling</span></h1>
-        <p class="welcome-subtitle">Your personal study assistant. Ask me anything about<br/>
-          <strong>Mathematics · History · English · Science</strong>
+        <p class="welcome-subtitle">Your general-purpose assistant. Ask me anything about<br/>
+          <strong>Writing · Coding · Math · Science · Everyday help</strong>
         </p>
         <div class="suggestion-chips">
           <button class="chip" onclick="sendSuggestion('What is the derivative of x² + 3x?')">What is the derivative of x² + 3x?</button>

@@ -83,6 +83,32 @@ THERMODYNAMICS:
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
 
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -167,7 +193,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -252,7 +304,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
 
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -337,7 +415,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -422,7 +526,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -507,7 +637,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -592,7 +748,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
 
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -677,7 +859,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
 
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -762,7 +970,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -847,7 +1081,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
 
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -932,7 +1192,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -1017,7 +1303,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -1102,7 +1414,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -1187,7 +1525,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
 
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -1272,7 +1636,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
 
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -1357,7 +1747,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -1442,7 +1858,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
 
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -1527,7 +1969,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -1612,7 +2080,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -1697,7 +2191,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -1782,7 +2302,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
 
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -1867,7 +2413,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
 
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -1952,7 +2524,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -2037,7 +2635,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
 
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -2122,7 +2746,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -2207,7 +2857,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -2292,7 +2968,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -2377,7 +3079,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
 
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -2462,7 +3190,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
 
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -2547,7 +3301,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -2632,7 +3412,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
 
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -2717,7 +3523,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -2802,7 +3634,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -2887,7 +3745,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -2972,7 +3856,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
 
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -3057,7 +3967,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
 
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -3142,7 +4078,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -3227,7 +4189,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
 
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -3312,7 +4300,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -3397,7 +4411,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -3482,7 +4522,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -3567,7 +4633,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
 
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -3652,7 +4744,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
 
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -3737,7 +4855,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -3822,7 +4966,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
 
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -3907,7 +5077,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -3992,7 +5188,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -4077,7 +5299,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -4162,7 +5410,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
 
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -4247,7 +5521,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
 
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -4332,7 +5632,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -4417,7 +5743,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
 
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -4502,7 +5854,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -4587,7 +5965,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -4672,6 +6076,32 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
 
 --- SCHOLARLY HISTORY ---
 
@@ -4758,6 +6188,32 @@ THERMODYNAMICS:
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
 
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -4840,9 +6296,35 @@ THERMODYNAMICS:
     - 1st Law: Energy cannot be created or destroyed, only transformed (Conservation of Energy).
     - 2nd Law: The total entropy of an isolated system always increases over time.
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
+
+PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
-PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -4927,7 +6409,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -5012,7 +6520,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -5097,7 +6631,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -5182,7 +6742,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -5267,7 +6853,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -5352,7 +6964,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -5437,7 +7075,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -5522,7 +7186,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -5607,7 +7297,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -5692,7 +7408,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -5777,7 +7519,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -5862,7 +7630,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -5947,7 +7741,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -6032,7 +7852,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -6117,7 +7963,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -6202,7 +8074,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -6287,7 +8185,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -6372,7 +8296,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -6457,7 +8407,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -6542,7 +8518,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -6627,7 +8629,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -6712,7 +8740,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -6797,7 +8851,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -6882,7 +8962,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -6967,7 +9073,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -7052,7 +9184,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -7137,7 +9295,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -7222,7 +9406,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -7307,7 +9517,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -7392,7 +9628,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -7477,7 +9739,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -7562,7 +9850,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -7647,7 +9961,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -7732,7 +10072,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -7817,7 +10183,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -7902,7 +10294,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -7987,7 +10405,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -8072,7 +10516,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -8157,7 +10627,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
 
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -8242,7 +10738,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -8327,7 +10849,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
 
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -8412,7 +10960,33 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
 
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
+
 --- SCHOLARLY HISTORY ---
 
 WORLD WAR 2:
@@ -8497,4 +11071,30 @@ THERMODYNAMICS:
     - 3rd Law: As temperature approaches absolute zero, the entropy of a system approaches a constant minimum.
 
 PHOTOSYNTHESIS: 6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+
+
+--- SCHOLARLY CODING & PROGRAMMING ---
+
+PYTHON BASICS:
+  Variables: Assign values with = sign. x = 5, y = 'Hello'.
+  Loops: For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.
+  Functions: Defined using 'def keyword'. Example: 'def greet(name): return f"Hello, {name}"'
+  Data structures: Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}.
+
+JAVASCRIPT:
+  Variables: Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.
+  Promises: Handle asynchronous operations. Use .then() or async/await.
+  Dom: Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.
+  Es6 features: Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads.
+
+WEB DEVELOPMENT:
+  Html: HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.
+  Css flexbox: display: flex; justify-content: center; align-items: center; flex-direction: column.
+  Css grid: display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  Responsive design: Use @media (max-width: 600px) { ... } for mobile optimization.
+
+ALGORITHMS:
+  Big o: Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.
+  Sorting: Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).
+  Search: Binary Search requires a sorted list and has O(log n) complexity.
 

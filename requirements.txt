@@ -6,3 +6,4 @@ datasets
 accelerate
 pyttsx3
 sympy
+peft

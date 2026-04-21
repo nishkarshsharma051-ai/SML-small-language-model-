@@ -94,3 +94,30 @@ SCIENCE = {
     },
     "photosynthesis": "6CO2 + 6H2O + Light -> C6H12O6 + 6O2. The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll."
 }
+
+# ─── CODING KNOWLEDGE ────────────────────────────────────────────────────────
+CODING = {
+    "python basics": {
+        "variables": "Assign values with = sign. x = 5, y = 'Hello'.",
+        "loops": "For loops iterate over sequences: 'for i in range(5): print(i)'. While loops continue as long as a condition is true.",
+        "functions": "Defined using 'def keyword'. Example: 'def greet(name): return f\"Hello, {name}\"'",
+        "data_structures": "Lists [1, 2, 3], Tuples (1, 2), Dictionaries {'key': 'value'}, Sets {1, 2}."
+    },
+    "javascript": {
+        "variables": "Use 'let' for reassignable variables, 'const' for constants. Avoid 'var'.",
+        "promises": "Handle asynchronous operations. Use .then() or async/await.",
+        "dom": "Document Object Model. Access elements using 'document.getElementById()' or 'querySelector()'.",
+        "es6_features": "Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads."
+    },
+    "web development": {
+        "html": "HyperText Markup Language. Uses tags like <div>, <header>, <section>, <footer>.",
+        "css_flexbox": "display: flex; justify-content: center; align-items: center; flex-direction: column.",
+        "css_grid": "display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;",
+        "responsive_design": "Use @media (max-width: 600px) { ... } for mobile optimization."
+    },
+    "algorithms": {
+        "big_o": "Notation to describe complexity: O(1) Constant, O(n) Linear, O(log n) Logarithmic, O(n²) Quadratic.",
+        "sorting": "Bubble Sort (O(n²)), Merge Sort (O(n log n)), Quick Sort (avg O(n log n)).",
+        "search": "Binary Search requires a sorted list and has O(log n) complexity."
+    }
+}

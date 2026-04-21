@@ -92,7 +92,7 @@ class MathSolver:
                     "type": "solving",
                     "original": text,
                     "result": [str(s) for s in solutions],
-                    "latex_result": f"x = \\left\\{ {lx_sols} \\right\\}",
+                    "latex_result": f"x = \\left\\{{ {lx_sols} \\right\\}}",
                     "steps": [f"1. Rearranged: {full_expr} = 0", f"2. Solved: {solutions}"]
                 }
 
@@ -115,9 +115,6 @@ class MathSolver:
         except Exception as e:
             print(f"[MathSolver] Error: {e}")
             return None
-
-        except Exception as e:
-            return None # Fallback to LLM if parsing fails
 
 # Singleton
 math_solver = MathSolver()

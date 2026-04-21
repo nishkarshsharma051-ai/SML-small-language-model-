@@ -1,70 +1,49 @@
 """
 Voice Model for Ting Ling Ling
 ================================
-Provides a male TTS voice to speak any generated text.
-Uses macOS native voices via pyttsx3.
-
-Available Male Voices (pre-selected for quality):
-  - "daniel"  → Daniel (British English) - clear & professional
-  - "reed"    → Reed (US English Eloquence) - smooth & natural
-  - "fred"    → Fred (Classic macOS)
-  - "grandpa" → Grandpa (Eloquence)
-  - "rocko"   → Rocko (Eloquence, deep)
+Provides a stable voice interface for Ting Ling Ling using native macOS synthesis.
+Replaces pyttsx3 with direct 'say' command for better reliability in Flask environments.
 """
 
-import pyttsx3
+import subprocess
 import time
+import os
+import sys
 
 # ─── Voice Config ─────────────────────────────────────────────────────────────
+# Mappings for the native macOS 'say' command
 MALE_VOICES = {
-    "daniel":  "com.apple.voice.compact.en-GB.Daniel",          # 🎙️ British, clear
-    "reed":    "com.apple.eloquence.en-US.Reed",                 # 🎙️ US Eloquence, smooth
-    "grandpa": "com.apple.eloquence.en-US.Grandpa",             # 🎙️ US, warm
-    "rocko":   "com.apple.eloquence.en-US.Rocko",               # 🎙️ US, deep
-    "eddy":    "com.apple.eloquence.en-US.Eddy",                # 🎙️ US Eloquence
-    "fred":    "com.apple.speech.synthesis.voice.Fred",          # 🎙️ Classic macOS
+    "daniel":  "Daniel",   # 🎙️ British, clear & professional
+    "reed":    "Reed",     # 🎙️ US Eloquence, smooth & natural
+    "rocko":   "Rocko",    # 🎙️ US, deep
+    "grandpa": "Grandpa",  # 🎙️ US, warm
+    "eddy":    "Eddy",     # 🎙️ US Eloquence
+    "fred":    "Fred",     # 🎙️ Classic macOS
 }
 
-DEFAULT_VOICE = "daniel"   # Best overall quality for Ting Ling Ling
+DEFAULT_VOICE = "daniel"
 # ─────────────────────────────────────────────────────────────────────────────
 
 
 class VoiceModel:
     """
     Ting Ling Ling's male voice model.
-    Wraps pyttsx3 to provide a clean interface for text-to-speech generation.
+    Uses macOS 'say' command via subprocess for maximum stability.
     """
 
     def __init__(self, voice_name: str = DEFAULT_VOICE, rate: int = 160, volume: float = 1.0):
-        """
-        Initialize the voice model.
-
-        Args:
-            voice_name: Name of the voice (e.g., "daniel", "reed", "rocko").
-            rate: Speech rate in words-per-minute. Default is 160 (natural pace).
-            volume: Volume level 0.0 to 1.0.
-        """
-        self.engine = pyttsx3.init()
         self.voice_name = voice_name
         self.rate = rate
         self.volume = volume
-        self._configure()
+        self.current_process = None
 
-    def _configure(self):
-        voice_id = MALE_VOICES.get(self.voice_name.lower())
-        if voice_id is None:
-            print(f"[VoiceModel] Warning: '{self.voice_name}' not found. Using default: '{DEFAULT_VOICE}'")
-            voice_id = MALE_VOICES[DEFAULT_VOICE]
-
-        self.engine.setProperty('voice', voice_id)
-        self.engine.setProperty('rate', self.rate)
-        self.engine.setProperty('volume', self.volume)
-        print(f"[VoiceModel] Active voice: {self.voice_name.upper()} ({voice_id})")
+    def _get_os_voice(self):
+        return MALE_VOICES.get(self.voice_name.lower(), MALE_VOICES[DEFAULT_VOICE])
 
     def speak(self, text: str, label: str = ""):
         """
-        Speak the given text aloud.
-
+        Speak the given text aloud using the 'say' command.
+        
         Args:
             text: The text to speak.
             label: Optional label printed to the console.
@@ -74,64 +53,81 @@ class VoiceModel:
         else:
             print(f"\n🎙️  Speaking with voice: {self.voice_name.capitalize()}...")
 
-        self.engine.say(text)
-        self.engine.runAndWait()
+        # Stop any current speech before starting new one
+        self.stop()
+
+        # Clean text for shell (basic sanitization)
+        clean_text = text[:1000].replace('"', '').replace("'", "").replace("\n", " ")
+        
+        os_voice = self._get_os_voice()
+        
+        # Build command: say -v <Voice> -r <Rate> "Text"
+        args = ["say", "-v", os_voice, "-r", str(self.rate), clean_text]
+        
+        try:
+            self.current_process = subprocess.Popen(args)
+        except Exception as e:
+            print(f"[VoiceModel] Error launching speech process: {e}")
+
+    def stop(self):
+        """Stop the current speech process if it's running."""
+        if self.current_process and self.current_process.poll() is None:
+            try:
+                self.current_process.kill()
+                self.current_process = None
+            except:
+                pass
 
     def set_voice(self, voice_name: str):
         """Switch to a different male voice at runtime."""
-        if voice_name not in MALE_VOICES:
+        if voice_name.lower() not in MALE_VOICES:
             print(f"[VoiceModel] Unknown voice '{voice_name}'. Available: {list(MALE_VOICES.keys())}")
             return
-        self.voice_name = voice_name
-        self._configure()
+        self.voice_name = voice_name.lower()
 
     def list_voices(self):
         """Print all available male voices in the voice model."""
         print("\n🔊 Available Male Voices for Ting Ling Ling:")
         print("─" * 50)
-        for name, vid in MALE_VOICES.items():
-            marker = "◀ ACTIVE" if name == self.voice_name else ""
-            print(f"  {name:12} | {vid.split('.')[-1]:20} {marker}")
+        for name in MALE_VOICES.keys():
+            marker = "◀ ACTIVE" if name == self.voice_name.lower() else ""
+            print(f"  {name:12} {marker}")
         print("─" * 50)
 
 
 def speak_text(text: str, voice: str = DEFAULT_VOICE, rate: int = 160):
     """
     Convenience function — speak text without manually creating a VoiceModel.
-
-    Args:
-        text: Text to speak.
-        voice: Voice name (e.g. 'daniel', 'reed', 'rocko').
-        rate: Words-per-minute speech rate.
+    Note: This is blocking if you call .wait() but here it follows VoiceModel logic.
     """
     vm = VoiceModel(voice_name=voice, rate=rate)
     vm.speak(text, label="Ting Ling Ling")
+    return vm
 
 
 # ─── Demo ─────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
+    if sys.platform != "darwin":
+        print("❌ This voice model requires macOS ('say' command).")
+        sys.exit(1)
+
     print("═" * 55)
     print("   🔊  Ting Ling Ling — Voice Model Demo")
     print("═" * 55)
 
-    vm = VoiceModel(voice_name="daniel", rate=155)
+    vm = VoiceModel(voice_name="daniel", rate=170)
     vm.list_voices()
 
     demo_text = (
         "Hello! I am Ting Ling Ling, a small language model. "
-        "I have learned to speak with a male voice using the Daniel voice. "
-        "Shall I recite some Shakespeare for you?"
+        "I have been updated to use the native macOS say command for better stability."
     )
 
     vm.speak(demo_text, label="Intro")
-    time.sleep(0.5)
-
-    shakespeare = (
-        "To be, or not to be, that is the question: "
-        "Whether 'tis nobler in the mind to suffer "
-        "The slings and arrows of outrageous fortune."
-    )
-
-    vm.speak(shakespeare, label="Shakespeare")
+    
+    # Give it a moment to start
+    time.sleep(2)
+    print("\n... Stopping speech early ...")
+    vm.stop()
 
     print("\n✅ Voice model demo complete!")

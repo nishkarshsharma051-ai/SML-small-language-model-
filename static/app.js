@@ -11,12 +11,29 @@ const voiceRate    = document.getElementById('voiceRate');
 const rateValue   = document.getElementById('rateValue');
 const sidebar     = document.getElementById('sidebar');
 const voiceAssistantBtn = document.getElementById('voiceAssistantBtn');
+const brainModeToggle = document.getElementById('brainModeToggle');
+const modeLocalLabel = document.getElementById('modeLocalLabel');
+const modeCloudLabel = document.getElementById('modeCloudLabel');
 
 let isWaiting = false;
 let modelReady = false;
 let isSpeaking = false;
 let assistantActive = false;
 let recognition = null;
+let conversation = [];
+
+/* ─── Brain Mode Toggle ────────────────────────────────────── */
+function updateModeLabels() {
+  if (brainModeToggle.checked) {
+    modeCloudLabel.classList.add('active');
+    modeLocalLabel.classList.remove('active');
+  } else {
+    modeCloudLabel.classList.remove('active');
+    modeLocalLabel.classList.add('active');
+  }
+}
+brainModeToggle.addEventListener('change', updateModeLabels);
+updateModeLabels();
 
 /* ─── Model Status Poll ───────────────────────────────────── */
 async function checkModelStatus() {
@@ -48,6 +65,7 @@ document.getElementById('newChatBtn').addEventListener('click', () => {
   messages.innerHTML = '';
   welcomeScr.classList.remove('hidden');
   userInput.value = '';
+  conversation = [];
   autoResize();
 });
 
@@ -93,13 +111,12 @@ async function stopSpeech() {
 }
 stopSpeechBtn.addEventListener('click', stopSpeech);
 
-/* ─── Voice Assistant (Wake Word & Loop) ───────────────────── */
+/* ─── Voice Assistant ──────────────────────────────────────── */
 function initVoiceAssistant() {
   if (!('webkitSpeechRecognition' in window)) {
     voiceAssistantBtn.style.display = 'none';
     return;
   }
-
   recognition = new webkitSpeechRecognition();
   recognition.continuous = true;
   recognition.interimResults = false;
@@ -107,58 +124,37 @@ function initVoiceAssistant() {
 
   recognition.onresult = (event) => {
     const result = event.results[event.results.length - 1][0].transcript.toLowerCase().trim();
-    console.log('[Voice] Heard:', result);
-
     if (!isWaiting && !isSpeaking) {
       if (result.includes('hi ting ling ling') || result.includes('ting ling ling')) {
-        // Wake word detected!
         playStatusSound('listen');
         appendMessage('ai', "I'm listening...");
       } else if (assistantActive) {
-        // Already active, treat as question
         userInput.value = result;
         sendMessage();
       }
     }
   };
-
-  recognition.onend = () => {
-    if (assistantActive) recognition.start();
-  };
-
-  recognition.onerror = (err) => {
-    console.error('[Voice] Error:', err.error);
-    if (err.error === 'not-allowed') {
-      assistantActive = false;
-      voiceAssistantBtn.classList.remove('active');
-      alert('Microphone access denied. Please allow it to use Voice Assistant.');
-    }
-  };
+  recognition.onend = () => { if (assistantActive) recognition.start(); };
 }
 
 function toggleVoiceAssistant() {
   if (!recognition) initVoiceAssistant();
-
   assistantActive = !assistantActive;
   if (assistantActive) {
     voiceAssistantBtn.classList.add('active');
     recognition.start();
-    appendMessage('ai', "Voice Assistant active. Say 'Hi Ting Ling Ling' to start a conversation!");
   } else {
     voiceAssistantBtn.classList.remove('active');
     recognition.stop();
   }
 }
-
 voiceAssistantBtn.addEventListener('click', toggleVoiceAssistant);
 
 function playStatusSound(type) {
-  // Simple heuristic: change UI state
   statusDot.classList.add('loading');
   setTimeout(() => statusDot.classList.remove('loading'), 1000);
 }
 
-/* ─── Send a Suggestion Chip ──────────────────────────────── */
 function sendSuggestion(text) {
   userInput.value = text;
   autoResize();
@@ -171,51 +167,66 @@ async function sendMessage() {
   const text = userInput.value.trim();
   if (!text || isWaiting) return;
 
-  // Hide welcome, show messages
   welcomeScr.classList.add('hidden');
-
-  // Append user bubble
   appendMessage('user', text);
+  conversation.push({ role: 'user', content: text });
   userInput.value = '';
   autoResize();
 
-  // Show typing indicator
   const typingEl = appendTyping();
   isWaiting = true;
   sendBtn.disabled = true;
+
+  const brain_mode = brainModeToggle.checked ? 'cloud' : 'local';
 
   try {
     const res = await fetch('/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: text })
+      body: JSON.stringify({ 
+        message: text,
+        brain_mode: brain_mode,
+        history: conversation.slice(-12)
+      })
     });
     const data = await res.json();
     typingEl.remove();
 
     const reply = data.reply || data.error || 'Sorry, something went wrong.';
-    const el = appendMessage('ai', reply);
+    appendMessage('ai', reply, data.source);
+    conversation.push({ role: 'assistant', content: reply });
     scrollBottom();
-
-    // Update brain source indicator
-    if (data.source) {
-      const sourceTag = document.getElementById('brain-source');
-      if (sourceTag) {
-        sourceTag.textContent = data.source;
-        sourceTag.className = 'source-tag ' + data.source.toLowerCase();
-      }
-    }
   } catch (err) {
     typingEl.remove();
-    appendMessage('ai', '❌ Could not reach the server. Make sure `app.py` is running.');
+    appendMessage('ai', '❌ Could not reach the server.');
   } finally {
     isWaiting = false;
     sendBtn.disabled = false;
   }
 }
 
-/* ─── Append User Message ─────────────────────────────────── */
-function appendMessage(role, text) {
+/* ─── Markdown & Code Rendering ───────────────────────────── */
+function renderMarkdown(text) {
+  // Pass 1: Code blocks with language detection
+  text = text.replace(/```(\w*)\n?([\s\S]*?)```/g, (match, lang, code) => {
+    const language = lang.trim() || 'python';
+    return `<pre class="line-numbers"><code class="language-${language}">${escapeHtml(code.trim())}</code></pre>`;
+  });
+
+  // Pass 2: Bold, Italic, Inline Code
+  return text
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    .replace(/^[•\-\*] (.+)$/gm, '<li>$1</li>')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/\n/g, '<br/>');
+}
+
+function appendMessage(role, text, source = null) {
   const el = document.createElement('div');
   el.className = `message ${role}`;
 
@@ -223,36 +234,31 @@ function appendMessage(role, text) {
     el.innerHTML = `<div class="bubble">${escapeHtml(text)}</div>`;
   } else {
     const rendered = renderMarkdown(text);
+    const sourceBadge = source ? `<span class="source-tag ${source.toLowerCase()}">${source}</span>` : '';
     el.innerHTML = `
       <div class="ai-avatar">TL</div>
       <div class="ai-content">
-        <div class="ai-text">${rendered}</div>
+        <div class="ai-text">${rendered}${sourceBadge}</div>
         <div class="ai-actions">
-          <button class="action-btn" onclick="copyText(this)" data-text="${escapeAttr(text)}">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
-            </svg>
-            Copy
-          </button>
-          <button class="action-btn" onclick="speakText(this)" data-text="${escapeAttr(text)}">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-              <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
-            </svg>
-            Speak
-          </button>
+          <button class="action-btn" onclick="copyText(this)" data-text="${escapeAttr(text)}">Copy</button>
+          <button class="action-btn" onclick="speakText(this)" data-text="${escapeAttr(text)}">Speak</button>
         </div>
       </div>`;
   }
+  
   messages.appendChild(el);
+  
+  // Apply Prism highlighting
+  if (window.Prism) {
+    Prism.highlightAllUnder(el);
+  }
 
+  // Apply KaTeX
   if (window.renderMathInElement) {
     renderMathInElement(el, {
       delimiters: [
         {left: '$$', right: '$$', display: true},
-        {left: '$', right: '$', display: false},
-        {left: '\\(', right: '\\)', display: false},
-        {left: '\\[', right: '\\]', display: true}
+        {left: '$', right: '$', display: false}
       ],
       throwOnError : false
     });
@@ -262,28 +268,20 @@ function appendMessage(role, text) {
   return el;
 }
 
-/* ─── Typing Dots ─────────────────────────────────────────── */
 function appendTyping() {
   const el = document.createElement('div');
   el.className = 'message ai';
-  el.innerHTML = `
-    <div class="ai-avatar">TL</div>
-    <div class="ai-content">
-      <div class="typing">
-        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-      </div>
-    </div>`;
+  el.innerHTML = `<div class="ai-avatar">TL</div><div class="ai-content"><div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>`;
   messages.appendChild(el);
   scrollBottom();
   return el;
 }
 
-/* ─── Actions ─────────────────────────────────────────────── */
 function copyText(btn) {
   const text = btn.dataset.text;
   navigator.clipboard.writeText(text).then(() => {
     btn.textContent = '✓ Copied';
-    setTimeout(() => { btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy`; }, 2000);
+    setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
   });
 }
 window.copyText = copyText;
@@ -292,11 +290,8 @@ async function speakText(btn) {
   const text = btn.dataset.text;
   const voice = voiceSelect.value;
   const rate = voiceRate.value;
-  
   isSpeaking = true;
   stopSpeechBtn.classList.remove('hidden');
-  btn.textContent = '🎙️ Speaking...';
-  
   try {
     await fetch('/speak', {
       method: 'POST',
@@ -304,42 +299,10 @@ async function speakText(btn) {
       body: JSON.stringify({ text, voice, rate })
     });
   } finally {
-    // We don't immediately hide the stop button because the speech is still playing background
-    // But we restore the button text
-    setTimeout(() => { 
-      btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg> Speak`; 
-    }, 2000);
+    setTimeout(() => { isSpeaking = false; }, 2000);
   }
 }
 window.speakText = speakText;
-
-/* ─── Markdown Renderer (lightweight) ────────────────────── */
-function renderMarkdown(text) {
-  return text
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    // code blocks
-    .replace(/```[\w]*\n?([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
-    // inline code
-    .replace(/`([^`]+)`/g, '<code>$1</code>')
-    // bold
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    // italic
-    .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    // headings
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-    // unordered list
-    .replace(/^[•\-\*] (.+)$/gm, '<li>$1</li>')
-    .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
-    // ordered list
-    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
-    // blockquote
-    .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
-    // line breaks
-    .replace(/\n\n/g, '</p><p>')
-    .replace(/\n/g, '<br/>');
-}
 
 function escapeHtml(t) {
   return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -347,8 +310,6 @@ function escapeHtml(t) {
 function escapeAttr(t) {
   return t.replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/\n/g,' ');
 }
-
-/* ─── Scroll ──────────────────────────────────────────────── */
 function scrollBottom() {
   chatWindow.scrollTo({ top: chatWindow.scrollHeight, behavior: 'smooth' });
 }

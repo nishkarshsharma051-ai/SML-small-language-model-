@@ -1,0 +1,9 @@
+{"prompt": "What ES6 features should I know?", "response": "Arrow functions () => {}, Template literals `${var}`, Destructuring, Spreads."}
+{"prompt": "Summarize Ancient Rome.", "response": "Ancient Rome progressed from a small town on the Tiber River into an expansive empire that dominated the Mediterranean world for centuries."}
+{"prompt": "What is a simile?", "response": "A comparison using 'like' or 'as'. Example: 'The mystery of his mind is as deep as the ocean.'"}
+{"prompt": "Explain the thesis of an essay.", "response": "A central statement or claim that an essay argues and supports with evidence."}
+{"prompt": "What is symbolism?", "response": "The use of objects, characters, or colors to represent abstract ideas (e.g., a green light for hope in The Great Gatsby)."}
+{"prompt": "What is the quadratic formula?", "response": "x = [-b ± sqrt(b² - 4ac)] / 2a"}
+{"prompt": "What caused World War 2?", "response": "Long-term causes included the harsh Treaty of Versailles, the failure of the League of Nations, the Great Depression, and the aggressive expansionism of Nazi Germany (Lebensraum), Fascist Italy, and Imperial Japan."}
+{"prompt": "Explain Ancient Rome.", "response": "Ancient Rome progressed from a small town on the Tiber River into an expansive empire that dominated the Mediterranean world for centuries."}
+{"prompt": "How does binary search work?", "response": "Binary Search requires a sorted list and has O(log n) complexity."}
