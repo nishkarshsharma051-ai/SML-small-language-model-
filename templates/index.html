@@ -3,74 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ting Ling Ling — GPT-style Assistant</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <title>Ting Ling Ling — Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/static/style.css" />
-  <!-- KaTeX for High-Fidelity Math Rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-  <!-- Prism.js for High-Fidelity Code Syntax Highlighting -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
 </head>
 <body>
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <div class="logo">
-        <div class="logo-icon">
-          <span>T</span><span class="logo-accent">L</span>
-        </div>
-        <span class="logo-text">Ting Ling Ling</span>
-      </div>
+      <div class="logo">Ting Ling Ling</div>
       <button class="icon-btn" id="newChatBtn" title="New Chat">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
       </button>
     </div>
 
-    <div class="sidebar-section-label">Quick Prompts</div>
+    <div class="sidebar-section-label">Prompts</div>
     <nav class="topic-nav">
-      <button class="topic-btn" data-q="Explain recursion in programming with a Python example">🧠 Recursion</button>
-      <button class="topic-btn" data-q="Teach me the chain rule step by step using symbols">∂ Calculus</button>
-      <button class="topic-btn" data-q="Explain OOP with clean Python code examples">🧱 OOP</button>
-      <button class="topic-btn" data-q="Explain linear algebra matrices and vectors">∑ Linear Algebra</button>
+      <button class="topic-btn" data-q="Explain recursion in programming">Recursion</button>
+      <button class="topic-btn" data-q="Teach me the chain rule step by step">Calculus</button>
+      <button class="topic-btn" data-q="Explain object-oriented programming">OOP</button>
+      <button class="topic-btn" data-q="Explain linear algebra basics">Linear Algebra</button>
     </nav>
 
     <div class="sidebar-footer">
       <div class="voice-selector">
-        <span class="voice-label">🎙️ Voice</span>
+        <span class="voice-label">Voice</span>
         <select id="voiceSelect" class="voice-select">
-          <option value="daniel">Daniel (British)</option>
-          <option value="reed">Reed (US)</option>
-          <option value="rocko">Rocko (Deep)</option>
-          <option value="grandpa">Grandpa (Warm)</option>
-          <option value="eddy">Eddy (Clear)</option>
-          <option value="fred">Fred (Classic)</option>
+          <option value="daniel">Daniel</option>
+          <option value="reed">Reed</option>
+          <option value="rocko">Rocko</option>
+          <option value="grandpa">Grandpa</option>
+          <option value="eddy">Eddy</option>
+          <option value="fred">Fred</option>
         </select>
       </div>
 
-      <div class="brain-config">
-        <span class="config-label">🧠 Brain Mode</span>
-        <div class="mode-toggle">
-          <span class="mode-text" id="modeLocalLabel">Local</span>
-          <label class="switch">
-            <input type="checkbox" id="brainModeToggle">
-            <span class="slider round"></span>
-          </label>
-          <span class="mode-text" id="modeCloudLabel">Cloud</span>
-        </div>
+      <div class="voice-chat-config">
+        <label class="check-row">
+          <input type="checkbox" id="autoSpeakToggle">
+          <span>Auto speak</span>
+        </label>
       </div>
 
       <div class="voice-rate">
-        <div class="rate-header">
-          <span class="rate-label">⚡ Speed</span>
-          <span id="rateValue" class="rate-value">175</span>
-        </div>
+        <span class="rate-label">Speed: <span id="rateValue">175</span></span>
         <input type="range" id="voiceRate" class="rate-slider" min="100" max="350" value="175" step="1">
       </div>
     </div>
@@ -78,78 +58,43 @@
 
   <!-- Main Area -->
   <main class="main">
-    <!-- Topbar -->
     <header class="topbar">
       <button class="icon-btn" id="toggleSidebar" title="Toggle Sidebar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
       <div class="topbar-center">
-        <span class="model-badge">Ting Ling Ling · General Assistant · v1.0</span>
-        
-        <button class="voice-assistant-toggle" id="voiceAssistantBtn" title="Enable Voice Assistant (Hi Ting Ling Ling)">
-          <div class="voice-pulse" id="voicePulse"></div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
-          </svg>
+        <span class="model-badge">Assistant v1.0</span>
+        <button class="voice-assistant-toggle" id="voiceAssistantBtn">
           Voice Assistant
         </button>
-
-        <button class="stop-btn hidden" id="stopSpeechBtn" title="Stop Speaking">
-          <svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
-          Stop Speaking
+        <button class="stop-btn hidden" id="stopSpeechBtn">
+          Stop
         </button>
       </div>
-      <div class="status-dot" id="statusDot" title="Model status"></div>
+      <div class="status-dot" id="statusDot"></div>
     </header>
 
-    <!-- Chat Window -->
     <div class="chat-window" id="chatWindow">
-      <!-- Welcome Screen -->
       <div class="welcome" id="welcomeScreen">
-        <div class="welcome-avatar">
-          <div class="avatar-glow"></div>
-          <div class="avatar-icon">TL</div>
-        </div>
-        <h1 class="welcome-title">Hello, I'm <span class="gradient-text">Ting Ling Ling</span></h1>
-        <p class="welcome-subtitle">Your general-purpose assistant for advanced code, symbolic math, and structured explanations.<br/>
-          <strong>Writing · Coding · Math · Science · Everyday help</strong>
-        </p>
-        <div class="feature-strip">
-          <div class="feature-card">
-            <span class="feature-kicker">Code</span>
-            <strong>Detailed examples</strong>
-            <p>Clean, step-by-step answers with edge cases and complexity notes.</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-kicker">Math</span>
-            <strong>Universal notation</strong>
-            <p>Uses symbols, formulas, and LaTeX for advanced topics.</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-kicker">Tutor</span>
-            <strong>Adaptive teaching</strong>
-            <p>Explains at beginner or advanced level depending on your question.</p>
-          </div>
-        </div>
+        <h1 class="welcome-title">Ting Ling Ling</h1>
+        <p class="welcome-subtitle">A minimal interface for your language model.</p>
         <div class="suggestion-chips">
-          <button class="chip" onclick="sendSuggestion('Explain the chain rule with symbols and an example')">Chain rule</button>
-          <button class="chip" onclick="sendSuggestion('Explain recursion in programming with a Python example')">Recursion</button>
-          <button class="chip" onclick="sendSuggestion('Explain object-oriented programming with clean code examples')">OOP</button>
-          <button class="chip" onclick="sendSuggestion('Explain matrices and vectors in linear algebra')">Linear algebra</button>
+          <button class="chip" onclick="sendSuggestion('Explain the chain rule')">Chain rule</button>
+          <button class="chip" onclick="sendSuggestion('Explain recursion')">Recursion</button>
+          <button class="chip" onclick="sendSuggestion('Explain OOP')">OOP</button>
+          <button class="chip" onclick="sendSuggestion('Explain linear algebra')">Linear algebra</button>
         </div>
       </div>
 
-      <!-- Messages Container -->
       <div class="messages" id="messages"></div>
     </div>
 
-    <!-- Input Area -->
     <div class="input-area">
       <div class="input-container">
         <textarea
           id="userInput"
           class="user-input"
-          placeholder="Ask Ting Ling Ling anything..."
+          placeholder="Type a message..."
           rows="1"
           autofocus
         ></textarea>
@@ -159,7 +104,7 @@
           </button>
         </div>
       </div>
-      <p class="disclaimer">Ting Ling Ling may make mistakes. Verify important information.</p>
+      <p class="disclaimer">Ting Ling Ling may make mistakes. Verify information.</p>
     </div>
   </main>
 

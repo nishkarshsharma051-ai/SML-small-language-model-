@@ -22,6 +22,12 @@ python3 hf_train.py --base-model Qwen/Qwen2.5-0.5B-Instruct --use-lora --output-
 
 3. Start the app with the local HF model directory in place.
 
+## Optional: Grok Fallback + Self-Training Log
+
+- If you set `XAI_API_KEY`, the app can use Grok (xAI) as a last-resort fallback when local/cloud paths fail.
+- If you also set `TEACHER_LOG=1`, it logs Grok Q&A pairs to `data/teacher_log.jsonl`.
+- The dataset builder automatically includes up to 200 of these teacher examples on the next run.
+
 ## Notes
 
 - This is a fine-tuning workflow, not training a foundation model from scratch.

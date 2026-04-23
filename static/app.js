@@ -14,6 +14,8 @@ const voiceAssistantBtn = document.getElementById('voiceAssistantBtn');
 const brainModeToggle = document.getElementById('brainModeToggle');
 const modeLocalLabel = document.getElementById('modeLocalLabel');
 const modeCloudLabel = document.getElementById('modeCloudLabel');
+const stopGenBtn  = document.getElementById('stopGenBtn');
+const autoSpeakToggle = document.getElementById('autoSpeakToggle');
 
 let isWaiting = false;
 let modelReady = false;
@@ -21,19 +23,29 @@ let isSpeaking = false;
 let assistantActive = false;
 let recognition = null;
 let conversation = [];
+let currentAbort = null;
+let currentRequestId = null;
+let currentStreamingText = "";
+let autoSpeak = false;
+let voiceArmed = false;
+let voiceArmedTimer = null;
 
-/* ─── Brain Mode Toggle ────────────────────────────────────── */
-function updateModeLabels() {
-  if (brainModeToggle.checked) {
-    modeCloudLabel.classList.add('active');
-    modeLocalLabel.classList.remove('active');
-  } else {
-    modeCloudLabel.classList.remove('active');
-    modeLocalLabel.classList.add('active');
-  }
+function loadPrefs() {
+  try {
+    autoSpeak = localStorage.getItem('autoSpeak') === '1';
+  } catch {}
+  if (autoSpeakToggle) autoSpeakToggle.checked = autoSpeak;
 }
-brainModeToggle.addEventListener('change', updateModeLabels);
-updateModeLabels();
+function savePrefs() {
+  try { localStorage.setItem('autoSpeak', autoSpeak ? '1' : '0'); } catch {}
+}
+loadPrefs();
+if (autoSpeakToggle) {
+  autoSpeakToggle.addEventListener('change', () => {
+    autoSpeak = !!autoSpeakToggle.checked;
+    savePrefs();
+  });
+}
 
 /* ─── Model Status Poll ───────────────────────────────────── */
 async function checkModelStatus() {
@@ -126,9 +138,16 @@ function initVoiceAssistant() {
     const result = event.results[event.results.length - 1][0].transcript.toLowerCase().trim();
     if (!isWaiting && !isSpeaking) {
       if (result.includes('hi ting ling ling') || result.includes('ting ling ling')) {
+        // Wake phrase: arm the next sentence as a message.
         playStatusSound('listen');
-        appendMessage('ai', "I'm listening...");
-      } else if (assistantActive) {
+        voiceArmed = true;
+        if (voiceArmedTimer) clearTimeout(voiceArmedTimer);
+        voiceArmedTimer = setTimeout(() => { voiceArmed = false; }, 8000);
+        appendMessage('ai', "Listening. Say your question.", 'local');
+        return;
+      }
+      if (assistantActive || voiceArmed) {
+        voiceArmed = false;
         userInput.value = result;
         sendMessage();
       }
@@ -176,17 +195,73 @@ async function sendMessage() {
   const typingEl = appendTyping();
   isWaiting = true;
   sendBtn.disabled = true;
+  if (stopGenBtn) stopGenBtn.classList.remove('hidden');
 
-  const brain_mode = brainModeToggle.checked ? 'cloud' : 'local';
+  const brain_mode = (brainModeToggle && brainModeToggle.checked) ? 'cloud' : 'cloud'; // Default to cloud/hybrid for stealth mode
 
   try {
+    // Prefer streaming if the browser supports it.
+    if (window.ReadableStream) {
+      currentStreamingText = "";
+      currentRequestId = null;
+      if (currentAbort) {
+        try { currentAbort.abort(); } catch {}
+      }
+      currentAbort = new AbortController();
+
+      // Replace typing indicator with a live-updating AI message.
+      typingEl.remove();
+      const aiEl = appendStreamingAI();
+
+      const res = await fetch('/chat_stream', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: text,
+          brain_mode: brain_mode,
+          history: conversation.slice(-12)
+        }),
+        signal: currentAbort.signal
+      });
+
+      if (!res.ok || !res.body) throw new Error('Streaming failed');
+
+      await readSSE(res.body, async (msg) => {
+        if (msg.type === 'meta') {
+          currentRequestId = msg.request_id || null;
+          if (msg.source) setStreamingSource(aiEl, msg.source);
+          return;
+        }
+        if (msg.type === 'chunk') {
+          currentStreamingText += (msg.text || "");
+          setStreamingText(aiEl, currentStreamingText);
+          return;
+        }
+        if (msg.type === 'done') {
+          const finalSource = msg.source || null;
+          finalizeStreamingAI(aiEl, currentStreamingText, finalSource);
+          conversation.push({ role: 'assistant', content: currentStreamingText });
+          if (autoSpeak && currentStreamingText) {
+            await speakNow(currentStreamingText);
+          }
+          return;
+        }
+        if (msg.type === 'error') {
+          finalizeStreamingAI(aiEl, msg.error || 'Error', 'error');
+          conversation.push({ role: 'assistant', content: msg.error || 'Error' });
+        }
+      });
+
+      scrollBottom();
+      return;
+    }
+
     const res = await fetch('/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
         message: text,
-        brain_mode: brain_mode,
-        history: conversation.slice(-12)
+        history: window.chatHistory || []
       })
     });
     const data = await res.json();
@@ -197,13 +272,60 @@ async function sendMessage() {
     conversation.push({ role: 'assistant', content: reply });
     scrollBottom();
   } catch (err) {
-    typingEl.remove();
-    appendMessage('ai', '❌ Could not reach the server.');
+    if (err && err.name === 'AbortError') {
+      appendMessage('ai', '(Stopped.)', 'local');
+      conversation.push({ role: 'assistant', content: '(Stopped.)' });
+      return;
+    }
+    try { typingEl.remove(); } catch {}
+    appendMessage('ai', 'Error: Could not reach the server.');
   } finally {
     isWaiting = false;
     sendBtn.disabled = false;
+    if (stopGenBtn) stopGenBtn.classList.add('hidden');
   }
 }
+
+async function readSSE(body, onMessage) {
+  const reader = body.getReader();
+  const decoder = new TextDecoder('utf-8');
+  let buffer = '';
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    let idx;
+    while ((idx = buffer.indexOf('\n\n')) !== -1) {
+      const raw = buffer.slice(0, idx);
+      buffer = buffer.slice(idx + 2);
+      const lines = raw.split('\n');
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const payload = line.slice(6);
+          try { onMessage(JSON.parse(payload)); } catch {}
+        }
+      }
+    }
+  }
+}
+
+async function stopGenerating() {
+  if (!isWaiting) return;
+  if (currentAbort) {
+    try { currentAbort.abort(); } catch {}
+  }
+  if (currentRequestId) {
+    try {
+      await fetch('/cancel', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ request_id: currentRequestId })
+      });
+    } catch {}
+  }
+  if (stopGenBtn) stopGenBtn.classList.add('hidden');
+}
+if (stopGenBtn) stopGenBtn.addEventListener('click', stopGenerating);
 
 /* ─── Markdown & Code Rendering ───────────────────────────── */
 function renderMarkdown(text) {
@@ -226,7 +348,7 @@ function renderMarkdown(text) {
     .replace(/\n/g, '<br/>');
 }
 
-function appendMessage(role, text, source = null) {
+function appendMessage(role, text) {
   const el = document.createElement('div');
   el.className = `message ${role}`;
 
@@ -234,11 +356,10 @@ function appendMessage(role, text, source = null) {
     el.innerHTML = `<div class="bubble">${escapeHtml(text)}</div>`;
   } else {
     const rendered = renderMarkdown(text);
-    const sourceBadge = source ? `<span class="source-tag ${source.toLowerCase()}">${source}</span>` : '';
     el.innerHTML = `
-      <div class="ai-avatar">TL</div>
+      <div class="ai-avatar">TLL</div>
       <div class="ai-content">
-        <div class="ai-text">${rendered}${sourceBadge}</div>
+        <div class="ai-text">${rendered}</div>
         <div class="ai-actions">
           <button class="action-btn" onclick="copyText(this)" data-text="${escapeAttr(text)}">Copy</button>
           <button class="action-btn" onclick="speakText(this)" data-text="${escapeAttr(text)}">Speak</button>
@@ -268,10 +389,72 @@ function appendMessage(role, text, source = null) {
   return el;
 }
 
+function appendStreamingAI(source = null) {
+  const el = document.createElement('div');
+  el.className = 'message ai';
+  const sourceBadge = source ? `<span class="source-tag ${source.toLowerCase()}">${source}</span>` : '';
+  el.innerHTML = `
+    <div class="ai-avatar">TLL</div>
+    <div class="ai-content">
+      <div class="ai-text"><span class="streaming-text"></span>${sourceBadge}</div>
+      <div class="ai-actions">
+        <button class="action-btn" onclick="copyText(this)" data-text="">Copy</button>
+        <button class="action-btn" onclick="speakText(this)" data-text="">Speak</button>
+      </div>
+    </div>`;
+  messages.appendChild(el);
+  scrollBottom();
+  return el;
+}
+
+function setStreamingText(el, text) {
+  const span = el.querySelector('.streaming-text');
+  if (span) span.textContent = text;
+  // Keep buttons in sync with the latest text.
+  el.querySelectorAll('.action-btn').forEach(btn => { btn.dataset.text = text; });
+  scrollBottom();
+}
+
+function setStreamingSource(el, source) {
+  const aiText = el.querySelector('.ai-text');
+  if (!aiText) return;
+  const existing = aiText.querySelector('.source-tag');
+  if (existing) existing.remove();
+  if (!source) return;
+  const badge = document.createElement('span');
+  badge.className = `source-tag ${String(source).toLowerCase()}`;
+  badge.textContent = source;
+  aiText.appendChild(badge);
+}
+
+function finalizeStreamingAI(el, text, source = null) {
+  const aiText = el.querySelector('.ai-text');
+  if (!aiText) return;
+  const rendered = renderMarkdown(text || '');
+  const sourceBadge = source ? `<span class="source-tag ${String(source).toLowerCase()}">${source}</span>` : '';
+  aiText.innerHTML = `${rendered}${sourceBadge}`;
+
+  // Re-apply highlight and math after final render.
+  if (window.Prism) {
+    Prism.highlightAllUnder(el);
+  }
+  if (window.renderMathInElement) {
+    renderMathInElement(el, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError : false
+    });
+  }
+
+  el.querySelectorAll('.action-btn').forEach(btn => { btn.dataset.text = text || ''; });
+}
+
 function appendTyping() {
   const el = document.createElement('div');
   el.className = 'message ai';
-  el.innerHTML = `<div class="ai-avatar">TL</div><div class="ai-content"><div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>`;
+  el.innerHTML = `<div class="ai-avatar">TLL</div><div class="ai-content"><div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>`;
   messages.appendChild(el);
   scrollBottom();
   return el;
@@ -303,6 +486,22 @@ async function speakText(btn) {
   }
 }
 window.speakText = speakText;
+
+async function speakNow(text) {
+  const voice = voiceSelect.value;
+  const rate = voiceRate.value;
+  isSpeaking = true;
+  stopSpeechBtn.classList.remove('hidden');
+  try {
+    await fetch('/speak', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, voice, rate })
+    });
+  } finally {
+    setTimeout(() => { isSpeaking = false; }, 2000);
+  }
+}
 
 function escapeHtml(t) {
   return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');

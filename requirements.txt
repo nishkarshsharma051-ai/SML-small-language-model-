@@ -7,3 +7,7 @@ accelerate
 pyttsx3
 sympy
 peft
+flask
+python-dotenv
+requests
+psycopg2-binary

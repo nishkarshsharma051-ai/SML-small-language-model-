@@ -20,6 +20,7 @@ from study_data import HISTORY, ENGLISH, MATH_CONCEPTS, SCIENCE, CODING
 OUTPUT_DIR = "data"
 TRAIN_PATH = os.path.join(OUTPUT_DIR, "hf_sft_train.jsonl")
 VAL_PATH = os.path.join(OUTPUT_DIR, "hf_sft_val.jsonl")
+TEACHER_LOG_PATH = os.path.join(OUTPUT_DIR, "teacher_log.jsonl")
 SEED = 42
 
 
@@ -302,6 +303,29 @@ def build_examples() -> List[Dict[str, str]]:
         ["If I ask a science question, should you refuse?", "How should you answer astronomy questions?"],
         "No. For science and astronomy questions, I should answer directly, explain the concept clearly, and only refuse if the request is unsafe or unrelated to the science topic.",
     )
+
+    # Optional: incorporate teacher answers collected from Grok fallback.
+    # This is opt-in by existence of the log file, and is best used with your consent
+    # because it may contain your private prompts.
+    if os.path.exists(TEACHER_LOG_PATH):
+        try:
+            with open(TEACHER_LOG_PATH, "r", encoding="utf-8") as f:
+                rows = []
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    obj = json.loads(line)
+                    p = str(obj.get("prompt", "")).strip()
+                    r = str(obj.get("response", "")).strip()
+                    if p and r:
+                        rows.append({"prompt": p, "response": r})
+            # Cap so accidental large logs don't dominate the curated dataset.
+            random.Random(SEED).shuffle(rows)
+            for row in rows[:200]:
+                _add_example(examples, row["prompt"], row["response"])
+        except Exception:
+            pass
 
     return examples
 
