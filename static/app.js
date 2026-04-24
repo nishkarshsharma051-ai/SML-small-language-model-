@@ -17,6 +17,10 @@ const modeCloudLabel = document.getElementById('modeCloudLabel');
 const stopGenBtn  = document.getElementById('stopGenBtn');
 const autoSpeakToggle = document.getElementById('autoSpeakToggle');
 const voiceVisualizer = document.getElementById('voiceVisualizer');
+const micBtn         = document.getElementById('micBtn');
+const speakerToggleBtn = document.getElementById('speakerToggleBtn');
+const speakerOnIcon  = document.getElementById('speakerOnIcon');
+const speakerOffIcon = document.getElementById('speakerOffIcon');
 
 let isWaiting = false;
 let modelReady = false;
@@ -43,10 +47,35 @@ function savePrefs() {
   try { localStorage.setItem('autoSpeak', autoSpeak ? '1' : '0'); } catch {}
 }
 loadPrefs();
+
+function updateSpeakerUI() {
+  if (autoSpeak) {
+    speakerOnIcon.classList.remove('hidden');
+    speakerOffIcon.classList.add('hidden');
+    speakerToggleBtn.classList.add('active');
+  } else {
+    speakerOnIcon.classList.add('hidden');
+    speakerOffIcon.classList.remove('hidden');
+    speakerToggleBtn.classList.remove('active');
+  }
+  if (autoSpeakToggle) autoSpeakToggle.checked = autoSpeak;
+}
+updateSpeakerUI();
+
 if (autoSpeakToggle) {
   autoSpeakToggle.addEventListener('change', () => {
     autoSpeak = !!autoSpeakToggle.checked;
     savePrefs();
+    updateSpeakerUI();
+  });
+}
+
+if (speakerToggleBtn) {
+  speakerToggleBtn.addEventListener('click', () => {
+    autoSpeak = !autoSpeak;
+    savePrefs();
+    updateSpeakerUI();
+    if (!autoSpeak) stopSpeech();
   });
 }
 
@@ -160,59 +189,130 @@ async function stopSpeech() {
 }
 stopSpeechBtn.addEventListener('click', stopSpeech);
 
-/* ─── Voice Assistant ──────────────────────────────────────── */
+/* ─── Voice Interaction (STT) ──────────────────────────────── */
 function initVoiceAssistant() {
   if (!('webkitSpeechRecognition' in window)) {
-    voiceAssistantBtn.style.display = 'none';
+    if (voiceAssistantBtn) voiceAssistantBtn.style.display = 'none';
+    if (micBtn) micBtn.style.display = 'none';
     return;
   }
   recognition = new webkitSpeechRecognition();
   recognition.continuous = true;
-  recognition.interimResults = false;
+  recognition.interimResults = true;
   recognition.lang = 'en-US';
 
   recognition.onstart = () => {
     statusDot.classList.add('listening');
-    voiceAssistantBtn.classList.add('listening');
+    if (voiceAssistantBtn) voiceAssistantBtn.classList.add('listening');
+    if (micBtn) micBtn.classList.add('listening');
+    setVisualizer(true);
   };
+  
   recognition.onend = () => { 
     statusDot.classList.remove('listening');
-    voiceAssistantBtn.classList.remove('listening');
-    if (assistantActive) recognition.start(); 
+    if (voiceAssistantBtn) voiceAssistantBtn.classList.remove('listening');
+    if (micBtn) micBtn.classList.remove('listening');
+    setVisualizer(false);
+    
+    // Auto-restart if the global assistant is active
+    if (assistantActive) {
+      try { recognition.start(); } catch {}
+    }
+  };
+
+  recognition.onerror = (event) => {
+    console.error('Speech recognition error:', event.error);
+    statusDot.classList.remove('listening');
+    if (voiceAssistantBtn) voiceAssistantBtn.classList.remove('listening');
+    if (micBtn) micBtn.classList.remove('listening');
+    setVisualizer(false);
+    
+    if (event.error === 'not-allowed') {
+      alert('Microphone access denied. Please enable microphone permissions in your browser.');
+    }
   };
 
   recognition.onresult = (event) => {
-    const result = event.results[event.results.length - 1][0].transcript.toLowerCase().trim();
-    if (!isWaiting && !isSpeaking) {
-      if (result.includes('hi ting ling ling') || result.includes('ting ling ling')) {
-        // Wake phrase: arm the next sentence as a message.
-        voiceArmed = true;
-        if (voiceArmedTimer) clearTimeout(voiceArmedTimer);
-        voiceArmedTimer = setTimeout(() => { voiceArmed = false; }, 8000);
-        appendMessage('ai', "Listening. Say your question.", 'local');
-        return;
+    let interimTranscript = '';
+    let finalTranscript = '';
+
+    for (let i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        finalTranscript += event.results[i][0].transcript;
+      } else {
+        interimTranscript += event.results[i][0].transcript;
       }
-      if (assistantActive || voiceArmed) {
-        voiceArmed = false;
-        userInput.value = result;
-        sendMessage();
+    }
+
+    if (finalTranscript) {
+      const result = finalTranscript.toLowerCase().trim();
+      
+      // Wake phrase logic (only for global assistant)
+      if (assistantActive && !voiceArmed && !isWaiting && !isSpeaking) {
+        if (result.includes('hi ting ling ling') || result.includes('ting ling ling')) {
+          voiceArmed = true;
+          if (voiceArmedTimer) clearTimeout(voiceArmedTimer);
+          voiceArmedTimer = setTimeout(() => { voiceArmed = false; }, 8000);
+          appendMessage('ai', "Listening. Say your question.", 'local');
+          if (autoSpeak) speakNow("I'm listening. How can I help?");
+          return;
+        }
       }
+
+      // If we are actively listening (via micBtn or armed assistant)
+      if ((micBtn && micBtn.classList.contains('listening')) || voiceArmed) {
+        userInput.value = finalTranscript;
+        autoResize();
+        
+        // One-shot listening: stop after getting a final result
+        if (micBtn && micBtn.classList.contains('listening')) {
+          recognition.stop(); // Stop first
+          setTimeout(() => { sendMessage(); }, 100); // Small delay to let it stop
+        } else if (voiceArmed) {
+          voiceArmed = false;
+          sendMessage();
+        }
+      }
+    } else if (interimTranscript && ((micBtn && micBtn.classList.contains('listening')) || voiceArmed)) {
+      userInput.value = interimTranscript;
+      autoResize();
     }
   };
 }
+
+function toggleMic() {
+  if (!recognition) initVoiceAssistant();
+  
+  if (micBtn.classList.contains('listening')) {
+    recognition.stop();
+  } else {
+    // If global assistant is on, stop it first to reset
+    if (assistantActive) {
+      assistantActive = false;
+      recognition.stop();
+      setTimeout(() => {
+        recognition.start();
+      }, 100);
+    } else {
+      recognition.start();
+    }
+  }
+}
+
+if (micBtn) micBtn.addEventListener('click', toggleMic);
 
 function toggleVoiceAssistant() {
   if (!recognition) initVoiceAssistant();
   assistantActive = !assistantActive;
   if (assistantActive) {
-    voiceAssistantBtn.classList.add('active');
+    if (voiceAssistantBtn) voiceAssistantBtn.classList.add('active');
     recognition.start();
   } else {
-    voiceAssistantBtn.classList.remove('active');
+    if (voiceAssistantBtn) voiceAssistantBtn.classList.remove('active');
     recognition.stop();
   }
 }
-voiceAssistantBtn.addEventListener('click', toggleVoiceAssistant);
+if (voiceAssistantBtn) voiceAssistantBtn.addEventListener('click', toggleVoiceAssistant);
 
 function playStatusSound(type) {
   statusDot.classList.add('loading');
@@ -315,6 +415,7 @@ async function sendMessage() {
     const reply = data.reply || data.error || 'Sorry, something went wrong.';
     appendMessage('ai', reply, data.source);
     conversation.push({ role: 'assistant', content: reply });
+    if (autoSpeak) speakNow(reply);
     scrollBottom();
   } catch (err) {
     if (err && err.name === 'AbortError') {
