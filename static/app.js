@@ -16,6 +16,7 @@ const modeLocalLabel = document.getElementById('modeLocalLabel');
 const modeCloudLabel = document.getElementById('modeCloudLabel');
 const stopGenBtn  = document.getElementById('stopGenBtn');
 const autoSpeakToggle = document.getElementById('autoSpeakToggle');
+const voiceVisualizer = document.getElementById('voiceVisualizer');
 
 let isWaiting = false;
 let modelReady = false;
@@ -29,6 +30,8 @@ let currentStreamingText = "";
 let autoSpeak = false;
 let voiceArmed = false;
 let voiceArmedTimer = null;
+let browserVoices = [];
+let synth = window.speechSynthesis;
 
 function loadPrefs() {
   try {
@@ -112,13 +115,47 @@ voiceRate.addEventListener('input', () => {
 });
 
 /* ─── Stop Speech ─────────────────────────────────────────── */
+/* ─── TTS Logic (Browser-side) ────────────────────────────── */
+function initSpeechSynthesis() {
+  if (!synth) return;
+
+  function loadVoices() {
+    browserVoices = synth.getVoices();
+    voiceSelect.innerHTML = '';
+    
+    // Filter for common high-quality voices or just show all
+    browserVoices.forEach((voice, i) => {
+      const option = document.createElement('option');
+      option.value = i;
+      option.textContent = `${voice.name} (${voice.lang})`;
+      if (voice.default) option.selected = true;
+      voiceSelect.appendChild(option);
+    });
+  }
+
+  loadVoices();
+  if (synth.onvoiceschanged !== undefined) {
+    synth.onvoiceschanged = loadVoices;
+  }
+}
+initSpeechSynthesis();
+
+function setVisualizer(active) {
+  if (active) {
+    voiceVisualizer.classList.add('active');
+    statusDot.classList.add('speaking');
+  } else {
+    voiceVisualizer.classList.remove('active');
+    statusDot.classList.remove('speaking');
+  }
+}
+
 async function stopSpeech() {
-  try {
-    await fetch('/stop', { method: 'POST' });
+  if (synth) {
+    synth.cancel();
     isSpeaking = false;
     stopSpeechBtn.classList.add('hidden');
-  } catch (err) {
-    console.error('Error stopping speech:', err);
+    setVisualizer(false);
   }
 }
 stopSpeechBtn.addEventListener('click', stopSpeech);
@@ -134,12 +171,21 @@ function initVoiceAssistant() {
   recognition.interimResults = false;
   recognition.lang = 'en-US';
 
+  recognition.onstart = () => {
+    statusDot.classList.add('listening');
+    voiceAssistantBtn.classList.add('listening');
+  };
+  recognition.onend = () => { 
+    statusDot.classList.remove('listening');
+    voiceAssistantBtn.classList.remove('listening');
+    if (assistantActive) recognition.start(); 
+  };
+
   recognition.onresult = (event) => {
     const result = event.results[event.results.length - 1][0].transcript.toLowerCase().trim();
     if (!isWaiting && !isSpeaking) {
       if (result.includes('hi ting ling ling') || result.includes('ting ling ling')) {
         // Wake phrase: arm the next sentence as a message.
-        playStatusSound('listen');
         voiceArmed = true;
         if (voiceArmedTimer) clearTimeout(voiceArmedTimer);
         voiceArmedTimer = setTimeout(() => { voiceArmed = false; }, 8000);
@@ -153,7 +199,6 @@ function initVoiceAssistant() {
       }
     }
   };
-  recognition.onend = () => { if (assistantActive) recognition.start(); };
 }
 
 function toggleVoiceAssistant() {
@@ -471,36 +516,48 @@ window.copyText = copyText;
 
 async function speakText(btn) {
   const text = btn.dataset.text;
-  const voice = voiceSelect.value;
-  const rate = voiceRate.value;
-  isSpeaking = true;
-  stopSpeechBtn.classList.remove('hidden');
-  try {
-    await fetch('/speak', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text, voice, rate })
-    });
-  } finally {
-    setTimeout(() => { isSpeaking = false; }, 2000);
-  }
+  speakNow(text);
 }
 window.speakText = speakText;
 
-async function speakNow(text) {
-  const voice = voiceSelect.value;
-  const rate = voiceRate.value;
-  isSpeaking = true;
-  stopSpeechBtn.classList.remove('hidden');
-  try {
-    await fetch('/speak', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text, voice, rate })
-    });
-  } finally {
-    setTimeout(() => { isSpeaking = false; }, 2000);
+function speakNow(text) {
+  if (!synth || !text) return;
+  
+  // Stop current speech
+  synth.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  const voiceIdx = voiceSelect.value;
+  
+  if (browserVoices[voiceIdx]) {
+    utterance.voice = browserVoices[voiceIdx];
   }
+  
+  // Speed mapping: macOS 'say' (100-350) -> Browser rate (0.1-10)
+  // 175 is roughly 1.0 rate
+  utterance.rate = parseFloat(voiceRate.value) / 175;
+  utterance.pitch = 1.0;
+  utterance.volume = 1.0;
+
+  utterance.onstart = () => {
+    isSpeaking = true;
+    stopSpeechBtn.classList.remove('hidden');
+    setVisualizer(true);
+  };
+
+  utterance.onend = () => {
+    isSpeaking = false;
+    stopSpeechBtn.classList.add('hidden');
+    setVisualizer(false);
+  };
+
+  utterance.onerror = () => {
+    isSpeaking = false;
+    stopSpeechBtn.classList.add('hidden');
+    setVisualizer(false);
+  };
+
+  synth.speak(utterance);
 }
 
 function escapeHtml(t) {
