@@ -13,7 +13,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background: var(--bg);
   color: var(--text);
   height: 100vh;
@@ -191,10 +193,15 @@ body {
 /* ─── Messages ───────────────────────────────────────────────── */
 .messages { max-width: 750px; margin: 0 auto; width: 100%; padding: 0 24px; display: flex; flex-direction: column; gap: 32px; }
 
-.message { display: flex; gap: 16px; }
+.message { display: flex; gap: 16px; animation: message-fade-in 0.4s ease-out; }
 .message.user { flex-direction: row-reverse; }
 
-.bubble { max-width: 85%; font-size: 15px; line-height: 1.6; }
+@keyframes message-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bubble { max-width: 85%; font-size: 15.5px; line-height: 1.6; letter-spacing: -0.011em; }
 .message.user .bubble { background: #2a2a2a; padding: 12px 16px; border-radius: 12px; }
 
 .ai-avatar {
@@ -204,11 +211,19 @@ body {
 }
 
 .ai-content { flex: 1; }
-.ai-text { font-size: 15px; color: var(--text); }
+.ai-text { font-size: 15.5px; color: var(--text); line-height: 1.6; letter-spacing: -0.011em; }
 
-.ai-actions { display: flex; gap: 12px; margin-top: 12px; }
-.action-btn { background: none; border: none; font-size: 11px; font-weight: 600; color: var(--text-muted); cursor: pointer; }
-.action-btn:hover { text-decoration: underline; }
+.ai-actions { display: flex; gap: 8px; margin-top: 8px; opacity: 0; transition: opacity 0.2s; }
+.message:hover .ai-actions { opacity: 1; }
+.action-btn { 
+  background: none; border: 1px solid transparent; 
+  padding: 4px; border-radius: 4px;
+  color: var(--text-muted); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.action-btn:hover { background: rgba(255,255,255,0.05); color: var(--text); border-color: var(--border); }
+.action-btn svg { width: 14px; height: 14px; }
 
 /* ─── Input Area ─────────────────────────────────────────────── */
 .input-area { padding: 24px; max-width: 800px; margin: 0 auto; width: 100%; }
@@ -219,7 +234,7 @@ body {
 
 .user-input {
   flex: 1; background: transparent; border: none; outline: none;
-  color: var(--text); font-size: 15px; line-height: 1.5; resize: none;
+  color: var(--text); font-size: 15.5px; line-height: 1.5; resize: none;
   max-height: 200px; font-family: inherit;
 }
 
@@ -257,10 +272,83 @@ body {
 
 .source-tag { display: none !important; }
 
-/* Code Blocks */
-pre { background: #f6f8fa !important; padding: 16px !important; border-radius: 6px !important; margin: 16px 0 !important; overflow-x: auto; }
-[data-theme="dark"] pre { background: #161b22 !important; }
-code { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+/* Code Blocks & Typography */
+.code-wrapper {
+  margin: 20px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.code-copy-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-muted);
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 10px;
+  transition: all 0.2s;
+}
+
+.code-copy-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.code-copy-btn.copied {
+  background: #22c55e;
+  color: white;
+  border-color: #22c55e;
+}
+
+pre {
+  background: transparent !important;
+  color: #d4d4d4 !important;
+  padding: 16px !important;
+  margin: 0 !important;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', monospace;
+  border: none !important;
+}
+
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+:not(pre) > code {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+/* Headers in Markdown */
+h1, h2, h3 { margin: 1.2em 0 0.6em; font-weight: 600; color: var(--accent); letter-spacing: -0.02em; }
+h1 { font-size: 1.6em; border-bottom: 1px solid var(--border); padding-bottom: 0.3em; }
+h2 { font-size: 1.4em; }
+h3 { font-size: 1.2em; }
+
+p { margin-bottom: 0.8em; line-height: 1.6; }
+p:last-child { margin-bottom: 0; }
 
 /* Typing indicator */
 .typing { display: flex; gap: 4px; padding: 8px 0; }
@@ -268,5 +356,24 @@ code { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
 .dot:nth-child(2) { animation-delay: 0.2s; }
 .dot:nth-child(3) { animation-delay: 0.4s; }
 @keyframes blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+/* KaTeX Math Styling */
+.katex-display, .math-block-render {
+  margin: 1.2em 0 !important;
+  padding: 8px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+  min-height: 1em;
+}
+
+.math-inline-render {
+  display: inline-block;
+  padding: 0 2px;
+}
+
+.katex {
+  font-size: 1.1em;
+}
 
 .hidden { display: none !important; }

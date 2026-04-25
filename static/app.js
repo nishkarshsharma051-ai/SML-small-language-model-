@@ -475,14 +475,33 @@ if (stopGenBtn) stopGenBtn.addEventListener('click', stopGenerating);
 
 /* ─── Markdown & Code Rendering ───────────────────────────── */
 function renderMarkdown(text) {
-  // Pass 1: Code blocks with language detection
-  text = text.replace(/```(\w*)\n?([\s\S]*?)```/g, (match, lang, code) => {
-    const language = lang.trim() || 'python';
-    return `<pre class="line-numbers"><code class="language-${language}">${escapeHtml(code.trim())}</code></pre>`;
+  if (!text) return "";
+  
+  const placeholders = [];
+  
+  // 1. Protect Code Blocks
+  text = text.replace(/```(\w*)\n?([\s\S]*?)```/g, (match) => {
+    const id = `__CODE_BLOCK_${placeholders.length}__`;
+    placeholders.push({ id, type: 'code', content: match });
+    return id;
   });
 
-  // Pass 2: Bold, Italic, Inline Code
-  return text
+  // 2. Protect Block Math \[ ... \]
+  text = text.replace(/\\\[([\s\S]*?)\\\]/g, (match, math) => {
+    const id = `__BLOCK_MATH_${placeholders.length}__`;
+    placeholders.push({ id, type: 'math', content: `<div class="math-block-render" data-expr="${escapeAttr(math.trim())}"></div>` });
+    return id;
+  });
+
+  // 3. Protect Inline Math \( ... \)
+  text = text.replace(/\\\(([\s\S]*?)\\\)/g, (match, math) => {
+    const id = `__INLINE_MATH_${placeholders.length}__`;
+    placeholders.push({ id, type: 'math', content: `<span class="math-inline-render" data-expr="${escapeAttr(math.trim())}"></span>` });
+    return id;
+  });
+
+  // 4. Do general Markdown (Bold, Italic, etc.)
+  let html = text
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
     .replace(/`([^`]+)`/g, '<code>$1</code>')
@@ -492,7 +511,42 @@ function renderMarkdown(text) {
     .replace(/^[•\-\*] (.+)$/gm, '<li>$1</li>')
     .replace(/\n\n/g, '</p><p>')
     .replace(/\n/g, '<br/>');
+
+  // 5. Restore placeholders
+  placeholders.forEach(p => {
+    let content = p.content;
+    if (p.type === 'code') {
+      content = content.replace(/```(\w*)\n?([\s\S]*?)```/g, (m, lang, code) => {
+        const language = lang.trim() || 'code';
+        const cleanCode = code.trim();
+        return `<div class="code-wrapper">
+                  <div class="code-header">
+                    <span>${language}</span>
+                    <button class="code-copy-btn" onclick="copyRawCode(this)">Copy</button>
+                  </div>
+                  <pre data-lang="${language}"><code class="language-${language}">${escapeHtml(cleanCode)}</code></pre>
+                </div>`;
+      });
+    }
+    html = html.replace(p.id, content);
+  });
+
+  return `<p>${html}</p>`;
 }
+
+function copyRawCode(btn) {
+  const wrapper = btn.closest('.code-wrapper');
+  const code = wrapper.querySelector('code').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+window.copyRawCode = copyRawCode;
 
 function appendMessage(role, text) {
   const el = document.createElement('div');
@@ -507,8 +561,12 @@ function appendMessage(role, text) {
       <div class="ai-content">
         <div class="ai-text">${rendered}</div>
         <div class="ai-actions">
-          <button class="action-btn" onclick="copyText(this)" data-text="${escapeAttr(text)}">Copy</button>
-          <button class="action-btn" onclick="speakText(this)" data-text="${escapeAttr(text)}">Speak</button>
+          <button class="action-btn" onclick="copyText(this)" data-text="${escapeAttr(text)}" title="Copy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          </button>
+          <button class="action-btn" onclick="speakText(this)" data-text="${escapeAttr(text)}" title="Speak">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+          </button>
         </div>
       </div>`;
   }
@@ -520,14 +578,13 @@ function appendMessage(role, text) {
     Prism.highlightAllUnder(el);
   }
 
-  // Apply KaTeX
-  if (window.renderMathInElement) {
-    renderMathInElement(el, {
-      delimiters: [
-        {left: '$$', right: '$$', display: true},
-        {left: '$', right: '$', display: false}
-      ],
-      throwOnError : false
+  // Apply KaTeX Manually
+  if (window.katex) {
+    el.querySelectorAll('.math-block-render').forEach(m => {
+      try { katex.render(m.dataset.expr, m, { displayMode: true, throwOnError: false }); } catch(e) { console.error(e); }
+    });
+    el.querySelectorAll('.math-inline-render').forEach(m => {
+      try { katex.render(m.dataset.expr, m, { displayMode: false, throwOnError: false }); } catch(e) { console.error(e); }
     });
   }
 
@@ -544,8 +601,12 @@ function appendStreamingAI(source = null) {
     <div class="ai-content">
       <div class="ai-text"><span class="streaming-text"></span>${sourceBadge}</div>
       <div class="ai-actions">
-        <button class="action-btn" onclick="copyText(this)" data-text="">Copy</button>
-        <button class="action-btn" onclick="speakText(this)" data-text="">Speak</button>
+        <button class="action-btn" onclick="copyText(this)" data-text="" title="Copy">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        </button>
+        <button class="action-btn" onclick="speakText(this)" data-text="" title="Speak">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+        </button>
       </div>
     </div>`;
   messages.appendChild(el);
@@ -584,13 +645,12 @@ function finalizeStreamingAI(el, text, source = null) {
   if (window.Prism) {
     Prism.highlightAllUnder(el);
   }
-  if (window.renderMathInElement) {
-    renderMathInElement(el, {
-      delimiters: [
-        {left: '$$', right: '$$', display: true},
-        {left: '$', right: '$', display: false}
-      ],
-      throwOnError : false
+  if (window.katex) {
+    el.querySelectorAll('.math-block-render').forEach(m => {
+      try { katex.render(m.dataset.expr, m, { displayMode: true, throwOnError: false }); } catch(e) { console.error(e); }
+    });
+    el.querySelectorAll('.math-inline-render').forEach(m => {
+      try { katex.render(m.dataset.expr, m, { displayMode: false, throwOnError: false }); } catch(e) { console.error(e); }
     });
   }
 
@@ -609,8 +669,9 @@ function appendTyping() {
 function copyText(btn) {
   const text = btn.dataset.text;
   navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = '✓ Copied';
-    setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+    setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
   });
 }
 window.copyText = copyText;
