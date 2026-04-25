@@ -375,14 +375,17 @@ pre {
   padding: 20px !important;
   margin: 0 !important;
   overflow-x: auto;
-  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
   border-radius: 0 0 12px 12px;
+  -webkit-text-stroke: 0px transparent !important;
+  text-shadow: none !important;
 }
 
 code {
   font-family: inherit;
   font-size: 14px;
   line-height: 1.5;
+  color: #e0e0e0 !important;
 }
 
 :not(pre) > code {
@@ -390,6 +393,9 @@ code {
   padding: 2px 5px;
   border-radius: 4px;
   font-size: 13px;
+  color: var(--accent) !important;
+  -webkit-text-stroke: 0px transparent !important;
+  text-shadow: none !important;
 }
 
 /* Headers in Markdown */
