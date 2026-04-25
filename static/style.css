@@ -371,18 +371,17 @@ body {
 }
 
 pre {
-  background: transparent !important;
-  color: #d4d4d4 !important;
-  padding: 16px !important;
+  background: #111 !important;
+  padding: 20px !important;
   margin: 0 !important;
   overflow-x: auto;
-  font-family: 'JetBrains Mono', monospace;
-  border: none !important;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  border-radius: 0 0 12px 12px;
 }
 
 code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13.5px;
+  font-family: inherit;
+  font-size: 14px;
   line-height: 1.5;
 }
 
