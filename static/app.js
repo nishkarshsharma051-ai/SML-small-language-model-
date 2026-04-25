@@ -116,6 +116,8 @@ document.getElementById('newChatBtn').addEventListener('click', () => {
 /* ─── Topic Buttons ───────────────────────────────────────── */
 document.querySelectorAll('.topic-btn').forEach(btn => {
   btn.addEventListener('click', () => {
+    document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
     userInput.value = btn.dataset.q;
     autoResize();
     sendMessage();
