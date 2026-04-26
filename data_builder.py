@@ -14,7 +14,7 @@ import os
 import random
 from typing import Dict, List
 
-from study_data import HISTORY, ENGLISH, MATH_CONCEPTS, SCIENCE, CODING
+from study_data import HISTORY, ENGLISH, MATH_CONCEPTS, ADVANCED_MATH, MATH_PROBLEMS, SCIENCE, CODING
 
 
 OUTPUT_DIR = "data"
@@ -150,11 +150,43 @@ def build_examples() -> List[Dict[str, str]]:
         ["Show me a simple linear algebra example.", "Give a matrix-vector example."],
         "Let $A=\\begin{pmatrix}1 & 2\\\\3 & 4\\end{pmatrix}$ and $x=\\begin{pmatrix}x_1\\\\x_2\\end{pmatrix}$. Then $Ax=\\begin{pmatrix}x_1+2x_2\\\\3x_1+4x_2\\end{pmatrix}$. This shows how matrices transform vectors.",
     )
-    _add_variants(
-        examples,
-        ["Explain probability.", "What is probability?"],
+    _add_variants(examples, ["Explain probability.", "What is probability?"], _join_lines(
         "Probability measures how likely an event is, with $0 \\le P(E) \\le 1$. For independent events, $P(A \\cap B)=P(A)P(B)$.",
-    )
+        "Key theorems include the Law of Large Numbers and the Central Limit Theorem."
+    ))
+
+    # Advanced Math
+    la = ADVANCED_MATH["linear algebra"]
+    _add_variants(examples, ["What are eigenvalues?", "Explain eigenvalues and eigenvectors."], _join_lines(la["eigenvalues"], la["eigenvectors"]))
+    _add_variants(examples, ["What is SVD?", "Explain Singular Value Decomposition."], la["svd"])
+    _add_variants(examples, ["What does orthogonality mean in math?", "Define orthogonal vectors."], la["orthogonality"])
+
+    calc = ADVANCED_MATH["advanced calculus"]
+    _add_variants(examples, ["Explain Stokes' Theorem.", "Give me the formula for Stokes' Theorem."], calc["stokes theorem"])
+    _add_variants(examples, ["Explain the Divergence Theorem.", "What is the Gauss Divergence Theorem?"], calc["divergence theorem"])
+    _add_variants(examples, ["What is a PDE?", "Explain Partial Differential Equations."], calc["pde"])
+
+    discrete = ADVANCED_MATH["discrete math"]
+    _add_variants(examples, ["Explain Graph Theory.", "What is graph theory used for?"], discrete["graph theory"])
+    _add_variants(examples, ["What is the formula for combinations?", "Explain combinatorics."], discrete["combinatorics"])
+    _add_variants(examples, ["Explain Set Theory basics.", "What are union and intersection in sets?"], discrete["set theory"])
+
+    # Math Problems
+    diff_eq = MATH_PROBLEMS["differential equations"]
+    _add_variants(examples, ["Solve dy/dx + 2y = e^x.", "How do I solve a first-order linear ODE?"], _join_lines(
+        f"Problem: {diff_eq['problem']}",
+        "",
+        "Solution:",
+        diff_eq["solution"]
+    ))
+    
+    matrix_prob = MATH_PROBLEMS["linear algebra"]
+    _add_variants(examples, ["Find the eigenvalues of [[1, 2], [2, 1]].", "Show me a step-by-step eigenvalue calculation."], _join_lines(
+        f"Problem: {matrix_prob['problem']}",
+        "",
+        "Solution:",
+        matrix_prob["solution"]
+    ))
 
     science = SCIENCE["quantum mechanics"]
     _add_variants(examples, ["Explain quantum mechanics.", "What is quantum mechanics?"], science["summary"])

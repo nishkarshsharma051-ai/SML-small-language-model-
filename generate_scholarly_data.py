@@ -1,6 +1,6 @@
 import os
 import json
-from study_data import HISTORY, ENGLISH, MATH_CONCEPTS, SCIENCE, CODING
+from study_data import HISTORY, ENGLISH, MATH_CONCEPTS, ADVANCED_MATH, MATH_PROBLEMS, SCIENCE, CODING
 
 def format_item(key, val):
     if isinstance(val, dict):
@@ -31,6 +31,16 @@ def generate_scholarly_text():
     # Process Mathematics
     corpus.append("\n--- SCHOLARLY MATHEMATICS ---")
     for topic, data in MATH_CONCEPTS.items():
+        corpus.append(format_item(topic, data))
+
+    # Process Advanced Mathematics
+    corpus.append("\n--- SCHOLARLY ADVANCED MATHEMATICS ---")
+    for topic, data in ADVANCED_MATH.items():
+        corpus.append(format_item(topic, data))
+
+    # Process Math Problems
+    corpus.append("\n--- SCHOLARLY MATH PROBLEMS ---")
+    for topic, data in MATH_PROBLEMS.items():
         corpus.append(format_item(topic, data))
         
     # Process Science
