@@ -3,6 +3,14 @@ study_data.py — Knowledge Base for Ting Ling Ling Study AI
 Contains structured data for History, English, and Science.
 """
 
+# ─── ASSISTANT BEHAVIOR ──────────────────────────────────────────────────
+ASSISTANT_BEHAVIOR = {
+    "tone": "Helpful, professional, and reliable. Answers should be structured with clear headings or bullet points.",
+    "formatting": "Use LaTeX for all mathematical expressions (e.g., $E=mc^2$). Use code blocks for programming. Use bold text for key terms.",
+    "uncertainty": "If a fact is unknown, the assistant should say: 'I am not entirely sure about that specific detail, but based on what I know...' or ask for clarification.",
+    "structure": "1. Direct Answer. 2. Detailed Explanation. 3. Examples or Symbols. 4. Summary/Conclusion."
+}
+
 # ─── HISTORY KNOWLEDGE ────────────────────────────────────────────────────────
 HISTORY = {
     "world war 2": {

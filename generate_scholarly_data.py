@@ -1,22 +1,27 @@
 import os
 import json
-from study_data import HISTORY, ENGLISH, MATH_CONCEPTS, ADVANCED_MATH, MATH_PROBLEMS, SCIENCE, CODING
+from study_data import HISTORY, ENGLISH, MATH_CONCEPTS, ADVANCED_MATH, MATH_PROBLEMS, SCIENCE, CODING, ASSISTANT_BEHAVIOR
 
 def format_item(key, val):
     if isinstance(val, dict):
-        lines = [f"{key.upper()}:"]
+        lines = [f"### {key.upper()}"]
         for k, v in val.items():
+            field_name = k.replace('_', ' ').capitalize()
             if isinstance(v, list):
-                lines.append(f"  {k.replace('_', ' ').capitalize()}:")
+                lines.append(f"**{field_name}**:")
                 for item in v:
-                    lines.append(f"    - {item}")
+                    lines.append(f"  - {item}")
             else:
-                lines.append(f"  {k.replace('_', ' ').capitalize()}: {v}")
+                lines.append(f"**{field_name}**: {v}")
         return "\n".join(lines)
-    return f"{key.upper()}: {val}"
+    return f"**{key.upper()}**: {val}"
 
 def generate_scholarly_text():
     corpus = []
+    
+    # Inject Assistant Persona
+    corpus.append("--- ASSISTANT SYSTEM GUIDELINES ---")
+    corpus.append(format_item("Behavior", ASSISTANT_BEHAVIOR))
     
     # Process History
     corpus.append("--- SCHOLARLY HISTORY ---")

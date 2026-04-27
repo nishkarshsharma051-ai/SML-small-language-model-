@@ -9,8 +9,8 @@ from tokenizer import CharacterTokenizer
 # --- Hyperparameters for Fine-tuning ---
 batch_size = 32
 block_size = 128
-max_iters = 1000  # Fine-tuning for coding skills needs more steps
-learning_rate = 1e-4 # Lower LR for fine-tuning
+max_iters = 1500  # More iterations for "perfection"
+learning_rate = 5e-5 # Slightly lower for finer adjustments
 device = 'mps' if torch.backends.mps.is_available() else 'cpu'
 eval_interval = 100
 eval_iters = 100
