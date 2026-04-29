@@ -1,6 +1,6 @@
 import os
 import json
-from study_data import HISTORY, ENGLISH, MATH_CONCEPTS, ADVANCED_MATH, MATH_PROBLEMS, SCIENCE, CODING, ASSISTANT_BEHAVIOR
+from study_data import HISTORY, ENGLISH, MATH_CONCEPTS, ADVANCED_MATH, MATH_PROBLEMS, SCIENCE, CODING, ASSISTANT_BEHAVIOR, ADVANCED_CODING
 
 def format_item(key, val):
     if isinstance(val, dict):
@@ -56,6 +56,11 @@ def generate_scholarly_text():
     # Process Coding
     corpus.append("\n--- SCHOLARLY CODING & PROGRAMMING ---")
     for topic, data in CODING.items():
+        corpus.append(format_item(topic, data))
+        
+    # Process Advanced Coding
+    corpus.append("\n--- SCHOLARLY ADVANCED CODING & SYSTEM DESIGN ---")
+    for topic, data in ADVANCED_CODING.items():
         corpus.append(format_item(topic, data))
         
     base_text = "\n\n".join(corpus)

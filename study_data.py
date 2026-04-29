@@ -1,3 +1,6 @@
+import os
+from advanced_coding import ADVANCED_CODING
+
 """
 study_data.py — Knowledge Base for Ting Ling Ling Study AI
 Contains structured data for History, English, and Science.

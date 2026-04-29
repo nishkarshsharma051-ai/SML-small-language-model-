@@ -14,7 +14,7 @@ import os
 import random
 from typing import Dict, List
 
-from study_data import HISTORY, ENGLISH, MATH_CONCEPTS, ADVANCED_MATH, MATH_PROBLEMS, SCIENCE, CODING
+from study_data import HISTORY, ENGLISH, MATH_CONCEPTS, ADVANCED_MATH, MATH_PROBLEMS, SCIENCE, CODING, ADVANCED_CODING
 
 
 OUTPUT_DIR = "data"
@@ -284,6 +284,44 @@ def build_examples() -> List[Dict[str, str]]:
         ["Explain SQL joins.", "What are SQL joins?"],
         "SQL joins combine rows from multiple tables. Common types are INNER JOIN, LEFT JOIN, RIGHT JOIN, and FULL OUTER JOIN.",
     )
+
+    # Advanced Coding
+    adv_coding = ADVANCED_CODING["dynamic programming"]
+    _add_variants(examples, ["Explain Dynamic Programming.", "What is DP in coding?"], adv_coding["concept"])
+    for prob in adv_coding["problems"]:
+        _add_variants(examples, [f"Solve {prob['name']}.", f"Write a solution for {prob['name']}."], _join_lines(prob["problem"], "", prob["solution"]))
+
+    graphs = ADVANCED_CODING["graph algorithms"]
+    _add_variants(examples, ["Explain Graph Algorithms.", "What are graphs in coding?"], graphs["concept"])
+    for algo in graphs["algorithms"]:
+        _add_variants(examples, [f"Explain {algo['name']}.", f"How does {algo['name']} work?"], _join_lines(algo["description"], "", algo["implementation"]))
+
+    sys_design = ADVANCED_CODING["system design"]
+    _add_variants(examples, ["Explain Scalability in System Design.", "Vertical vs Horizontal Scaling."], sys_design["scalability"])
+    _add_variants(examples, ["What is Load Balancing?", "Explain load balancer algorithms."], sys_design["load_balancing"])
+    _add_variants(examples, ["Explain Caching strategies.", "What are write-through and write-back caches?"], sys_design["caching"])
+    _add_variants(examples, ["What are Microservices?", "Explain microservices architecture."], sys_design["microservices"])
+
+    adv_ds = ADVANCED_CODING["advanced data structures"]
+    _add_variants(examples, ["What is a Trie data structure?", "Explain prefix trees."], adv_ds["trie"])
+    _add_variants(examples, ["Explain Segment Trees.", "What is a segment tree used for?"], adv_ds["segment_tree"])
+    _add_variants(examples, ["How to implement an LRU Cache?", "Explain LRU Cache."], adv_ds["lru_cache"])
+    _add_variants(examples, ["What is a Fenwick Tree?", "Explain Binary Indexed Tree (BIT)."], adv_ds["fenwick_tree"])
+
+    sys_patterns = ADVANCED_CODING["system design patterns"]
+    _add_variants(examples, ["What are consistency patterns in system design?", "Explain eventual consistency."], sys_patterns["consistency_patterns"])
+    _add_variants(examples, ["What is database sharding?", "How to scale a database?"], sys_patterns["database_sharding"])
+    _add_variants(examples, ["Explain Event-Driven Architecture.", "What is Kafka used for in system design?"], sys_patterns["event_driven"])
+
+    complexity = ADVANCED_CODING["complexity analysis"]
+    _add_variants(examples, ["Explain Time Complexity.", "What is O(n log n)?"], complexity["time_complexity"])
+    _add_variants(examples, ["What is Space Complexity?", "Explain memory usage of algorithms."], complexity["space_complexity"])
+    _add_variants(examples, ["What is Amortized Analysis?", "Explain average cost of operations."], complexity["amortized_analysis"])
+
+    concurrency = ADVANCED_CODING["concurrency"]
+    _add_variants(examples, ["Explain Python GIL.", "Why is Python slow for multi-threading?"], concurrency["python_gil"])
+    _add_variants(examples, ["What is asyncio in Python?", "Explain cooperative multitasking."], concurrency["asyncio"])
+    _add_variants(examples, ["What are deadlocks?", "How to prevent deadlocks?"], concurrency["deadlocks"])
 
     # General assistant style examples help the model answer more naturally.
     _add_example(examples, "Be concise and answer in plain English.", "Sure. I can answer directly and keep it concise when you ask for brevity.")

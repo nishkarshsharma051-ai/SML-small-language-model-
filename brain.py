@@ -196,6 +196,16 @@ class TingLingLingBrain:
                 local_files_only=True,
                 dtype=dtype
             )
+
+            # Check for LoRA adapter
+            if os.path.exists(os.path.join(model_dir, "adapter_config.json")):
+                try:
+                    from peft import PeftModel
+                    print(f"[Brain] Applying LoRA adapter from {model_dir}...")
+                    self.hf_model = PeftModel.from_pretrained(self.hf_model, model_dir)
+                except ImportError:
+                    print("[Brain] Warning: LoRA adapter found but 'peft' not installed. Using base model.")
+
             self.hf_model.to(self.device)
             self.hf_model.eval()
             self.hf_loaded = True

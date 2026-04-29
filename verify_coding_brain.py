@@ -1,26 +1,30 @@
+import os
 import torch
 from brain import TingLingLingBrain
 
-def verify_coding_brain():
+def verify_advanced_coding():
+    print("Initializing Ting Ling Ling Brain...")
     brain = TingLingLingBrain()
-    brain.use_cloud = False # Force local mode
+    brain.load()
     
-    print("\n--- Verifying Coding Logic in Local Brain ---")
-    if not brain.load():
-        print("❌ Failed to load local model!")
-        return
-
-    # Questions based on new coding data
     questions = [
-        "How do you define a function in Python?",
-        "What are JavaScript promises?",
-        "Explain CSS Flexbox centering."
+        "Explain Dynamic Programming.",
+        "How does Dijkstra's Algorithm work?",
+        "Explain the Python GIL.",
+        "What is a Trie data structure?",
+        "Explain the difference between vertical and horizontal scaling.",
+        "What is a Fenwick Tree?",
+        "What are consistency patterns in system design?",
+        "What is database sharding?"
     ]
-
+    
+    print("\n--- Testing Advanced Coding Knowledge ---\n")
     for q in questions:
-        print(f"\nQuestion: {q}")
-        answer = brain.ask(q)
-        print(f"Answer: {answer}")
+        print(f"Question: {q}")
+        # Force local to test the SLM specifically
+        answer = brain.ask(q, force_local=True)
+        print(f"Answer: {answer}\n")
+        print("-" * 50)
 
 if __name__ == "__main__":
-    verify_coding_brain()
+    verify_advanced_coding()
