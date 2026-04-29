@@ -1,37 +1,106 @@
-# Hugging Face Training Path
+# Model Training Guide
 
-This repo now supports a real local Hugging Face fine-tune flow.
+This repo has two model paths, but only one of them should be treated as the main product workflow.
 
-## Hugging Face
+## Official Path
 
-Use the platform here: [Hugging Face](https://huggingface.co/)
+Use the Hugging Face fine-tune path for the real assistant:
+- Build instruction data with `data_builder.py`
+- Fine-tune a pretrained causal LM with `train_core.py`
+- Evaluate with `eval_core.py`
+- Run the app with the resulting `hf_local_model/`
 
-## Recommended Flow
+Why this is the official path:
+- It produces much stronger assistant behavior than the scratch character model
+- It is the path the app prefers when `hf_local_model/` exists
+- It is the best foundation for future dataset growth and evaluation
 
-1. Build instruction data:
+## Experimental Path
+
+These files are still useful, but they are experimental or legacy:
+- `train.py`
+- `fine_tune.py`
+- `train_hf.py`
+- `export_hf.py`
+- `sample.py`
+- `sample_hf.py`
+
+Use them for learning or comparison, not as the default product workflow.
+
+## Recommended Workflow
+
+### 1. Build the instruction dataset
 
 ```bash
-python3 hf_dataset_builder.py
+python3 data_builder.py
 ```
 
-2. Fine-tune a pretrained causal LM:
+This writes:
+- `data/hf_sft_train.jsonl`
+- `data/hf_sft_val.jsonl`
+
+The builder can also include up to 200 examples from `data/teacher_log.jsonl` if teacher logging is enabled elsewhere in the app.
+
+### 2. Fine-tune the local HF model
+
+Recommended command:
 
 ```bash
-python3 hf_train.py --base-model Qwen/Qwen2.5-0.5B-Instruct --use-lora --output-dir hf_local_model
+python3 train_core.py --base-model Qwen/Qwen2.5-0.5B-Instruct --use-lora --output-dir hf_local_model
 ```
 
-3. Start the app with the local HF model directory in place.
+Useful notes:
+- `--use-lora` is recommended for local hardware
+- The default base model is `Qwen/Qwen2.5-0.5B-Instruct`
+- You can change the output directory, but the app expects `hf_local_model/` by default
 
-## Optional: Grok Fallback + Self-Training Log
+### 3. Evaluate the model
 
-- If you set `XAI_API_KEY`, the app can use Grok (xAI) as a last-resort fallback when local/cloud paths fail.
-- If you also set `TEACHER_LOG=1`, it logs Grok Q&A pairs to `data/teacher_log.jsonl`.
-- The dataset builder automatically includes up to 200 of these teacher examples on the next run.
+```bash
+python3 eval_core.py --model-dir hf_local_model
+```
 
-## Notes
+This is currently a smoke-test style evaluation across:
+- coding
+- math
+- writing
+- general knowledge
 
-- This is a fine-tuning workflow, not training a foundation model from scratch.
-- The default training target is `Qwen/Qwen2.5-0.5B-Instruct`, which is compact enough to run locally while still being instruction-tuned and multilingual.
-- If your hardware can handle more, you can still swap to `Qwen/Qwen2.5-1.5B-Instruct` or `Qwen/Qwen2.5-3B-Instruct`.
-- If your machine is tight on memory, keep `--use-lora` enabled.
-- The app will prefer the local Hugging Face model when `hf_local_model/` exists.
+It is useful for quick regression checks after training runs.
+
+### 4. Start the app
+
+```bash
+python3 app.py
+```
+
+When `hf_local_model/` exists, the app tries to load that local HF model first.
+
+## Model Dependency Note
+
+If you train with LoRA, `hf_local_model/` contains adapter weights and metadata, not a fully standalone base model package.
+
+That means:
+- the correct base model must be available locally
+- the adapter and tokenizer files must remain together
+- fresh-machine setup should document how the base model is obtained
+
+The current adapter is configured for:
+- `Qwen/Qwen2.5-0.5B-Instruct`
+
+## Minimal End-to-End Commands
+
+```bash
+python3 data_builder.py
+python3 train_core.py --base-model Qwen/Qwen2.5-0.5B-Instruct --use-lora --output-dir hf_local_model
+python3 eval_core.py --model-dir hf_local_model
+python3 app.py
+```
+
+## Next Improvements
+
+The most valuable next work is:
+- expanding the instruction dataset
+- improving evaluation quality and saved metrics
+- documenting fresh-machine reproducibility
+- reducing confusion from older overlapping scripts

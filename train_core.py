@@ -127,6 +127,19 @@ def main():
     parser.add_argument("--batch-size", type=int, default=2)
     parser.add_argument("--grad-accum", type=int, default=8)
     parser.add_argument("--lr", type=float, default=5e-5)
+    parser.add_argument("--max-steps", type=int, default=-1,
+                        help="Optional hard cap on training steps for short sanity runs.")
+    parser.add_argument("--logging-steps", type=int, default=10)
+    parser.add_argument("--save-steps", type=int, default=100)
+    parser.add_argument("--eval-steps", type=int, default=100)
+    parser.add_argument("--dataset-cache-dir", default=None,
+                        help="Optional datasets cache directory for sandbox-friendly local runs.")
+    parser.add_argument("--local-only", action="store_true",
+                        help="Load model/tokenizer only from local files.")
+    parser.add_argument("--use-cpu", action="store_true",
+                        help="Force CPU training for environments where accelerator training is unstable.")
+    parser.add_argument("--disable-gradient-checkpointing", action="store_true",
+                        help="Disable gradient checkpointing for simpler short sanity runs.")
     parser.add_argument("--use-lora", action="store_true",
                         help="Use LoRA adapters instead of full fine-tuning.")
     parser.add_argument("--push-to-hub", action="store_true",
@@ -137,24 +150,37 @@ def main():
 
     if not os.path.exists(args.train_file):
         raise FileNotFoundError(
-            f"{args.train_file} not found. Run `python3 hf_dataset_builder.py` first."
+            f"{args.train_file} not found. Run `python3 data_builder.py` first."
         )
 
-    tokenizer = AutoTokenizer.from_pretrained(args.base_model, use_fast=True, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(
+        args.base_model,
+        use_fast=True,
+        trust_remote_code=True,
+        local_files_only=args.local_only,
+    )
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "right"
 
-    model = AutoModelForCausalLM.from_pretrained(args.base_model, trust_remote_code=True)
+    model = AutoModelForCausalLM.from_pretrained(
+        args.base_model,
+        trust_remote_code=True,
+        local_files_only=args.local_only,
+    )
     model.config.pad_token_id = tokenizer.pad_token_id
     model.config.use_cache = False
-    model.gradient_checkpointing_enable()
+    if not args.disable_gradient_checkpointing:
+        model.gradient_checkpointing_enable()
 
     if args.use_lora:
         model = maybe_apply_lora(model, args.base_model, lora_r=8, lora_alpha=16, lora_dropout=0.05)
 
-    train_ds = load_dataset("json", data_files=args.train_file, split="train")
-    eval_ds = load_dataset("json", data_files=args.eval_file, split="train") if os.path.exists(args.eval_file) else None
+    train_ds = load_dataset("json", data_files=args.train_file, split="train", cache_dir=args.dataset_cache_dir)
+    eval_ds = (
+        load_dataset("json", data_files=args.eval_file, split="train", cache_dir=args.dataset_cache_dir)
+        if os.path.exists(args.eval_file) else None
+    )
 
     def map_fn(example):
         return tokenize_example(example, tokenizer, args.max_length)
@@ -170,19 +196,22 @@ def main():
         per_device_eval_batch_size=args.batch_size,
         gradient_accumulation_steps=args.grad_accum,
         learning_rate=args.lr,
-        logging_steps=10,
-        save_steps=100,
+        max_steps=args.max_steps,
+        logging_steps=args.logging_steps,
+        save_steps=args.save_steps,
         save_total_limit=2,
         eval_strategy="steps" if eval_ds is not None and len(eval_ds) > 0 else "no",
-        eval_steps=100 if eval_ds is not None and len(eval_ds) > 0 else None,
+        eval_steps=args.eval_steps if eval_ds is not None and len(eval_ds) > 0 else None,
         fp16=torch.cuda.is_available(),
         bf16=False,
         report_to="none",
         remove_unused_columns=False,
+        dataloader_pin_memory=False,
         push_to_hub=args.push_to_hub,
         hub_model_id=args.hub_model_id,
         do_train=True,
         do_eval=eval_ds is not None and len(eval_ds) > 0,
+        use_cpu=args.use_cpu,
     )
 
     trainer = Trainer(

@@ -40,6 +40,323 @@ def _join_lines(*lines: str) -> str:
     return "\n".join(line for line in lines if line)
 
 
+def _add_curated_instruction_examples(examples: List[Dict[str, str]]) -> None:
+    curated = [
+        {
+            "prompt": "Write a Python function that checks whether a string is a palindrome.",
+            "response": (
+                "Here is a clean solution:\n\n"
+                "```python\n"
+                "def is_palindrome(text: str) -> bool:\n"
+                "    cleaned = ''.join(ch.lower() for ch in text if ch.isalnum())\n"
+                "    return cleaned == cleaned[::-1]\n"
+                "```\n\n"
+                "This normalizes case, removes non-alphanumeric characters, and compares the text with its reverse."
+            ),
+        },
+        {
+            "prompt": "Explain object-oriented programming with a Python example.",
+            "response": (
+                "Object-oriented programming organizes code around classes and objects. "
+                "A class defines behavior and structure, and an object is an instance of that class.\n\n"
+                "```python\n"
+                "class Dog:\n"
+                "    def __init__(self, name: str):\n"
+                "        self.name = name\n"
+                "\n"
+                "    def speak(self) -> str:\n"
+                "        return f\"{self.name} says woof\"\n"
+                "\n"
+                "pet = Dog(\"Milo\")\n"
+                "print(pet.speak())\n"
+                "```\n\n"
+                "This example shows encapsulation because the `Dog` object stores its own data and behavior together."
+            ),
+        },
+        {
+            "prompt": "Explain the difference between a list and a tuple in Python.",
+            "response": (
+                "A list is mutable, which means you can change its contents after creation. "
+                "A tuple is immutable, which means it cannot be changed after it is created.\n\n"
+                "Use a list when you expect updates, and use a tuple when the data should stay fixed."
+            ),
+        },
+        {
+            "prompt": "How do I reverse a string in Python?",
+            "response": (
+                "The shortest way is slicing:\n\n"
+                "```python\n"
+                "text = \"hello\"\n"
+                "reversed_text = text[::-1]\n"
+                "```\n\n"
+                "This returns `olleh`."
+            ),
+        },
+        {
+            "prompt": "Write a SQL query to get the second highest salary from an Employee table.",
+            "response": (
+                "One common approach is:\n\n"
+                "```sql\n"
+                "SELECT MAX(salary) AS second_highest_salary\n"
+                "FROM Employee\n"
+                "WHERE salary < (SELECT MAX(salary) FROM Employee);\n"
+                "```\n\n"
+                "The inner query finds the maximum salary, and the outer query finds the largest salary below it."
+            ),
+        },
+        {
+            "prompt": "Explain REST APIs in simple terms.",
+            "response": (
+                "A REST API is a way for applications to communicate over HTTP using predictable rules. "
+                "A client sends requests such as GET, POST, PUT, or DELETE to resource URLs, and the server returns structured data, often JSON."
+            ),
+        },
+        {
+            "prompt": "What is the difference between GET and POST?",
+            "response": (
+                "GET is usually used to retrieve data, and POST is usually used to send data that creates or triggers something on the server. "
+                "GET requests are often safe and cacheable, while POST requests usually change server state."
+            ),
+        },
+        {
+            "prompt": "Explain the chain rule in calculus and why it works.",
+            "response": (
+                "The chain rule is used when one function is inside another. If $y = f(g(x))$, then\n\n"
+                "$$\\frac{dy}{dx} = f'(g(x)) \\cdot g'(x).$$\n\n"
+                "Step by step:\n"
+                "1. Let $u = g(x)$ so that $y = f(u)$.\n"
+                "2. Differentiate the outer function with respect to $u$, giving $\\frac{dy}{du} = f'(u)$.\n"
+                "3. Differentiate the inner function with respect to $x$, giving $\\frac{du}{dx} = g'(x)$.\n"
+                "4. Multiply them: $\\frac{dy}{dx} = \\frac{dy}{du} \\cdot \\frac{du}{dx}$.\n\n"
+                "It works because a change in $x$ first changes the inside function, and that inside change then affects the outside function."
+            ),
+        },
+        {
+            "prompt": "Differentiate y = sin(x^2).",
+            "response": (
+                "Use the chain rule.\n\n"
+                "Let $u = x^2$. Then $y = \\sin(u)$.\n"
+                "The derivative of the outer function is $\\cos(u)$, and the derivative of the inner function is $2x$.\n\n"
+                "So,\n\n"
+                "$$\\frac{dy}{dx} = \\cos(x^2) \\cdot 2x = 2x\\cos(x^2).$$"
+            ),
+        },
+        {
+            "prompt": "Solve 2x + 5 = 17.",
+            "response": (
+                "Start with:\n\n"
+                "$$2x + 5 = 17$$\n\n"
+                "Subtract 5 from both sides:\n\n"
+                "$$2x = 12$$\n\n"
+                "Divide by 2:\n\n"
+                "$$x = 6$$"
+            ),
+        },
+        {
+            "prompt": "What is a matrix in linear algebra?",
+            "response": (
+                "A matrix is a rectangular array of numbers arranged in rows and columns. "
+                "Matrices are used to represent linear transformations, systems of equations, and structured data. "
+                "For example, a matrix can be written as $A \\in \\mathbb{R}^{m \\times n}$."
+            ),
+        },
+        {
+            "prompt": "Explain vectors and the dot product with symbols.",
+            "response": (
+                "A vector is an ordered list of numbers, such as $\\mathbf{v} = (v_1, v_2, \\dots, v_n)$. "
+                "The dot product of two vectors is\n\n"
+                "$$\\mathbf{a} \\cdot \\mathbf{b} = \\sum_{i=1}^{n} a_i b_i.$$"
+                "\n\nIt measures how aligned the two vectors are."
+            ),
+        },
+        {
+            "prompt": "Who was Nikola Tesla and why is he important?",
+            "response": (
+                "Nikola Tesla was an inventor and electrical engineer best known for his work on alternating current systems. "
+                "He helped shape modern power transmission, motors, and electrical engineering. "
+                "His ideas were important because they supported efficient long-distance electricity distribution."
+            ),
+        },
+        {
+            "prompt": "What was the Battle of Waterloo?",
+            "response": (
+                "The Battle of Waterloo was fought on June 18, 1815, and it marked the final defeat of Napoleon Bonaparte. "
+                "Napoleon's forces were defeated by a coalition led by the Duke of Wellington and Gebhard Leberecht von Blucher. "
+                "The battle ended Napoleon's rule and reshaped European politics."
+            ),
+        },
+        {
+            "prompt": "How do black holes form?",
+            "response": (
+                "Black holes usually form when a very massive star runs out of fuel and its core collapses under gravity. "
+                "If the remaining core is massive enough, the collapse continues until an event horizon forms. "
+                "Black holes can also grow later by accreting matter or merging with other compact objects."
+            ),
+        },
+        {
+            "prompt": "Explain photosynthesis simply.",
+            "response": (
+                "Photosynthesis is the process by which plants use sunlight to convert water and carbon dioxide into glucose and oxygen. "
+                "In simple terms, plants use light energy to make their own food."
+            ),
+        },
+        {
+            "prompt": "Help me write a polite professional email asking for a project update.",
+            "response": (
+                "Here is a professional draft:\n\n"
+                "Subject: Project Update Request\n\n"
+                "Dear [Name],\n\n"
+                "I hope you are doing well. I wanted to check in regarding the current status of the project and see whether there are any updates you can share. Please let me know if there are any blockers or if I can help with anything on my side.\n\n"
+                "Best regards,\n"
+                "[Your Name]"
+            ),
+        },
+        {
+            "prompt": "Rewrite this sentence more professionally: i need the file asap",
+            "response": "Could you please send me the file at your earliest convenience?",
+        },
+        {
+            "prompt": "Summarize this text in three bullets.",
+            "response": (
+                "Sure. I will identify the main argument, the supporting points, and the conclusion, then turn them into three concise bullets."
+            ),
+        },
+        {
+            "prompt": "Explain recursion like I'm a beginner.",
+            "response": (
+                "Recursion means a function solves a problem by calling itself on a smaller version of the same problem. "
+                "A recursive solution needs two parts: a base case that stops the recursion and a recursive step that reduces the problem."
+            ),
+        },
+        {
+            "prompt": "Give me a 7-day study plan for calculus.",
+            "response": (
+                "Here is a simple 7-day plan:\n\n"
+                "Day 1: Limits and continuity\n"
+                "Day 2: Derivatives and rules\n"
+                "Day 3: Chain rule and implicit differentiation\n"
+                "Day 4: Applications of derivatives\n"
+                "Day 5: Integrals and antiderivatives\n"
+                "Day 6: Definite integrals and area\n"
+                "Day 7: Mixed review and timed practice\n\n"
+                "Spend part of each day on examples and part on problem solving."
+            ),
+        },
+        {
+            "prompt": "I have 3 days left before my math exam. Help me make a revision plan.",
+            "response": (
+                "Here is a focused 3-day revision plan:\n\n"
+                "Day 1: Review core concepts and formulas. Work through easy and medium problems.\n"
+                "Day 2: Practice mixed problem sets under time pressure. Review mistakes carefully.\n"
+                "Day 3: Do a final recap of weak areas, key formulas, and one short mock test.\n\n"
+                "Keep your revision active by solving problems, not only rereading notes."
+            ),
+        },
+        {
+            "prompt": "My code throws an IndexError. How should I debug it?",
+            "response": (
+                "An `IndexError` usually means you are trying to access a position that does not exist in a list or sequence. "
+                "Check the sequence length, print the index value before access, and verify loop bounds such as `range(len(items))`. "
+                "If you share the code and error line, I can trace it step by step."
+            ),
+        },
+        {
+            "prompt": "The app is slow. What should I check first?",
+            "response": (
+                "Start with simple measurements. Check load time, first-token latency, tokens per second, and memory usage. "
+                "Then identify whether the slowdown comes from model loading, generation settings, the web server, or the frontend."
+            ),
+        },
+        {
+            "prompt": "What should you do if you are unsure about a fact?",
+            "response": (
+                "I should avoid inventing facts. I should say I am not fully sure, give the most careful answer I can, and ask a clarifying question when needed."
+            ),
+        },
+        {
+            "prompt": "If a user asks a harmless science question, should you refuse?",
+            "response": (
+                "No. I should answer harmless science questions directly and clearly. I should only refuse if the request is unsafe or unrelated to legitimate educational help."
+            ),
+        },
+        {
+            "prompt": "User: I do not understand derivatives.\nAssistant: No problem. A derivative measures how fast something changes.\nUser: Can you explain it with an example?",
+            "response": (
+                "Sure. Imagine distance changing over time. If a car's position is given by $s(t) = t^2$, then the derivative is $s'(t) = 2t$. "
+                "That derivative tells you how fast the position is changing at each moment. For example, at $t = 3$, the rate of change is $6$."
+            ),
+        },
+        {
+            "prompt": "User: I need to write a formal email.\nAssistant: Sure. What is it about?\nUser: I want to ask my professor for an extension because I was sick.",
+            "response": (
+                "Here is a respectful draft:\n\n"
+                "Subject: Request for Assignment Extension\n\n"
+                "Dear Professor [Name],\n\n"
+                "I hope you are doing well. I am writing to request a short extension on the assignment because I have been unwell and it has affected my ability to complete the work on time. I would be grateful if an extension could be considered. Thank you for your understanding.\n\n"
+                "Sincerely,\n"
+                "[Your Name]"
+            ),
+        },
+        {
+            "prompt": "Compare breadth-first search and depth-first search.",
+            "response": (
+                "Breadth-first search explores level by level, while depth-first search explores one path as far as possible before backtracking. "
+                "BFS is useful for shortest paths in unweighted graphs, while DFS is often used for traversal, cycle detection, and topological-style exploration."
+            ),
+        },
+        {
+            "prompt": "Explain Dijkstra's algorithm simply.",
+            "response": (
+                "Dijkstra's algorithm finds the shortest path from a starting node to all other nodes in a graph with non-negative edge weights. "
+                "It repeatedly picks the unvisited node with the smallest current distance, relaxes its outgoing edges, and updates better distances when found."
+            ),
+        },
+        {
+            "prompt": "What is overfitting in machine learning?",
+            "response": (
+                "Overfitting happens when a model learns the training data too specifically, including noise or accidental patterns, and then performs poorly on new data. "
+                "A model that overfits usually has low training error but weaker generalization."
+            ),
+        },
+        {
+            "prompt": "Explain the difference between training loss and validation loss.",
+            "response": (
+                "Training loss measures how well the model fits the training data, while validation loss measures how well it performs on separate held-out data. "
+                "If training loss improves but validation loss gets worse, the model may be overfitting."
+            ),
+        },
+        {
+            "prompt": "What makes a good answer in a coding assistant?",
+            "response": (
+                "A good coding answer is correct, readable, and practical. It should explain the idea briefly, provide clean code when needed, and mention edge cases or tradeoffs when they matter."
+            ),
+        },
+        {
+            "prompt": "Explain this topic in beginner, intermediate, and advanced terms: recursion.",
+            "response": (
+                "Beginner: Recursion is when a function calls itself to solve a smaller version of the same problem.\n\n"
+                "Intermediate: Recursive solutions need a base case and a recursive step, and they are useful for trees, divide-and-conquer, and combinatorial search.\n\n"
+                "Advanced: Recursion can be analyzed through recurrence relations, stack depth, and subproblem structure, and it is often optimized with memoization or converted into iterative dynamic programming."
+            ),
+        },
+    ]
+
+    for row in curated:
+        _add_example(examples, row["prompt"], row["response"])
+
+
+def _dedupe_examples(rows: List[Dict[str, str]]) -> List[Dict[str, str]]:
+    seen = set()
+    deduped = []
+    for row in rows:
+        key = (row["prompt"], row["response"])
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(row)
+    return deduped
+
+
 def build_examples() -> List[Dict[str, str]]:
     examples: List[Dict[str, str]] = []
 
@@ -374,6 +691,8 @@ def build_examples() -> List[Dict[str, str]]:
         "No. For science and astronomy questions, I should answer directly, explain the concept clearly, and only refuse if the request is unsafe or unrelated to the science topic.",
     )
 
+    _add_curated_instruction_examples(examples)
+
     # Optional: incorporate teacher answers collected from Grok fallback.
     # This is opt-in by existence of the log file, and is best used with your consent
     # because it may contain your private prompts.
@@ -397,7 +716,7 @@ def build_examples() -> List[Dict[str, str]]:
         except Exception:
             pass
 
-    return examples
+    return _dedupe_examples(examples)
 
 
 def write_jsonl(path: str, rows: List[Dict[str, str]]) -> None:
@@ -418,6 +737,7 @@ def main() -> None:
     write_jsonl(TRAIN_PATH, train_rows)
     write_jsonl(VAL_PATH, val_rows)
 
+    print(f"Built {len(examples)} unique instruction examples")
     print(f"Wrote {len(train_rows)} training rows to {TRAIN_PATH}")
     print(f"Wrote {len(val_rows)} validation rows to {VAL_PATH}")
 
