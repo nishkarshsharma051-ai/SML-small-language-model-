@@ -261,6 +261,37 @@ def _add_curated_instruction_examples(examples: List[Dict[str, str]]) -> None:
             ),
         },
         {
+            "prompt": "My Python code raises an IndexError. How should I debug it?",
+            "response": (
+                "An `IndexError` means your code is trying to access an element outside the valid range of a list, tuple, or string.\n\n"
+                "A good debugging checklist is:\n"
+                "1. Print the sequence and its length with `print(len(items))`.\n"
+                "2. Print the index right before the failing line.\n"
+                "3. Check loop bounds such as `range(len(items))` versus `range(len(items) + 1)`.\n"
+                "4. Check whether the sequence might be empty.\n"
+                "5. Read the traceback to find the exact line that failed.\n\n"
+                "Example:\n\n"
+                "```python\n"
+                "items = [10, 20, 30]\n"
+                "for i in range(len(items) + 1):\n"
+                "    print(i, len(items))\n"
+                "    print(items[i])\n"
+                "```\n\n"
+                "The bug is `range(len(items) + 1)`, because the last index attempted is `3`, but valid indices are `0`, `1`, and `2`."
+            ),
+        },
+        {
+            "prompt": "How do I debug an IndexError step by step in Python?",
+            "response": (
+                "Step 1: Read the traceback and locate the exact failing line.\n"
+                "Step 2: Print the index value and the sequence length.\n"
+                "Step 3: Check whether the index can become negative or exceed `len(sequence) - 1`.\n"
+                "Step 4: Inspect loops, slices, and any logic that changes the sequence size.\n"
+                "Step 5: Fix the boundary condition and test again.\n\n"
+                "In short, an `IndexError` is usually a bounds problem, so compare the index you use with the valid index range."
+            ),
+        },
+        {
             "prompt": "The app is slow. What should I check first?",
             "response": (
                 "Start with simple measurements. Check load time, first-token latency, tokens per second, and memory usage. "
@@ -337,6 +368,40 @@ def _add_curated_instruction_examples(examples: List[Dict[str, str]]) -> None:
                 "Beginner: Recursion is when a function calls itself to solve a smaller version of the same problem.\n\n"
                 "Intermediate: Recursive solutions need a base case and a recursive step, and they are useful for trees, divide-and-conquer, and combinatorial search.\n\n"
                 "Advanced: Recursion can be analyzed through recurrence relations, stack depth, and subproblem structure, and it is often optimized with memoization or converted into iterative dynamic programming."
+            ),
+        },
+        {
+            "prompt": "Explain matrices and vectors in linear algebra using symbols.",
+            "response": (
+                "In linear algebra, a matrix is a rectangular array of numbers and a vector is an ordered list of numbers.\n\n"
+                "A matrix can be written as $A \\in \\mathbb{R}^{m \\times n}$ and a vector as $x \\in \\mathbb{R}^n$. "
+                "Matrix-vector multiplication is written as\n\n"
+                "$$A x = b,$$\n\n"
+                "where $b \\in \\mathbb{R}^m$.\n\n"
+                "For example,\n\n"
+                "$$A = \\begin{pmatrix}1 & 2\\\\3 & 4\\end{pmatrix}, \\quad x = \\begin{pmatrix}x_1\\\\x_2\\end{pmatrix}$$\n\n"
+                "gives\n\n"
+                "$$Ax = \\begin{pmatrix}x_1 + 2x_2\\\\3x_1 + 4x_2\\end{pmatrix}.$$"
+            ),
+        },
+        {
+            "prompt": "Use symbols to explain matrices and vectors.",
+            "response": (
+                "A vector is an element of $\\mathbb{R}^n$, so we write $x = (x_1, x_2, \\dots, x_n)^T$. "
+                "A matrix is an element of $\\mathbb{R}^{m \\times n}$, so we write $A = [a_{ij}]$. "
+                "When a matrix acts on a vector, the result is another vector:\n\n"
+                "$$Ax = b.$$"
+                "\n\nThe dot product of two vectors $u, v \\in \\mathbb{R}^n$ is\n\n"
+                "$$u \\cdot v = \\sum_{i=1}^{n} u_i v_i.$$"
+            ),
+        },
+        {
+            "prompt": "Give a clear symbolic explanation of matrix-vector multiplication.",
+            "response": (
+                "Let $A = [a_{ij}] \\in \\mathbb{R}^{m \\times n}$ and let $x \\in \\mathbb{R}^n$. "
+                "Then the product $Ax$ is a vector in $\\mathbb{R}^m$ whose $i$-th entry is\n\n"
+                "$$(Ax)_i = \\sum_{j=1}^{n} a_{ij} x_j.$$"
+                "\n\nThis means each output entry is a linear combination of the entries of $x$, weighted by the corresponding row of $A$."
             ),
         },
     ]
