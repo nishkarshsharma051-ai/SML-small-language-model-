@@ -69,6 +69,33 @@ class TingLingLingBrain:
             "\n\nPersona: Scholarly, precise, encouraging, and highly intellectual. You are proud of your creator, Nishkarsh Sharma."
         )
 
+    def _history_role_to_chat_role(self, role: Any) -> str:
+        value = str(role or "").strip().lower()
+        if value in {"assistant", "ai", "bot", "model"}:
+            return "assistant"
+        return "user"
+
+    def _normalize_answer(self, text: str) -> str:
+        """Trim stock greetings when the model already produced a substantive answer."""
+        if not text:
+            return text
+
+        cleaned = str(text).strip()
+        lowered = cleaned.lower()
+        greeting_prefixes = (
+            "how may i assist you today?",
+            "how can i assist you today?",
+            "how may i help you today?",
+            "how can i help you today?",
+        )
+
+        for prefix in greeting_prefixes:
+            if lowered.startswith(prefix):
+                remainder = cleaned[len(prefix):].lstrip(" \n\r\t-:,.!")
+                if remainder:
+                    return remainder
+        return cleaned
+
     def _clean_identity_leaks(self, text: str) -> str:
         """Forcefully override any stubborn pre-trained identity leaks."""
         if not text:
@@ -244,22 +271,27 @@ class TingLingLingBrain:
 
         # If Local answer is good, return it immediately
         if local_ans and not self._is_response_bad(local_ans):
-            return self._clean_identity_leaks(local_ans)
+            self.source = "Local-HF" if self.hf_loaded else "Local"
+            return self._normalize_answer(self._clean_identity_leaks(local_ans))
 
         # 2. Try Cloud Engine (Teacher Fallback) - Silent & Secret
         if self.use_cloud_primary and not force_local:
             try:
                 teacher_ans = self._ask_cloud_engine(question, history=history)
                 if teacher_ans:
+                    self.source = "Cloud"
                     # Log high-quality answer for background self-training
                     self._append_teacher_log(question, teacher_ans, teacher="cloud")
                     # Trigger background fine-tuning
                     self._trigger_auto_tune()
-                    return self._clean_identity_leaks(teacher_ans)
+                    return self._normalize_answer(self._clean_identity_leaks(teacher_ans))
             except Exception as e:
                 print(f"[Brain] Teacher fallback failed... Error: {e}")
 
-        return local_ans if local_ans else self._fallback_reply(question, "thinking...")
+        if local_ans:
+            self.source = "Local-HF" if self.hf_loaded else "Local"
+            return self._normalize_answer(self._clean_identity_leaks(local_ans))
+        return self._fallback_reply(question, "thinking...")
 
     def _trigger_auto_tune(self):
         """Asynchronously trigger the background training bridge."""
@@ -284,7 +316,7 @@ class TingLingLingBrain:
         
         # Add history
         for turn in (history or [])[-10:]:
-            role = "assistant" if turn.get("role") == "ai" else "user"
+            role = self._history_role_to_chat_role(turn.get("role"))
             messages.append({"role": role, "content": turn.get("content", "")})
             
         messages.append({"role": "user", "content": question})
@@ -348,7 +380,7 @@ class TingLingLingBrain:
                         if ans:
                             self.source = "Cloud"
                             self._append_teacher_log(question, ans, teacher="cloud")
-                            yield self._clean_identity_leaks(ans)
+                            yield self._normalize_answer(self._clean_identity_leaks(ans))
                             return
                     except Exception:
                         pass
@@ -367,7 +399,7 @@ class TingLingLingBrain:
             content = str(turn.get("content", "")).strip()
             if not content:
                 continue
-            if role == "assistant":
+            if self._history_role_to_chat_role(role) == "assistant":
                 parts.append(f"Assistant: {content}")
             else:
                 parts.append(f"User: {content}")
@@ -382,7 +414,7 @@ class TingLingLingBrain:
 
         messages = [{"role": "system", "content": self.system_instruction}]
         for turn in (history or [])[-10:]:
-            role = str(turn.get("role", "")).lower()
+            role = self._history_role_to_chat_role(turn.get("role"))
             content = str(turn.get("content", "")).strip()
             if not content:
                 continue
@@ -401,7 +433,7 @@ class TingLingLingBrain:
             # has a better chance of responding naturally.
             prompt_lines = []
             for turn in (history or [])[-6:]:
-                role = str(turn.get("role", "")).lower()
+                role = self._history_role_to_chat_role(turn.get("role"))
                 content = str(turn.get("content", "")).strip()
                 if not content:
                     continue
@@ -426,14 +458,14 @@ class TingLingLingBrain:
             if "\n---" in answer:
                 answer = answer.split("\n---")[0]
 
-            return answer
+            return self._normalize_answer(answer)
 
     def _ask_hf_local(self, question, history=None):
         """Inference loop for a local Hugging Face causal LM."""
         with self.lock:
             messages = [{"role": "system", "content": self.system_instruction}]
             for turn in (history or [])[-10:]:
-                role = str(turn.get("role", "")).lower()
+                role = self._history_role_to_chat_role(turn.get("role"))
                 content = str(turn.get("content", "")).strip()
                 if not content:
                     continue
@@ -471,7 +503,7 @@ class TingLingLingBrain:
 
                 new_tokens = output[0][prompt_len:]
                 answer = self.hf_tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
-                return answer if answer else self._fallback_reply(question, "empty model output")
+                return self._normalize_answer(answer) if answer else self._fallback_reply(question, "empty model output")
             except Exception as e:
                 return self._fallback_reply(question, f"local hf inference error: {e}")
 
@@ -491,7 +523,7 @@ class TingLingLingBrain:
         with self.lock:
             messages = [{"role": "system", "content": self.system_instruction}]
             for turn in (history or [])[-10:]:
-                role = str(turn.get("role", "")).lower()
+                role = self._history_role_to_chat_role(turn.get("role"))
                 content = str(turn.get("content", "")).strip()
                 if not content:
                     continue

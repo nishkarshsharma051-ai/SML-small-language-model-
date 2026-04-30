@@ -344,7 +344,7 @@ async function sendMessage() {
   sendBtn.disabled = true;
   if (stopGenBtn) stopGenBtn.classList.remove('hidden');
 
-  const brain_mode = (brainModeToggle && brainModeToggle.checked) ? 'cloud' : 'cloud'; // Default to cloud/hybrid for stealth mode
+  const brain_mode = (brainModeToggle && !brainModeToggle.checked) ? 'local' : 'cloud';
 
   try {
     // Prefer streaming if the browser supports it.
@@ -408,7 +408,8 @@ async function sendMessage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
         message: text,
-        history: window.chatHistory || []
+        brain_mode: brain_mode,
+        history: conversation.slice(-12)
       })
     });
     const data = await res.json();

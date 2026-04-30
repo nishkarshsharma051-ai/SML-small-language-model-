@@ -5,8 +5,6 @@ import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["OMP_NUM_THREADS"] = "1"
 
-import threading
-import subprocess
 import torch
 import json
 import uuid
@@ -42,10 +40,12 @@ def chat():
     data = request.get_json(silent=True) or {}
     if not isinstance(data, dict):
         data = {}
-    question = data.get("message", "").strip()
+    question = str(data.get("message", "")).strip()
     history = data.get("history", [])
+    if not isinstance(history, list):
+        history = []
     # Accept 'brain_mode' (cloud or local)
-    brain_mode = data.get("brain_mode", "cloud")
+    brain_mode = str(data.get("brain_mode", "cloud")).strip().lower()
     force_local = (brain_mode == "local")
     
     if not question:
@@ -54,12 +54,14 @@ def chat():
     try:
         answer = brain.ask(question, force_local=force_local, history=history)
         return jsonify({
-            "reply": answer
+            "reply": answer,
+            "source": brain.source,
         })
     except Exception as e:
         return jsonify({
             "reply": "I hit an unexpected error, but I’m still up. Please try again with a shorter prompt.",
-            "error": str(e)
+            "error": str(e),
+            "source": "error",
         }), 200
 
 
@@ -71,7 +73,9 @@ def chat_stream():
 
     question = str(data.get("message", "")).strip()
     history = data.get("history", [])
-    brain_mode = data.get("brain_mode", "cloud")
+    if not isinstance(history, list):
+        history = []
+    brain_mode = str(data.get("brain_mode", "cloud")).strip().lower()
     force_local = (brain_mode == "local")
 
     if not question:
@@ -146,8 +150,8 @@ def health():
         "status": "ok",
         "model_loaded": brain._loaded,
         "hf_loaded": getattr(brain, "hf_loaded", False),
-        "cloud_enabled": getattr(brain, "use_cloud", False),
-        "cloud_enabled": bool(os.getenv("CLOUD_API_KEY")),
+        "cloud_enabled": getattr(brain, "use_cloud_primary", False),
+        "source": getattr(brain, "source", "unknown"),
     })
 
 

@@ -1,8 +1,8 @@
-\"\"\"
+"""
 cloud_engine.py — Minimal cloud chat-completions client.
 
 This module provides a generic bridge to OpenAI-compatible cloud APIs.
-\"\"\"
+"""
 
 from __future__ import annotations
 
