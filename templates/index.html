@@ -6,7 +6,7 @@
   <title>Ting Ling Ling — Assistant</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/static/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
@@ -14,10 +14,10 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
 </head>
 <body>
-  <div class="ambient-bg">
-    <div class="glow glow-1"></div>
-    <div class="glow glow-2"></div>
-    <div class="glow glow-3"></div>
+  <div class="ambient-canvas">
+    <div class="blob blob-purple"></div>
+    <div class="blob blob-blue"></div>
+    <div class="blob blob-indigo"></div>
   </div>
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
@@ -91,12 +91,20 @@
     <div class="chat-window" id="chatWindow">
       <div class="welcome" id="welcomeScreen">
         <h1 class="welcome-title">Ting Ling Ling</h1>
-        <p class="welcome-subtitle">A minimal interface for your language model.</p>
+        <p class="welcome-subtitle">A powerful, local-first intelligence at your fingertips. How can I help you today?</p>
         <div class="suggestion-chips">
-          <button class="chip" onclick="sendSuggestion('Explain Dynamic Programming')">DP</button>
-          <button class="chip" onclick="sendSuggestion('Explain System Design')">System Design</button>
-          <button class="chip" onclick="sendSuggestion('Explain recursion')">Recursion</button>
-          <button class="chip" onclick="sendSuggestion('Explain Linear Algebra')">Linear algebra</button>
+          <button class="chip" onclick="sendSuggestion('Explain Quantum Computing simply')">
+            <svg style="width:16px;height:16px;margin-right:8px;vertical-align:middle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            Quantum Computing
+          </button>
+          <button class="chip" onclick="sendSuggestion('How to build a neural network from scratch?')">
+            <svg style="width:16px;height:16px;margin-right:8px;vertical-align:middle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+            Neural Networks
+          </button>
+          <button class="chip" onclick="sendSuggestion('Best practices for System Design')">
+            <svg style="width:16px;height:16px;margin-right:8px;vertical-align:middle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M9 3v18M15 3v18"/></svg>
+            System Design
+          </button>
         </div>
       </div>
 
