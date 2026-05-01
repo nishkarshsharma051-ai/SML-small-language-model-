@@ -11,9 +11,6 @@ const voiceRate    = document.getElementById('voiceRate');
 const rateValue   = document.getElementById('rateValue');
 const sidebar     = document.getElementById('sidebar');
 const voiceAssistantBtn = document.getElementById('voiceAssistantBtn');
-const brainModeToggle = document.getElementById('brainModeToggle');
-const modeLocalLabel = document.getElementById('modeLocalLabel');
-const modeCloudLabel = document.getElementById('modeCloudLabel');
 const stopGenBtn  = document.getElementById('stopGenBtn');
 const autoSpeakToggle = document.getElementById('autoSpeakToggle');
 const voiceVisualizer = document.getElementById('voiceVisualizer');
@@ -344,7 +341,7 @@ async function sendMessage() {
   sendBtn.disabled = true;
   if (stopGenBtn) stopGenBtn.classList.remove('hidden');
 
-  const brain_mode = (brainModeToggle && !brainModeToggle.checked) ? 'local' : 'cloud';
+  const brain_mode = 'cloud';
 
   try {
     // Prefer streaming if the browser supports it.
