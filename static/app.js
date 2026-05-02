@@ -134,8 +134,16 @@ sendBtn.addEventListener('click', sendMessage);
 function autoResize() {
   userInput.style.height = 'auto';
   userInput.style.height = Math.min(userInput.scrollHeight, 180) + 'px';
+  
+  // Toggle send button state
+  if (sendBtn) {
+    const hasContent = userInput.value.trim().length > 0;
+    sendBtn.disabled = !hasContent || isWaiting;
+  }
 }
 userInput.addEventListener('input', autoResize);
+// Initialize button state
+if (sendBtn) sendBtn.disabled = true;
 
 /* ─── Rate Slider ─────────────────────────────────────────── */
 voiceRate.addEventListener('input', () => {
@@ -427,7 +435,9 @@ async function sendMessage() {
     appendMessage('ai', 'Error: Could not reach the server.');
   } finally {
     isWaiting = false;
-    sendBtn.disabled = false;
+    if (sendBtn) {
+      sendBtn.disabled = userInput.value.trim().length === 0;
+    }
     if (stopGenBtn) stopGenBtn.classList.add('hidden');
   }
 }
