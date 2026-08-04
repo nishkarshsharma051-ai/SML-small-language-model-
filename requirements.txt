@@ -1,0 +1,16 @@
+torch
+numpy
+tqdm
+transformers
+datasets
+accelerate
+pyttsx3
+sympy
+peft
+flask
+python-dotenv
+requests
+psycopg2-binary
+ddgs
+beautifulsoup4
+PyAudio
