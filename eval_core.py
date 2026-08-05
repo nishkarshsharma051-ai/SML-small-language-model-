@@ -244,22 +244,21 @@ def main():
         tokenizer.pad_token = tokenizer.eos_token
 
     model = None
-    abs_model_dir = os.path.abspath(args.model_dir)
     try:
         from peft import PeftModel
         base_model_name = "Qwen/Qwen2.5-0.5B-Instruct"
         base_model = AutoModelForCausalLM.from_pretrained(
             base_model_name,
-            torch_dtype=dtype,
+            dtype=dtype,
             device_map="auto" if device != "cpu" else None,
         )
-        model = PeftModel.from_pretrained(base_model, abs_model_dir, is_trainable=False)
+        model = PeftModel.from_pretrained(base_model, args.model_dir, local_files_only=True)
     except Exception as e:
         print(f"Loading direct model: {e}")
         model = AutoModelForCausalLM.from_pretrained(
-            abs_model_dir,
+            args.model_dir,
             local_files_only=True,
-            torch_dtype=dtype,
+            dtype=dtype,
         ).to(device)
     model.eval()
 
