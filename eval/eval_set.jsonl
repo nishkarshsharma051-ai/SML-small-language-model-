@@ -1,9 +1,12 @@
 {"name":"coding_palindrome","prompt":"Write a Python function that checks whether a string is a palindrome.","kind":"code","checks":["has_code","has_palindrome_code","not_refusal"]}
 {"name":"coding_oop","prompt":"Explain object-oriented programming with a Python example.","kind":"code","checks":["has_code","has_explanation","not_refusal"]}
 {"name":"coding_debug_indexerror","prompt":"My Python code raises an IndexError. How should I debug it?","kind":"code","checks":["has_general_answer","not_refusal"]}
+{"name":"coding_sql_query","prompt":"Write a SQL query to get the second highest salary from an Employee table.","kind":"code","checks":["has_sql_code","not_refusal"]}
+{"name":"coding_binary_search","prompt":"How does binary search work?","kind":"code","checks":["has_binary_search_explanation","not_refusal"]}
 {"name":"math_chain_rule","prompt":"Explain the chain rule in calculus and why it works.","kind":"math","checks":["has_stepwise_math","has_explanation","not_refusal"]}
 {"name":"math_linear_algebra","prompt":"Explain matrices and vectors in linear algebra using symbols.","kind":"math","checks":["has_math_symbol","has_explanation","not_refusal"]}
 {"name":"math_simple_equation","prompt":"Solve 2x + 5 = 17 step by step.","kind":"math","checks":["has_step_markers","solves_simple_linear_equation","not_refusal"]}
+{"name":"math_eigenvalues","prompt":"What are eigenvalues and how do you calculate them?","kind":"math","checks":["has_eigenvalue_math","not_refusal"]}
 {"name":"writing_email","prompt":"Help me write a polite professional email asking for a project update.","kind":"writing","checks":["has_general_answer","not_refusal"]}
 {"name":"writing_rewrite","prompt":"Rewrite this sentence more professionally: i need the file asap","kind":"writing","checks":["is_professional_rewrite","not_refusal"]}
 {"name":"general_tesla","prompt":"Who was Nikola Tesla and why is he important?","kind":"general","checks":["has_general_answer","not_refusal"]}

@@ -104,6 +104,20 @@ def _is_professional_rewrite(text: str) -> bool:
     )
 
 
+def _has_sql_code(text: str) -> bool:
+    return _has_code(text) and "select" in text.lower() and "from" in text.lower()
+
+
+def _has_binary_search_explanation(text: str) -> bool:
+    lower = text.lower()
+    return ("log" in lower or "half" in lower or "middle" in lower or "mid" in lower) and _not_refusal(text)
+
+
+def _has_eigenvalue_math(text: str) -> bool:
+    lower = text.lower()
+    return ("det" in lower or "lambda" in lower or "characteristic" in lower or "eigen" in lower or "vector" in lower) and _not_refusal(text)
+
+
 CHECKS: Dict[str, Callable[[str], bool]] = {
     "has_code": _has_code,
     "has_math_symbol": _has_math_symbol,
@@ -116,6 +130,9 @@ CHECKS: Dict[str, Callable[[str], bool]] = {
     "has_step_markers": _has_step_markers,
     "solves_simple_linear_equation": _solves_simple_linear_equation,
     "is_professional_rewrite": _is_professional_rewrite,
+    "has_sql_code": _has_sql_code,
+    "has_binary_search_explanation": _has_binary_search_explanation,
+    "has_eigenvalue_math": _has_eigenvalue_math,
 }
 
 
@@ -215,15 +232,34 @@ def main():
     device = "mps" if torch.backends.mps.is_available() else "cpu"
     dtype = torch.float16 if device == "mps" else torch.float32
 
-    tokenizer = AutoTokenizer.from_pretrained(args.model_dir, local_files_only=True)
+    tokenizer = None
+    try:
+        tokenizer = AutoTokenizer.from_pretrained(args.model_dir, local_files_only=True)
+    except Exception:
+        # Fallback to base model for tokenizer if loading adapter path directly fails
+        base_model_name = "Qwen/Qwen2.5-0.5B-Instruct"
+        print(f"Loading tokenizer from base model: {base_model_name}")
+        tokenizer = AutoTokenizer.from_pretrained(base_model_name)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
-    model = AutoModelForCausalLM.from_pretrained(
-        args.model_dir,
-        local_files_only=True,
-        dtype=dtype,
-    ).to(device)
+    model = None
+    try:
+        from peft import PeftModel
+        base_model_name = "Qwen/Qwen2.5-0.5B-Instruct"
+        base_model = AutoModelForCausalLM.from_pretrained(
+            base_model_name,
+            torch_dtype=dtype,
+            device_map="auto" if device != "cpu" else None,
+        )
+        model = PeftModel.from_pretrained(base_model, args.model_dir)
+    except Exception as e:
+        print(f"Loading direct model: {e}")
+        model = AutoModelForCausalLM.from_pretrained(
+            args.model_dir,
+            local_files_only=True,
+            torch_dtype=dtype,
+        ).to(device)
     model.eval()
 
     passed = 0
