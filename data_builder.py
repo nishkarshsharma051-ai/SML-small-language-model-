@@ -750,10 +750,41 @@ def build_examples() -> List[Dict[str, str]]:
         ["Answer clearly and directly.", "Be conversational and helpful."],
         "Understood. I will answer clearly, stay conversational, and adapt the depth to your question.",
     )
+    # Everyday Common Sense Reasoning & Practical Logic
     _add_variants(
         examples,
-        ["If I ask a science question, should you refuse?", "How should you answer astronomy questions?"],
-        "No. For science and astronomy questions, I should answer directly, explain the concept clearly, and only refuse if the request is unsafe or unrelated to the science topic.",
+        ["If it rains outside, what should I do before leaving?", "What should I take with me if rain is forecast?"],
+        "Take an umbrella or wear a waterproof raincoat. It is also wise to check your footwear so you don't slip on wet surfaces."
+    )
+    _add_variants(
+        examples,
+        ["Why shouldn't you put metal in a microwave?", "Can I put aluminum foil in a microwave?"],
+        "No, do not put metal or aluminum foil in a microwave. Metal reflects microwaves, which can cause sparks, electrical arcs, damage to the microwave, or a fire hazard."
+    )
+    _add_variants(
+        examples,
+        ["How do you stay safe when crossing a busy street?", "What is the common sense rule for crossing roads?"],
+        "Use a designated crosswalk, look left, right, and left again before stepping off the curb, make eye contact with drivers, and never cross while distracted by your phone."
+    )
+    _add_variants(
+        examples,
+        ["What is the best way to handle a small oil fire in the kitchen?", "How do you put out a grease fire?"],
+        "Never pour water on a grease or oil fire, as water will cause violent splattering. Instead, turn off the heat burner immediately and smother the flame with a metal lid or baking soda."
+    )
+    _add_variants(
+        examples,
+        ["Why is it important to wash your hands before eating?", "When should you wash your hands?"],
+        "Washing your hands with soap and water removes germs, bacteria, and viruses picked up from surfaces, preventing illness and keeping food clean."
+    )
+    _add_variants(
+        examples,
+        ["If a device won't turn on, what basic steps should I check first?", "How to troubleshoot a non-responsive gadget?"],
+        "First, check if it is plugged into a powered outlet or if the battery is charged. Second, check power buttons or switches, and third, try restarting or resetting the device."
+    )
+    _add_variants(
+        examples,
+        ["Why do we get sleepy at night?", "What causes tiredness at night?"],
+        "Your body operates on an internal circadian rhythm that responds to light. As it gets dark, your brain releases melatonin, a natural hormone that signals to your body that it is time to rest."
     )
 
     _add_curated_instruction_examples(examples)
