@@ -83,17 +83,17 @@ class VoiceModel:
 
 
     def set_voice(self, voice_name: str):
-        """Switch to a different male voice at runtime."""
-        if voice_name.lower() not in MALE_VOICES:
-            print(f"[VoiceModel] Unknown voice '{voice_name}'. Available: {list(MALE_VOICES.keys())}")
+        """Switch to a different voice at runtime."""
+        if voice_name.lower() not in VOICES:
+            print(f"[VoiceModel] Unknown voice '{voice_name}'. Available: {list(VOICES.keys())}")
             return
         self.voice_name = voice_name.lower()
 
     def list_voices(self):
-        """Print all available male voices in the voice model."""
-        print("\n🔊 Available Male Voices for Ting Ling Ling:")
+        """Print all available voices in the voice model."""
+        print("\n🔊 Available Voices for Ting Ling Ling:")
         print("─" * 50)
-        for name in MALE_VOICES.keys():
+        for name in VOICES.keys():
             marker = "◀ ACTIVE" if name == self.voice_name.lower() else ""
             print(f"  {name:12} {marker}")
         print("─" * 50)
