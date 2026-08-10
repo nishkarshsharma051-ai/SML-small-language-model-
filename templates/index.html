@@ -3,22 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ting Ling Ling - Assistant</title>
+    <title>Ting Ling Ling — Next-Gen AI Assistant</title>
+    <meta name="description" content="Ting Ling Ling is a hybrid local slM and cloud AI voice assistant.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- KaTeX for Math Rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+
+    <!-- Prism.js for Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div id="app">
-        <header>
-            <h1>Ting Ling Ling Assistant</h1>
-        </header>
-        <main>
-            <div id="chat-box"></div>
-            <form id="chat-form">
-                <input type="text" id="user-input" placeholder="Type a message or speak..." required>
-                <button type="submit">Send</button>
-            </form>
+        <!-- Sidebar Navigation & Settings -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="brand">
+                    <div class="brand-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+                            <path d="M12 12L2.5 4.5"></path>
+                            <path d="M12 12l9.5 7.5"></path>
+                        </svg>
+                    </div>
+                    <span class="logo">Ting Ling Ling</span>
+                </div>
+            </div>
+
+            <div class="sidebar-action">
+                <button id="newChatBtn" class="new-chat-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>New Session</span>
+                </button>
+            </div>
+
+            <div class="sidebar-section-label">Suggested Prompts</div>
+            <nav class="topic-nav">
+                <button class="topic-btn" data-q="Solve the system of equations: 3x + 2y = 12 and x - y = 1">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19l6-6m0 0l6 6m-6-6V3"></path></svg>
+                    <span>Math Solver</span>
+                </button>
+                <button class="topic-btn" data-q="Write a Python script to sort a list using quicksort with explanations">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    <span>Python Code</span>
+                </button>
+                <button class="topic-btn" data-q="Who are you and what are your capabilities?">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    <span>Capabilities</span>
+                </button>
+                <button class="topic-btn" data-q="Give me a quick productivity tip for software developers.">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>Productivity Tip</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="setting-item">
+                    <label class="voice-label" for="voiceSelect">Voice Engine</label>
+                    <select id="voiceSelect" class="voice-select">
+                        <option value="0">Default System Voice</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <div class="slider-header">
+                        <span class="rate-label">Speech Speed</span>
+                        <span id="rateValue" class="rate-value">175</span>
+                    </div>
+                    <input type="range" id="voiceRate" min="100" max="300" value="175" step="5" class="rate-slider">
+                </div>
+
+                <label class="check-row">
+                    <input type="checkbox" id="autoSpeakToggle">
+                    <span>Auto-speak responses</span>
+                </label>
+
+                <button id="stopSpeechBtn" class="stop-speech-btn hidden">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="6" width="12" height="12" rx="1"></rect></svg>
+                    <span>Mute Voice Output</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main">
+            <!-- Top Bar -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button id="toggleSidebar" class="icon-btn" title="Toggle Sidebar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+
+                    <div class="status-indicator">
+                        <div id="statusDot" class="status-dot loading" title="Connecting to Brain..."></div>
+                        <div class="status-text">
+                            <span class="status-title">Ting Ling Ling Brain</span>
+                            <span class="status-subtitle">Hybrid Cloud & Local Engine</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <button id="voiceAssistantBtn" class="btn-voice-assistant" title="Toggle Hands-Free Voice Assistant">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                            <line x1="12" y1="19" x2="12" y2="23"></line>
+                            <line x1="8" y1="23" x2="16" y2="23"></line>
+                        </svg>
+                        <span>Hands-Free Mode</span>
+                    </button>
+
+                    <button id="speakerToggleBtn" class="icon-btn" title="Toggle Audio Reader">
+                        <svg id="speakerOnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                        <svg id="speakerOffIcon" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Chat Window Container -->
+            <div id="chatWindow" class="chat-window">
+                <!-- Welcome Screen Hero -->
+                <div id="welcomeScreen" class="welcome-screen">
+                    <div class="hero-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        <span>Intelligence Engine Ready</span>
+                    </div>
+
+                    <h1 class="hero-title">How can I assist you today?</h1>
+                    <p class="hero-subtitle">Ask questions, analyze math problems, generate code, or talk naturally with voice interaction.</p>
+
+                    <div class="quick-prompts-grid">
+                        <div class="prompt-card topic-btn" data-q="Solve 2x^2 + 5x - 3 = 0 using step-by-step algebra">
+                            <div class="card-icon">🧮</div>
+                            <div class="card-title">Algebra & Math</div>
+                            <div class="card-desc">Solve equations, calculus, and step-by-step math problems</div>
+                        </div>
+
+                        <div class="prompt-card topic-btn" data-q="Write a Python script to harvest and scrape web data with BeautifulSoup">
+                            <div class="card-icon">⚡</div>
+                            <div class="card-title">Code Generation</div>
+                            <div class="card-desc">Write algorithms, debug scripts, and refactor existing code</div>
+                        </div>
+
+                        <div class="prompt-card topic-btn" data-q="Explain how transformer language models work in simple terms">
+                            <div class="card-icon">🧠</div>
+                            <div class="card-title">AI Concepts</div>
+                            <div class="card-desc">Learn about small language models, tokens, and neural networks</div>
+                        </div>
+
+                        <div class="prompt-card topic-btn" data-q="What commands can I speak out loud to control you?">
+                            <div class="card-icon">🎙️</div>
+                            <div class="card-title">Voice Commands</div>
+                            <div class="card-desc">Discover speech controls, wake phrases, and hands-free features</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Messages List -->
+                <div id="messages" class="messages-container"></div>
+            </div>
+
+            <!-- Voice Activity Visualizer Wave -->
+            <div id="voiceVisualizer" class="voice-visualizer">
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <span class="visualizer-text">Voice Active</span>
+            </div>
+
+            <!-- Floating Input Area -->
+            <div class="input-area-container">
+                <div class="input-glass-wrapper">
+                    <textarea id="userInput" placeholder="Ask Ting Ling Ling anything... (Press Enter to send, Shift+Enter for newline)" rows="1"></textarea>
+
+                    <div class="input-actions">
+                        <button id="stopGenBtn" class="action-circle-btn stop-btn hidden" title="Stop generating">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="7" width="10" height="10" rx="1.5"></rect></svg>
+                        </button>
+
+                        <button id="micBtn" class="action-circle-btn mic-btn" title="Speak message">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                <line x1="12" y1="19" x2="12" y2="23"></line>
+                                <line x1="8" y1="23" x2="16" y2="23"></line>
+                            </svg>
+                        </button>
+
+                        <button id="sendBtn" class="send-btn" title="Send message">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="input-footer-note">Ting Ling Ling Assistant • Powered by slM & Cloud Intelligence</div>
+            </div>
         </main>
     </div>
+
     <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>
