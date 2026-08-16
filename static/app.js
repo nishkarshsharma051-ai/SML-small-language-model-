@@ -599,7 +599,7 @@ function appendMessage(role, text) {
     el.innerHTML = `
       <div class="ai-avatar">TLL</div>
       <div class="ai-content">
-        <div class="ai-text">${rendered}</div>
+        <div class="ai-text">${rendered}${renderManusPreviewBtn(text)}</div>
         <div class="ai-actions">
           <button class="action-btn" onclick="copyText(this)" data-text="${escapeAttr(text)}" title="Copy">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
@@ -683,7 +683,8 @@ function finalizeStreamingAI(el, text, source = null) {
   if (!aiText) return;
   const rendered = renderMarkdown(text || '');
   const sourceBadge = source ? `<span class="source-tag ${String(source).toLowerCase()}">${source}</span>` : '';
-  aiText.innerHTML = `${rendered}${sourceBadge}`;
+  const previewBtn = renderManusPreviewBtn(text || '');
+  aiText.innerHTML = `${rendered}${sourceBadge}${previewBtn}`;
 
   // Re-apply highlight and math after final render.
   if (window.Prism) {
@@ -700,6 +701,36 @@ function finalizeStreamingAI(el, text, source = null) {
 
   el.querySelectorAll('.action-btn').forEach(btn => { btn.dataset.text = text || ''; });
 }
+
+/* ─── Manus AI Live UI Sandbox Modal Helper ─────────────────── */
+function renderManusPreviewBtn(text) {
+  if (!text) return '';
+  const match = text.match(/generated_uis\/([a-zA-Z0-9_\-]+)/i) || text.match(/Project:\s*['"]?([a-zA-Z0-9_\-]+)['"]?/i);
+  if (!match) return '';
+  const slug = match[1];
+  return `<br/><button class="manus-preview-btn" onclick="openManusModal('/generated_uis/${slug}/index.html', '${slug}')">✨ Open Manus AI Live UI Sandbox</button>`;
+}
+
+function openManusModal(url, projectTitle) {
+  const modal = document.getElementById('manusUiModal');
+  const frame = document.getElementById('manusUiFrame');
+  const title = document.getElementById('manusUiProjectTitle');
+  const extLink = document.getElementById('manusUiExternalLink');
+
+  if (title) title.textContent = (projectTitle || 'Manus AI Live Preview').replace('_', ' ').toUpperCase();
+  if (frame) frame.src = url;
+  if (extLink) extLink.href = url;
+  if (modal) modal.classList.remove('hidden');
+}
+
+function closeManusModal() {
+  const modal = document.getElementById('manusUiModal');
+  const frame = document.getElementById('manusUiFrame');
+  if (modal) modal.classList.add('hidden');
+  if (frame) frame.src = 'about:blank';
+}
+window.openManusModal = openManusModal;
+window.closeManusModal = closeManusModal;
 
 function appendTyping() {
   const el = document.createElement('div');

@@ -8,7 +8,7 @@ os.environ["OMP_NUM_THREADS"] = "1"
 import torch
 import json
 import uuid
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_from_directory
 from flask import Response, stream_with_context
 
 # Force single threading to avoid mutex issues on Mac
@@ -232,6 +232,12 @@ def health():
         "cloud_enabled": getattr(brain, "use_cloud_primary", False),
         "source": getattr(brain, "source", "unknown"),
     })
+
+
+@app.route("/generated_uis/<path:filename>")
+def serve_generated_ui(filename):
+    uis_dir = os.path.join(os.getcwd(), "generated_uis")
+    return send_from_directory(uis_dir, filename)
 
 
 if __name__ == "__main__":

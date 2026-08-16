@@ -228,6 +228,28 @@
                 <div class="input-footer-note">Ting Ling Ling Assistant • Powered by slM & Cloud Intelligence</div>
             </div>
         </main>
+    <!-- Manus AI Live UI Sandbox Modal Panel -->
+    <div id="manusUiModal" class="manus-ui-modal hidden">
+        <div class="manus-ui-backdrop" onclick="closeManusModal()"></div>
+        <div class="manus-ui-panel">
+            <header class="manus-ui-header">
+                <div class="manus-ui-title-group">
+                    <div class="manus-badge">✨ MANUS AI LIVE PREVIEW</div>
+                    <h3 id="manusUiProjectTitle">Generated Web App</h3>
+                </div>
+                <div class="manus-ui-actions">
+                    <a id="manusUiExternalLink" href="#" target="_blank" class="manus-icon-btn" title="Open in new window">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                    <button class="manus-icon-btn" onclick="closeManusModal()" title="Close Preview">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </header>
+            <div class="manus-ui-frame-container">
+                <iframe id="manusUiFrame" class="manus-ui-iframe" src="about:blank"></iframe>
+            </div>
+        </div>
     </div>
 
     <script src="{{ url_for('static', filename='app.js') }}"></script>
