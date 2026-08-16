@@ -443,6 +443,74 @@ def list_generated_uis() -> str:
     except Exception as e:
         return f"Failed to list generated UIs: {str(e)}"
 
+def read_file(file_path: str) -> str:
+    """Reads the text or code content of any file from the filesystem."""
+    try:
+        abs_path = os.path.abspath(file_path)
+        if not os.path.exists(abs_path):
+            return f"Error: File '{file_path}' does not exist."
+        with open(abs_path, "r", encoding="utf-8", errors="replace") as f:
+            content = f.read()
+        if len(content) > 8000:
+            return content[:8000] + f"\n... (truncated {len(content) - 8000} remaining characters)"
+        return content
+    except Exception as e:
+        return f"Error reading file '{file_path}': {str(e)}"
+
+def write_file(file_path: str, content: str) -> str:
+    """Creates a new file or overwrites an existing file in any format (code, text, json, html, markdown, csv, etc)."""
+    try:
+        abs_path = os.path.abspath(file_path)
+        os.makedirs(os.path.dirname(abs_path), exist_ok=True)
+        with open(abs_path, "w", encoding="utf-8") as f:
+            f.write(content)
+        return f"Successfully created/wrote {len(content)} characters to '{file_path}'."
+    except Exception as e:
+        return f"Error writing to file '{file_path}': {str(e)}"
+
+def edit_file(file_path: str, find_text: str, replace_text: str) -> str:
+    """Edits an existing file by replacing target text or code blocks with new content."""
+    try:
+        abs_path = os.path.abspath(file_path)
+        if not os.path.exists(abs_path):
+            return f"Error: File '{file_path}' does not exist."
+        with open(abs_path, "r", encoding="utf-8", errors="replace") as f:
+            content = f.read()
+        if find_text not in content:
+            return f"Error: Could not find target text in '{file_path}'."
+        new_content = content.replace(find_text, replace_text, 1)
+        with open(abs_path, "w", encoding="utf-8") as f:
+            f.write(new_content)
+        return f"Successfully updated '{file_path}'."
+    except Exception as e:
+        return f"Error editing file '{file_path}': {str(e)}"
+
+def translate_file(file_path: str, target_language: str, output_path: str = None) -> str:
+    """
+    Reads a file and translates its natural language text/comments into any target human language
+    (Hindi, Spanish, French, German, Japanese, Chinese, etc.), preserving formatting and saving to output_path.
+    """
+    try:
+        abs_path = os.path.abspath(file_path)
+        if not os.path.exists(abs_path):
+            return f"Error: File '{file_path}' does not exist."
+        with open(abs_path, "r", encoding="utf-8", errors="replace") as f:
+            content = f.read()
+        
+        base, ext = os.path.splitext(abs_path)
+        clean_lang = target_language.strip().lower().replace(" ", "_")
+        dest_path = output_path or f"{base}_{clean_lang}{ext}"
+        
+        return (
+            f"FILE_TRANSLATION_JOB:\n"
+            f"Source File: '{abs_path}'\n"
+            f"Target Language: '{target_language}'\n"
+            f"Output Destination: '{dest_path}'\n"
+            f"Source Content Preview:\n---\n{content[:6000]}"
+        )
+    except Exception as e:
+        return f"Error opening file for translation: {str(e)}"
+
 # A dictionary mapping function names to the actual python functions
 AVAILABLE_TOOLS = {
     "search_internet": search_internet,
@@ -461,7 +529,11 @@ AVAILABLE_TOOLS = {
     "control_spotify": control_spotify,
     "build_web_ui": build_web_ui,
     "preview_web_ui": preview_web_ui,
-    "list_generated_uis": list_generated_uis
+    "list_generated_uis": list_generated_uis,
+    "read_file": read_file,
+    "write_file": write_file,
+    "edit_file": edit_file,
+    "translate_file": translate_file
 }
 
 # OpenAI/Groq Tool Definitions Schema
@@ -786,6 +858,94 @@ TOOLS_SCHEMA = [
                 "type": "object",
                 "properties": {},
                 "required": []
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "read_file",
+            "description": "Reads text, code, or document content from any file on disk.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "file_path": {
+                        "type": "string",
+                        "description": "The path to the file to read."
+                    }
+                },
+                "required": ["file_path"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "write_file",
+            "description": "Creates a new file or overwrites an existing file in any format (code, text, JSON, HTML, CSS, Markdown, CSV, etc).",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "file_path": {
+                        "type": "string",
+                        "description": "The target path for the file."
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "The full text/code content to write."
+                    }
+                },
+                "required": ["file_path", "content"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "edit_file",
+            "description": "Edits an existing file by replacing specific target text or code blocks with new content.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "file_path": {
+                        "type": "string",
+                        "description": "Path to the file to edit."
+                    },
+                    "find_text": {
+                        "type": "string",
+                        "description": "Exact text or code block to replace."
+                    },
+                    "replace_text": {
+                        "type": "string",
+                        "description": "New replacement text or code block."
+                    }
+                },
+                "required": ["file_path", "find_text", "replace_text"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "translate_file",
+            "description": "Reads a file and translates its content into any target human language (e.g., Hindi, Spanish, French, German, Japanese, Chinese, etc.), preserving file structure and outputting to a specified file.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "file_path": {
+                        "type": "string",
+                        "description": "Path to the file to translate."
+                    },
+                    "target_language": {
+                        "type": "string",
+                        "description": "The target human language (e.g. 'Hindi', 'Spanish', 'French', 'Japanese', 'German')."
+                    },
+                    "output_path": {
+                        "type": "string",
+                        "description": "Optional output file path. Defaults to '<filename>_<target_language>.<ext>'."
+                    }
+                },
+                "required": ["file_path", "target_language"]
             }
         }
     }
