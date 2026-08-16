@@ -22,3 +22,4 @@ dist/
 build/
 .ipynb_checkpoints/
 .hf_datasets_cache/
+generated_uis/
