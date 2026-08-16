@@ -141,7 +141,12 @@ function autoResize() {
     sendBtn.disabled = !hasContent || isWaiting;
   }
 }
-userInput.addEventListener('input', autoResize);
+userInput.addEventListener('input', () => {
+  if (isSpeaking || (synth && synth.speaking)) {
+    stopSpeech();
+  }
+  autoResize();
+});
 // Initialize button state
 if (sendBtn) sendBtn.disabled = true;
 

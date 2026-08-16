@@ -14,7 +14,7 @@ import os
 import random
 from typing import Dict, List
 
-from study_data import HISTORY, ENGLISH, MATH_CONCEPTS, ADVANCED_MATH, MATH_PROBLEMS, SCIENCE, CODING, ADVANCED_CODING
+from study_data import HISTORY, ENGLISH, MATH_CONCEPTS, ADVANCED_MATH, MATH_PROBLEMS, SCIENCE, CODING, ADVANCED_CODING, COMMON_SENSE
 
 
 OUTPUT_DIR = "data"
@@ -769,7 +769,72 @@ def build_examples() -> List[Dict[str, str]]:
     _add_variants(
         examples,
         ["What is the best way to handle a small oil fire in the kitchen?", "How do you put out a grease fire?"],
-        "Never pour water on a grease or oil fire, as water will cause violent splattering. Instead, turn off the heat burner immediately and smother the flame with a metal lid or baking soda."
+        COMMON_SENSE["physical_safety"]["grease_fire"]
+    )
+    _add_variants(
+        examples,
+        ["Why shouldn't you touch electrical switches with wet hands?", "What is the rule for electricity and water?"],
+        COMMON_SENSE["physical_safety"]["electrical_safety"]
+    )
+    _add_variants(
+        examples,
+        ["Is it safe to mix household bleach and ammonia?", "Why should you never mix bleach and vinegar?"],
+        COMMON_SENSE["physical_safety"]["household_chemicals"]
+    )
+    _add_variants(
+        examples,
+        ["How should prescription medicine be stored?", "Where should medications be kept?"],
+        COMMON_SENSE["physical_safety"]["medicine_safety"]
+    )
+    _add_variants(
+        examples,
+        ["How do you safely clean up broken glass from the floor?", "What is the best trick to pick up small glass pieces?"],
+        COMMON_SENSE["daily_troubleshooting"]["broken_glass"]
+    )
+    _add_variants(
+        examples,
+        ["What should you do during a power outage at home?", "How to handle a sudden black out?"],
+        COMMON_SENSE["daily_troubleshooting"]["power_outage"]
+    )
+    _add_variants(
+        examples,
+        ["How do you prevent water pipes from freezing in winter?", "What should you do with faucets in freezing weather?"],
+        COMMON_SENSE["daily_troubleshooting"]["frozen_pipes"]
+    )
+    _add_variants(
+        examples,
+        ["Why do we see lightning before we hear thunder?", "Why is there a delay between lightning and thunder?"],
+        COMMON_SENSE["cause_and_effect"]["lightning_thunder"]
+    )
+    _add_variants(
+        examples,
+        ["Why do people put salt on icy roads?", "How does salt melt ice?"],
+        COMMON_SENSE["cause_and_effect"]["ice_and_salt"]
+    )
+    _add_variants(
+        examples,
+        ["Why does a cold glass of water sweat on a hot day?", "What causes moisture on the outside of cold drinks?"],
+        COMMON_SENSE["cause_and_effect"]["sweating_drink"]
+    )
+    _add_variants(
+        examples,
+        ["How should you handle an argument with a friend or colleague?", "What are good common sense steps to resolve conflict?"],
+        COMMON_SENSE["social_etiquette"]["conflict_resolution"]
+    )
+    _add_variants(
+        examples,
+        ["What makes a genuine and effective apology?", "How do you apologize properly?"],
+        COMMON_SENSE["social_etiquette"]["apology"]
+    )
+    _add_variants(
+        examples,
+        ["How can you tell if an email or text message is a phishing scam?", "What are red flags for email scams?"],
+        COMMON_SENSE["digital_safety_and_finance"]["phishing"]
+    )
+    _add_variants(
+        examples,
+        ["What is the 50/30/20 rule in budgeting?", "How do I start managing my personal money?"],
+        COMMON_SENSE["digital_safety_and_finance"]["budgeting"]
     )
     _add_variants(
         examples,
@@ -785,6 +850,21 @@ def build_examples() -> List[Dict[str, str]]:
         examples,
         ["Why do we get sleepy at night?", "What causes tiredness at night?"],
         "Your body operates on an internal circadian rhythm that responds to light. As it gets dark, your brain releases melatonin, a natural hormone that signals to your body that it is time to rest."
+    )
+    _add_variants(
+        examples,
+        ["Why should you wear a seatbelt in a vehicle?", "What is the physical logic behind seatbelts?"],
+        "Seatbelts hold passengers securely in place during sudden deceleration or collisions, preventing them from continuing forward due to inertia and colliding with interior surfaces or being ejected."
+    )
+    _add_variants(
+        examples,
+        ["Why shouldn't you leave pet food or garbage unsealed outside?", "What happens if garbage is left open outside?"],
+        "Unsealed food and garbage attract wild animals and pests like raccoons, rodents, and insects, creating sanitary hazards and nuisance infestations."
+    )
+    _add_variants(
+        examples,
+        ["Why is it important to stay hydrated when exercising or in hot weather?", "What happens when you don't drink enough water?"],
+        "Sweating loses water and essential electrolytes. Staying hydrated prevents heat exhaustion, muscle cramps, dizziness, and organ stress."
     )
 
     _add_curated_instruction_examples(examples)

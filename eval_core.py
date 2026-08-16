@@ -118,6 +118,18 @@ def _has_eigenvalue_math(text: str) -> bool:
     return ("det" in lower or "lambda" in lower or "characteristic" in lower or "eigen" in lower or "vector" in lower) and _not_refusal(text)
 
 
+def _has_common_sense_safety(text: str) -> bool:
+    lower = text.lower()
+    safety_words = ["smother", "lid", "baking soda", "never", "water", "turn off", "unplug", "toxic", "germs", "clean"]
+    return any(w in lower for w in safety_words) and _not_refusal(text)
+
+
+def _has_practical_logic(text: str) -> bool:
+    lower = text.lower()
+    logic_words = ["because", "faster", "travels", "causes", "prevents", "freezing", "light", "sound", "sparks", "inertia"]
+    return any(w in lower for w in logic_words) and len(text.strip()) >= 20 and _not_refusal(text)
+
+
 CHECKS: Dict[str, Callable[[str], bool]] = {
     "has_code": _has_code,
     "has_math_symbol": _has_math_symbol,
@@ -133,6 +145,8 @@ CHECKS: Dict[str, Callable[[str], bool]] = {
     "has_sql_code": _has_sql_code,
     "has_binary_search_explanation": _has_binary_search_explanation,
     "has_eigenvalue_math": _has_eigenvalue_math,
+    "has_common_sense_safety": _has_common_sense_safety,
+    "has_practical_logic": _has_practical_logic,
 }
 
 

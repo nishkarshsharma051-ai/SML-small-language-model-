@@ -78,15 +78,18 @@ try:
                             conversation_history = conversation_history[-10:]
                             
                         voice_engine.speak(answer)
-                        interrupted = voice_listener.wait_or_interrupt(voice_engine)
+                        interrupted, interrupted_text = voice_listener.wait_or_interrupt(voice_engine)
                         if interrupted:
-                            print("[App] User interrupted AI speech. Ready for next command.")
+                            print(f"[App] 🛑 User interrupted AI speech. Captured text: '{interrupted_text}'")
+                            if interrupted_text:
+                                text = interrupted_text
+                                continue
 
                     except Exception as e:
                         print(f"[App] Brain error: {e}")
                         voice_engine.speak("I encountered an error.")
                 else:
-                    # If nothing was transcribed, we just loop around and listen again.
+                    # If nothing was transcribed, loop around and listen again.
                     pass
         finally:
             is_conversing = False

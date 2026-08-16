@@ -52,17 +52,19 @@ class VoiceListener:
             print(f"[VoiceListener] Error during transcription: {e}")
             return ""
 
-    def wait_or_interrupt(self, voice_engine, threshold=0.035, poll_interval=0.1):
+    def wait_or_interrupt(self, voice_engine, threshold=0.035, poll_interval=0.1, listen_duration_after=3.5):
         """
         Wait for voice_engine to finish speaking while monitoring the microphone.
-        If user speaks (audio RMS exceeds threshold), stop voice_engine immediately.
-        Returns True if interrupted, False if completed naturally.
+        If user speaks (audio RMS exceeds threshold), stop voice_engine immediately,
+        record the remainder of the user's speech, transcribe it, and return (True, text).
+        Returns (False, "") if completed naturally without interruption.
         """
         if not hasattr(voice_engine, "is_speaking") or not voice_engine.is_speaking():
-            return False
+            return False, ""
 
         chunk_samples = int(poll_interval * self.rate)
         interrupted = False
+        captured_chunks = []
         
         # Brief warmup pause to avoid initial speaker click self-triggering
         time.sleep(0.4)
@@ -76,16 +78,46 @@ class VoiceListener:
                         print(f"[VoiceListener] 🛑 Interruption detected! User voice RMS: {rms:.4f} > threshold ({threshold}). Stopping AI...")
                         voice_engine.stop()
                         interrupted = True
+                        captured_chunks.append(data.flatten())
+                        
+                        # Continue reading stream to capture the rest of the user's spoken sentence
+                        extra_chunks = int(listen_duration_after / poll_interval)
+                        silence_counter = 0
+                        for _ in range(extra_chunks):
+                            c_data, _ = stream.read(chunk_samples)
+                            c_rms = np.sqrt(np.mean(c_data**2))
+                            captured_chunks.append(c_data.flatten())
+                            if c_rms < (threshold * 0.7):
+                                silence_counter += 1
+                                if silence_counter >= 8:  # ~0.8s of silence after speech ends
+                                    break
+                            else:
+                                silence_counter = 0
                         break
         except Exception as e:
             print(f"[VoiceListener] Interruption monitor error: {e}")
-            if voice_engine.current_process:
+            if getattr(voice_engine, "current_process", None):
                 try:
                     voice_engine.current_process.wait()
                 except Exception:
                     pass
-                
-        return interrupted
+
+        if interrupted and captured_chunks:
+            audio_data = np.concatenate(captured_chunks)
+            try:
+                result = self.transcriber(audio_data)
+                text = result.get("text", "").strip()
+                lower_text = text.lower()
+                if "i'm going to take a look" in lower_text or "thank you." == text or "you" == lower_text:
+                    text = ""
+                if text:
+                    print(f"[VoiceListener] 📝 Interruption Transcribed: '{text}'")
+                return True, text
+            except Exception as e:
+                print(f"[VoiceListener] Interruption transcription error: {e}")
+                return True, ""
+
+        return interrupted, ""
 
 
 if __name__ == "__main__":

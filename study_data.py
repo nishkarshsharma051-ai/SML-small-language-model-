@@ -165,3 +165,32 @@ CODING = {
         "search": "Binary Search requires a sorted list and has O(log n) complexity."
     }
 }
+
+# ─── COMMON SENSE & PRACTICAL REASONING ──────────────────────────────────────
+COMMON_SENSE = {
+    "physical_safety": {
+        "grease_fire": "Never throw water on a oil or grease fire; it causes violent flame expansion. Turn off the heat and smother with a metal lid or baking soda.",
+        "electrical_safety": "Never touch electrical outlets or appliances with wet hands, and unplug electronics before attempting repairs or cleaning.",
+        "household_chemicals": "Never mix bleach with ammonia or vinegar; doing so creates toxic chloramine or chlorine gas.",
+        "medicine_safety": "Always store medications in original child-proof containers, away from direct sunlight, and check expiration dates before use."
+    },
+    "daily_troubleshooting": {
+        "broken_glass": "Sweep up larger shards first, then use a damp paper towel or slice of bread pressed lightly to pick up invisible glass slivers.",
+        "power_outage": "Keep refrigerator and freezer doors closed to preserve food temperature, turn off major appliances to prevent power surge damage, and use flashlights instead of open candles.",
+        "frozen_pipes": "During severe freeze, leave faucets dripping slightly and open cabinet doors under sinks so warm air can circulate around pipes."
+    },
+    "cause_and_effect": {
+        "lightning_thunder": "Light travels significantly faster than sound (~300,000 km/s vs ~343 m/s). You see lightning instantly, but thunder takes time to reach your ears.",
+        "ice_and_salt": "Salt lowers the freezing point of water (freezing point depression), causing ice on walkways to melt even below 0°C (32°F).",
+        "sweating_drink": "Condensation occurs when warm moist air touches a cold glass; the air cools down, losing its capacity to hold water vapor, forming droplets on the surface."
+    },
+    "social_etiquette": {
+        "conflict_resolution": "Listen actively without interrupting, focus on the problem rather than attacking the person, acknowledge the other perspective, and use 'I' statements.",
+        "apology": "A sincere apology includes acknowledging what went wrong, taking responsibility without making excuses, offering to make amends, and changing future behavior."
+    },
+    "digital_safety_and_finance": {
+        "phishing": "Never click suspicious links or enter passwords from unsolicited emails or texts. Verify the sender address and access official websites directly.",
+        "budgeting": "A simple practical framework is the 50/30/20 rule: 50% for needs, 30% for wants, and 20% for savings and debt payoff."
+    }
+}
+
