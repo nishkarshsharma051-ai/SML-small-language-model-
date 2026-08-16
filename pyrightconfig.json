@@ -1,4 +1,15 @@
 {
   "venvPath": ".",
-  "venv": ".venv"
+  "venv": ".venv",
+  "extraPaths": [
+    ".venv/lib/python3.9/site-packages"
+  ],
+  "executionEnvironments": [
+    {
+      "root": ".",
+      "extraPaths": [
+        ".venv/lib/python3.9/site-packages"
+      ]
+    }
+  ]
 }
