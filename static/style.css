@@ -1228,3 +1228,106 @@ pre[class*="language-"] {
   background: #fff;
 }
 
+/* ─── Themes Support ─────────────────────────────────────────── */
+body.theme-light {
+  --bg: #f1f5f9;
+  --bg-gradient: radial-gradient(circle at 50% 50%, #f8fafc 0%, #e2e8f0 100%);
+  --sidebar-bg: rgba(255, 255, 255, 0.85);
+  --glass-bg: rgba(0, 0, 0, 0.03);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --text: #0f172a;
+  --text-muted: #475569;
+  --text-dim: #64748b;
+  --accent: #2563eb;
+  --accent-glow: rgba(37, 99, 235, 0.25);
+}
+
+body.theme-cyberpunk {
+  --bg: #0d0221;
+  --bg-gradient: radial-gradient(circle at 50% -20%, #260859 0%, #0d0221 100%);
+  --sidebar-bg: rgba(13, 2, 33, 0.88);
+  --glass-bg: rgba(255, 0, 127, 0.05);
+  --glass-border: rgba(0, 240, 255, 0.3);
+  --text: #00f0ff;
+  --text-muted: #ff007f;
+  --text-dim: #9d4edd;
+  --accent: #ff007f;
+  --accent-glow: rgba(255, 0, 127, 0.4);
+  --user-bubble-gradient: linear-gradient(135deg, #7928ca 0%, #ff0080 100%);
+}
+
+/* ─── Settings Modal Custom Styles ───────────────────────────── */
+.settings-panel {
+  max-width: 580px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-body {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.settings-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.settings-textarea {
+  width: 100%;
+  padding: 12px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.settings-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.settings-select {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.settings-btn-primary {
+  align-self: flex-start;
+  padding: 10px 18px;
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.settings-btn-primary:hover {
+  box-shadow: var(--shadow-glow);
+}
+

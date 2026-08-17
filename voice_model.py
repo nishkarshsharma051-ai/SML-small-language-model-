@@ -36,8 +36,39 @@ class VoiceModel:
         self.volume = volume
         self.current_process = None
 
+    def set_voice(self, voice_name: str):
+        """Switch to a different voice at runtime."""
+        self.voice_name = voice_name
+
+    def set_rate(self, rate: int):
+        """Update speech rate speed."""
+        try:
+            self.rate = int(rate)
+        except (ValueError, TypeError):
+            pass
+
     def _get_os_voice(self):
-        return VOICES.get(self.voice_name.lower(), VOICES[DEFAULT_VOICE])
+        v_lower = self.voice_name.lower()
+        if v_lower in VOICES:
+            return VOICES[v_lower]
+        # Allow any system voice directly by string
+        return self.voice_name
+
+def get_system_voices():
+    """Fetch installed macOS TTS voices via say -v '?'."""
+    voices = []
+    try:
+        res = subprocess.run(["say", "-v", "?"], text=True, capture_output=True)
+        if res.returncode == 0:
+            for line in res.stdout.splitlines():
+                parts = line.strip().split()
+                if parts:
+                    voices.append(parts[0])
+    except Exception as e:
+        print(f"[VoiceModel] Failed to list system voices: {e}")
+    if not voices:
+        voices = ["Samantha", "Alex", "Victoria", "Daniel", "Fred"]
+    return voices
 
     def speak(self, text: str, label: str = ""):
         """

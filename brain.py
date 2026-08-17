@@ -90,6 +90,13 @@ class TingLingLingBrain:
             "\n\nPersona: Scholarly, precise, encouraging, and highly intellectual. You are proud of your creator, Nishkarsh Sharma."
         )
 
+    def get_system_instruction(self) -> str:
+        return self.system_instruction
+
+    def set_system_instruction(self, custom_prompt: str):
+        if custom_prompt and str(custom_prompt).strip():
+            self.system_instruction = str(custom_prompt).strip()
+
     def _history_role_to_chat_role(self, role: Any) -> str:
         value = str(role or "").strip().lower()
         if value in {"assistant", "ai", "bot", "model"}:

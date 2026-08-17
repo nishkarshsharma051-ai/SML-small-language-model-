@@ -77,6 +77,23 @@ class MathSolver:
                     "steps": [f"1. Identified expression: {raw_expr}", f"2. Normalized: {norm_expr}", f"3. Differentiated: {result}"]
                 }
 
+            # 1b. Detection: Integration
+            if any(k in text_lower for k in ["integrate", "integral", "antiderivative"]):
+                from sympy import integrate
+                expr_match = re.search(r'(?:integrate|integral|antiderivative)\s+(?:of\s+)?(.+)', text_lower)
+                raw_expr = expr_match.group(1).strip("? ") if expr_match else clean_text
+                norm_expr = self.normalize(raw_expr)
+                parsed = sympify(norm_expr)
+                result = integrate(parsed, self.x)
+                return {
+                    "type": "integration",
+                    "original": raw_expr,
+                    "normalized": norm_expr,
+                    "result": f"{result} + C",
+                    "latex_result": f"\\int ({latex(parsed)}) \\, dx = {latex(result)} + C",
+                    "steps": [f"1. Identified expression: {raw_expr}", f"2. Normalized: {norm_expr}", f"3. Integrated with respect to x: {result} + C"]
+                }
+
             # 2. Detection: Solving Equations (contains '=')
             if "=" in clean_text:
                 parts = clean_text.split("=")

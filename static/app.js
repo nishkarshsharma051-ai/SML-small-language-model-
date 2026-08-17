@@ -849,3 +849,174 @@ function escapeAttr(t) {
 function scrollBottom() {
   chatWindow.scrollTo({ top: chatWindow.scrollHeight, behavior: 'smooth' });
 }
+
+/* ─── Themes & Features Logic ──────────────────────────────── */
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+const themes = ['default', 'theme-light', 'theme-cyberpunk'];
+let currentThemeIdx = 0;
+
+try {
+  const savedTheme = localStorage.getItem('themePreference');
+  if (savedTheme) {
+    document.body.className = savedTheme;
+    currentThemeIdx = themes.indexOf(savedTheme) !== -1 ? themes.indexOf(savedTheme) : 0;
+  }
+} catch {}
+
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    currentThemeIdx = (currentThemeIdx + 1) % themes.length;
+    const newTheme = themes[currentThemeIdx];
+    document.body.className = newTheme === 'default' ? '' : newTheme;
+    try { localStorage.setItem('themePreference', document.body.className); } catch {}
+  });
+}
+
+/* ─── Export & Import Chat ────────────────────────────────── */
+const exportChatBtn = document.getElementById('exportChatBtn');
+const importChatBtn = document.getElementById('importChatBtn');
+const importFileInput = document.getElementById('importFileInput');
+
+if (exportChatBtn) {
+  exportChatBtn.addEventListener('click', async () => {
+    if (conversation.length === 0) {
+      alert("No messages to export yet.");
+      return;
+    }
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({
+      title: "Ting Ling Ling Chat Session",
+      timestamp: new Date().toISOString(),
+      messages: conversation
+    }, null, 2));
+    const dlAnchor = document.createElement('a');
+    dlAnchor.setAttribute("href", dataStr);
+    dlAnchor.setAttribute("download", `ting_ling_ling_chat_${Date.now()}.json`);
+    document.body.appendChild(dlAnchor);
+    dlAnchor.click();
+    dlAnchor.remove();
+  });
+}
+
+if (importChatBtn && importFileInput) {
+  importChatBtn.addEventListener('click', () => importFileInput.click());
+  importFileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      try {
+        const json = JSON.parse(evt.target.result);
+        const msgs = json.messages || json;
+        if (Array.isArray(msgs)) {
+          conversation = msgs;
+          messages.innerHTML = '';
+          welcomeScr.classList.add('hidden');
+          msgs.forEach(m => {
+            appendMessage(m.role === 'user' ? 'user' : 'assistant', m.content);
+          });
+          scrollBottom();
+        } else {
+          alert("Invalid chat file format.");
+        }
+      } catch (err) {
+        alert("Failed to parse JSON file: " + err.message);
+      }
+    };
+    reader.readAsText(file);
+  });
+}
+
+/* ─── Settings Modal & Voices ─────────────────────────────── */
+const settingsModal = document.getElementById('settingsModal');
+const openSettingsBtn = document.getElementById('openSettingsBtn');
+const modalSystemPrompt = document.getElementById('modalSystemPrompt');
+const saveSystemPromptBtn = document.getElementById('saveSystemPromptBtn');
+const modalVoiceSelect = document.getElementById('modalVoiceSelect');
+const modalRateSlider = document.getElementById('modalRateSlider');
+const modalRateValue = document.getElementById('modalRateValue');
+
+function openSettingsModal() {
+  if (settingsModal) {
+    settingsModal.classList.remove('hidden');
+    loadSystemPrompt();
+    loadVoicesList();
+  }
+}
+function closeSettingsModal() {
+  if (settingsModal) settingsModal.classList.add('hidden');
+}
+window.closeSettingsModal = closeSettingsModal;
+
+if (openSettingsBtn) openSettingsBtn.addEventListener('click', openSettingsModal);
+
+async function loadSystemPrompt() {
+  try {
+    const res = await fetch('/api/system_prompt');
+    const data = await res.json();
+    if (modalSystemPrompt && data.system_prompt) {
+      modalSystemPrompt.value = data.system_prompt;
+    }
+  } catch {}
+}
+
+if (saveSystemPromptBtn) {
+  saveSystemPromptBtn.addEventListener('click', async () => {
+    const promptText = modalSystemPrompt.value.trim();
+    if (!promptText) return;
+    try {
+      const res = await fetch('/api/system_prompt', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ prompt: promptText })
+      });
+      const d = await res.json();
+      if (d.status === 'ok') {
+        alert("System Persona updated successfully!");
+        closeSettingsModal();
+      }
+    } catch (e) {
+      alert("Error updating prompt: " + e.message);
+    }
+  });
+}
+
+async function loadVoicesList() {
+  try {
+    const res = await fetch('/api/voices');
+    const data = await res.json();
+    if (modalVoiceSelect && data.voices) {
+      modalVoiceSelect.innerHTML = '';
+      data.voices.forEach(v => {
+        const opt = document.createElement('option');
+        opt.value = v;
+        opt.textContent = v;
+        if (v.toLowerCase() === (data.current_voice || '').toLowerCase()) {
+          opt.selected = true;
+        }
+        modalVoiceSelect.appendChild(opt);
+      });
+    }
+  } catch {}
+}
+
+if (modalVoiceSelect) {
+  modalVoiceSelect.addEventListener('change', async () => {
+    const selectedVoice = modalVoiceSelect.value;
+    fetch('/api/voice_settings', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ voice: selectedVoice })
+    });
+  });
+}
+
+if (modalRateSlider && modalRateValue) {
+  modalRateSlider.addEventListener('input', () => {
+    modalRateValue.textContent = modalRateSlider.value;
+    fetch('/api/voice_settings', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ rate: parseInt(modalRateSlider.value) })
+    });
+  });
+}

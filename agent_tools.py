@@ -89,6 +89,39 @@ def solve_math(python_expression: str) -> str:
     except Exception as e:
         return f"Math calculation failed: {str(e)}"
 
+def execute_python_code(code: str) -> str:
+    """Executes Python code in a safe subprocess with output capture and timeout."""
+    import sys
+    import tempfile
+    print(f"\n[AGENT TOOL] Executing Python code in sandbox...")
+    try:
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as f:
+            f.write(code)
+            temp_filename = f.name
+            
+        try:
+            result = subprocess.run(
+                [sys.executable, temp_filename],
+                text=True,
+                capture_output=True,
+                timeout=5
+            )
+            output = ""
+            if result.stdout:
+                output += f"Output:\n{result.stdout.strip()}\n"
+            if result.stderr:
+                output += f"Error output:\n{result.stderr.strip()}\n"
+            if not output.strip():
+                output = "Code executed successfully with no output."
+            return output[:3000]
+        except subprocess.TimeoutExpired:
+            return "Execution Error: Python execution timed out (limit: 5 seconds)."
+        finally:
+            if os.path.exists(temp_filename):
+                os.remove(temp_filename)
+    except Exception as e:
+        return f"Python execution error: {str(e)}"
+
 def learn_from_interaction(instruction: str, response: str) -> str:
     """Appends a new interaction to the training dataset for future self-improvement."""
     try:
@@ -756,6 +789,7 @@ AVAILABLE_TOOLS = {
     "browse_website": browse_website,
     "run_terminal": run_terminal,
     "solve_math": solve_math,
+    "execute_python_code": execute_python_code,
     "learn_from_interaction": learn_from_interaction,
     "open_app": open_app,
     "search_safari": search_safari,
@@ -850,10 +884,27 @@ TOOLS_SCHEMA = [
                 "properties": {
                     "python_expression": {
                         "type": "string",
-                        "description": "A valid python mathematical expression (e.g., '100 * 20' or 'math.sqrt(16)')."
+                        "description": "A valid python math expression."
                     }
                 },
                 "required": ["python_expression"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "execute_python_code",
+            "description": "Executes a block of Python code in a safe sandbox process and returns stdout, stderr, or error output.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "description": "The complete Python code snippet to execute."
+                    }
+                },
+                "required": ["code"]
             }
         }
     },

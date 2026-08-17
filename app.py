@@ -240,6 +240,64 @@ def serve_generated_ui(filename):
     return send_from_directory(uis_dir, filename)
 
 
+@app.route("/api/system_prompt", methods=["GET", "POST"])
+def system_prompt_api():
+    if request.method == "POST":
+        data = request.get_json(silent=True) or {}
+        new_prompt = data.get("prompt", "").strip()
+        if new_prompt:
+            brain.set_system_instruction(new_prompt)
+            return jsonify({"status": "ok", "system_prompt": brain.get_system_instruction()})
+        return jsonify({"error": "Empty prompt"}), 400
+    return jsonify({"system_prompt": brain.get_system_instruction()})
+
+
+@app.route("/api/voices", methods=["GET"])
+def list_voices_api():
+    try:
+        from voice_model import get_system_voices
+        voices = get_system_voices()
+        return jsonify({"voices": voices, "current_voice": voice_engine.voice_name, "rate": voice_engine.rate})
+    except Exception as e:
+        return jsonify({"voices": ["Samantha", "Alex", "Victoria", "Daniel"], "current_voice": voice_engine.voice_name, "rate": voice_engine.rate})
+
+
+@app.route("/api/voice_settings", methods=["POST"])
+def voice_settings_api():
+    data = request.get_json(silent=True) or {}
+    voice = data.get("voice")
+    rate = data.get("rate")
+    if voice:
+        voice_engine.set_voice(voice)
+    if rate is not None:
+        voice_engine.set_rate(rate)
+    return jsonify({"status": "ok", "current_voice": voice_engine.voice_name, "rate": voice_engine.rate})
+
+
+@app.route("/api/export_chat", methods=["POST"])
+def export_chat_api():
+    data = request.get_json(silent=True) or {}
+    history = data.get("history", [])
+    title = data.get("title", "ting_ling_ling_chat_export")
+    return jsonify({
+        "status": "ok",
+        "export_data": {
+            "title": title,
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "messages": history
+        }
+    })
+
+
+@app.route("/api/import_chat", methods=["POST"])
+def import_chat_api():
+    data = request.get_json(silent=True) or {}
+    imported = data.get("imported_data", {})
+    if isinstance(imported, dict) and "messages" in imported and isinstance(imported["messages"], list):
+        return jsonify({"status": "ok", "messages": imported["messages"], "title": imported.get("title", "Imported Session")})
+    return jsonify({"error": "Invalid format"}), 400
+
+
 @app.route("/generated_images/<path:filename>")
 def serve_generated_image(filename):
     images_dir = os.path.join(os.getcwd(), "data", "generated_images")

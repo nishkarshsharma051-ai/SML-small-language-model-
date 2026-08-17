@@ -145,6 +145,21 @@
                             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                             <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                         </svg>
+                    <button id="themeToggleBtn" class="icon-btn" title="Toggle Theme (Dark/Light/Cyberpunk)">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    </button>
+
+                    <button id="exportChatBtn" class="icon-btn" title="Export Chat Session">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </button>
+
+                    <button id="importChatBtn" class="icon-btn" title="Import Chat Session">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    </button>
+                    <input type="file" id="importFileInput" accept=".json" style="display:none">
+
+                    <button id="openSettingsBtn" class="icon-btn" title="Agent & Voice Settings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                     </button>
                 </div>
             </header>
@@ -270,6 +285,44 @@
             </header>
             <div class="manus-ui-frame-container">
                 <iframe id="manusUiFrame" class="manus-ui-iframe" src="about:blank"></iframe>
+    <!-- Agent Settings & Persona Customizer Modal -->
+    <div id="settingsModal" class="manus-ui-modal hidden">
+        <div class="manus-ui-backdrop" onclick="closeSettingsModal()"></div>
+        <div class="manus-ui-panel settings-panel">
+            <header class="manus-ui-header">
+                <div class="manus-ui-title-group">
+                    <div class="manus-badge">⚙️ AGENT & VOICE CONFIGURATION</div>
+                    <h3>Agent Preferences & System Persona</h3>
+                </div>
+                <div class="manus-ui-actions">
+                    <button class="manus-icon-btn" onclick="closeSettingsModal()" title="Close Settings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </header>
+            <div class="settings-body">
+                <div class="settings-group">
+                    <label class="settings-label">System Persona & Prompt</label>
+                    <textarea id="modalSystemPrompt" class="settings-textarea" rows="6" placeholder="Loading system prompt..."></textarea>
+                    <button id="saveSystemPromptBtn" class="settings-btn-primary">Save System Persona</button>
+                </div>
+                <div class="settings-group">
+                    <label class="settings-label">Voice Selection (macOS Native)</label>
+                    <select id="modalVoiceSelect" class="settings-select">
+                        <option value="Samantha">Samantha (US Female)</option>
+                    </select>
+                </div>
+                <div class="settings-group">
+                    <label class="settings-label">Speech Speed Rate: <span id="modalRateValue">175</span> wpm</label>
+                    <input type="range" id="modalRateSlider" min="100" max="300" value="175" step="5" class="rate-slider">
+                </div>
+                <div class="settings-group">
+                    <label class="settings-label">Brain Mode</label>
+                    <select id="modalBrainMode" class="settings-select">
+                        <option value="cloud">Cloud Primary (Fast & Smart)</option>
+                        <option value="local">Local Pretrained HF Model (Offline)</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
