@@ -298,6 +298,66 @@ def import_chat_api():
     return jsonify({"error": "Invalid format"}), 400
 
 
+@app.route("/api/memories", methods=["GET", "POST", "DELETE"])
+def memories_api():
+    memory_file = os.path.join(os.getcwd(), "data", "user_memory.json")
+    os.makedirs(os.path.join(os.getcwd(), "data"), exist_ok=True)
+    
+    memories = {}
+    if os.path.exists(memory_file):
+        try:
+            with open(memory_file, "r", encoding="utf-8") as f:
+                memories = json.load(f)
+        except Exception:
+            memories = {}
+            
+    if request.method == "GET":
+        return jsonify({"status": "ok", "memories": memories})
+        
+    elif request.method == "POST":
+        data = request.get_json(silent=True) or {}
+        key = str(data.get("key", "")).strip()
+        val = str(data.get("value", "")).strip()
+        if key and val:
+            memories[key] = val
+            with open(memory_file, "w", encoding="utf-8") as f:
+                json.dump(memories, f, indent=2)
+            return jsonify({"status": "ok", "memories": memories})
+        return jsonify({"error": "Key and value required"}), 400
+        
+    elif request.method == "DELETE":
+        data = request.get_json(silent=True) or {}
+        key = str(data.get("key", "")).strip()
+        if key in memories:
+            del memories[key]
+            with open(memory_file, "w", encoding="utf-8") as f:
+                json.dump(memories, f, indent=2)
+        return jsonify({"status": "ok", "memories": memories})
+
+
+@app.route("/api/training_stats", methods=["GET"])
+def training_stats_api():
+    teacher_log = os.path.join(os.getcwd(), "data", "teacher_log.jsonl")
+    count = 0
+    if os.path.exists(teacher_log):
+        try:
+            with open(teacher_log, "r", encoding="utf-8") as f:
+                count = sum(1 for line in f if line.strip())
+        except Exception:
+            count = 0
+    return jsonify({
+        "status": "ok",
+        "sample_count": count,
+        "log_path": teacher_log
+    })
+
+
+@app.route("/reports/<path:filename>")
+def serve_report_file(filename):
+    reports_dir = os.path.join(os.getcwd(), "data", "reports")
+    return send_from_directory(reports_dir, filename)
+
+
 @app.route("/generated_images/<path:filename>")
 def serve_generated_image(filename):
     images_dir = os.path.join(os.getcwd(), "data", "generated_images")

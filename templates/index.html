@@ -71,6 +71,13 @@
                 <button class="topic-btn" data-q="Give me a quick productivity tip for software developers.">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                     <span>Productivity Tip</span>
+                <button class="topic-btn" id="openMemoryBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                    <span>AI Memory Inspector</span>
+                </button>
+                <button class="topic-btn" id="openTrainingBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    <span>SFT Dataset Dashboard</span>
                 </button>
             </nav>
 
@@ -323,6 +330,58 @@
                         <option value="local">Local Pretrained HF Model (Offline)</option>
                     </select>
                 </div>
+            </div>
+        </div>
+    <!-- Memory Inspector Modal -->
+    <div id="memoryModal" class="manus-ui-modal hidden">
+        <div class="manus-ui-backdrop" onclick="closeMemoryModal()"></div>
+        <div class="manus-ui-panel settings-panel">
+            <header class="manus-ui-header">
+                <div class="manus-ui-title-group">
+                    <div class="manus-badge">🧠 AI PERSISTENT MEMORY</div>
+                    <h3>Stored Facts & Preferences</h3>
+                </div>
+                <div class="manus-ui-actions">
+                    <button class="manus-icon-btn" onclick="closeMemoryModal()" title="Close Memory Inspector">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </header>
+            <div class="settings-body">
+                <div class="memory-add-box">
+                    <input type="text" id="newMemoryKey" placeholder="Memory Key (e.g. user_name)" class="settings-select" style="margin-bottom:8px;">
+                    <input type="text" id="newMemoryVal" placeholder="Value (e.g. Nishkarsh)" class="settings-select" style="margin-bottom:8px;">
+                    <button id="addMemoryBtn" class="settings-btn-primary">Add Memory</button>
+                </div>
+                <hr style="border:0; border-top:1px solid var(--glass-border); margin:10px 0;">
+                <div id="memoryList" class="memory-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SFT Dataset & Training Dashboard Modal -->
+    <div id="trainingModal" class="manus-ui-modal hidden">
+        <div class="manus-ui-backdrop" onclick="closeTrainingModal()"></div>
+        <div class="manus-ui-panel settings-panel">
+            <header class="manus-ui-header">
+                <div class="manus-ui-title-group">
+                    <div class="manus-badge">📊 SFT DATASET DASHBOARD</div>
+                    <h3>Training Samples & Log Analytics</h3>
+                </div>
+                <div class="manus-ui-actions">
+                    <button class="manus-icon-btn" onclick="closeTrainingModal()" title="Close Dashboard">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </header>
+            <div class="settings-body">
+                <div class="stat-card">
+                    <div style="font-size:32px; font-weight:700; color:var(--accent);" id="sampleCountDisplay">0</div>
+                    <div style="font-size:13px; color:var(--text-muted);">Logged Teacher Interactions (`data/teacher_log.jsonl`)</div>
+                </div>
+                <p style="font-size:13px; color:var(--text-dim); margin-top:10px;">
+                    Every successful response or learned interaction logged with <code>learn_from_interaction</code> is stored for local fine-tuning.
+                </p>
             </div>
         </div>
     </div>

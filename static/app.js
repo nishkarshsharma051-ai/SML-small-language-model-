@@ -1020,3 +1020,105 @@ if (modalRateSlider && modalRateValue) {
     });
   });
 }
+
+/* ─── Memory Inspector & Dataset Dashboard Logic ─────────── */
+const memoryModal = document.getElementById('memoryModal');
+const openMemoryBtn = document.getElementById('openMemoryBtn');
+const memoryList = document.getElementById('memoryList');
+const newMemoryKey = document.getElementById('newMemoryKey');
+const newMemoryVal = document.getElementById('newMemoryVal');
+const addMemoryBtn = document.getElementById('addMemoryBtn');
+
+const trainingModal = document.getElementById('trainingModal');
+const openTrainingBtn = document.getElementById('openTrainingBtn');
+const sampleCountDisplay = document.getElementById('sampleCountDisplay');
+
+function closeMemoryModal() {
+  if (memoryModal) memoryModal.classList.add('hidden');
+}
+window.closeMemoryModal = closeMemoryModal;
+
+function closeTrainingModal() {
+  if (trainingModal) trainingModal.classList.add('hidden');
+}
+window.closeTrainingModal = closeTrainingModal;
+
+if (openMemoryBtn) {
+  openMemoryBtn.addEventListener('click', () => {
+    if (memoryModal) {
+      memoryModal.classList.remove('hidden');
+      loadMemories();
+    }
+  });
+}
+
+if (openTrainingBtn) {
+  openTrainingBtn.addEventListener('click', async () => {
+    if (trainingModal) {
+      trainingModal.classList.remove('hidden');
+      try {
+        const res = await fetch('/api/training_stats');
+        const d = await res.json();
+        if (sampleCountDisplay) sampleCountDisplay.textContent = d.sample_count || 0;
+      } catch {}
+    }
+  });
+}
+
+async function loadMemories() {
+  if (!memoryList) return;
+  try {
+    const res = await fetch('/api/memories');
+    const d = await res.json();
+    memoryList.innerHTML = '';
+    const mems = d.memories || {};
+    const keys = Object.keys(mems);
+    if (keys.length === 0) {
+      memoryList.innerHTML = '<div style="font-size:13px; color:var(--text-muted); padding:10px;">No memories stored yet.</div>';
+      return;
+    }
+    keys.forEach(k => {
+      const item = document.createElement('div');
+      item.style.cssText = 'display:flex; justify-content:space-between; align-items:center; background:var(--glass-bg); padding:10px; border-radius:8px; margin-bottom:8px; border:1px solid var(--glass-border);';
+      item.innerHTML = `
+        <div style="font-size:13px; word-break:break-all;">
+          <strong style="color:var(--accent);">${escapeHtml(k)}:</strong> ${escapeHtml(mems[k])}
+        </div>
+        <button class="manus-icon-btn" onclick="deleteMemoryKey('${escapeAttr(k)}')" title="Delete memory">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      `;
+      memoryList.appendChild(item);
+    });
+  } catch {}
+}
+
+async function deleteMemoryKey(key) {
+  try {
+    await fetch('/api/memories', {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ key })
+    });
+    loadMemories();
+  } catch {}
+}
+window.deleteMemoryKey = deleteMemoryKey;
+
+if (addMemoryBtn) {
+  addMemoryBtn.addEventListener('click', async () => {
+    const key = newMemoryKey.value.trim();
+    const val = newMemoryVal.value.trim();
+    if (!key || !val) return;
+    try {
+      await fetch('/api/memories', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ key, value: val })
+      });
+      newMemoryKey.value = '';
+      newMemoryVal.value = '';
+      loadMemories();
+    } catch {}
+  });
+}
