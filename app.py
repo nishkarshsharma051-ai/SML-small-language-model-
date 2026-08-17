@@ -48,6 +48,9 @@ try:
         is_conversing = True
         
         try:
+            if 'detector' in globals() and detector:
+                detector.stop()
+                
             # Acknowledge
             os.system('say -v Samantha "Yes?"')
             
@@ -89,10 +92,12 @@ try:
                         print(f"[App] Brain error: {e}")
                         voice_engine.speak("I encountered an error.")
                 else:
-                    # If nothing was transcribed, loop around and listen again.
-                    pass
+                    # Exit single voice loop if no audio detected to return microphone to ClapDetector
+                    break
         finally:
             is_conversing = False
+            if 'detector' in globals() and detector:
+                detector.start()
 
     def on_clap():
         global is_conversing
