@@ -599,6 +599,37 @@ def export_chat_document(filename: str, format_type: str, content: str) -> str:
     except Exception as e:
         return f"Error exporting document: {str(e)}"
 
+def generate_image(prompt: str, width: int = 1024, height: int = 1024, style: str = "photorealistic") -> str:
+    """
+    Generates a high-resolution AI image using Flux / Stable Diffusion models based on prompt description.
+    Saves image to data/generated_images/ and renders it directly in chat.
+    """
+    try:
+        import urllib.parse
+        import urllib.request
+        import uuid
+        
+        enhanced_prompt = f"{prompt}, {style} style, 8k resolution, highly detailed, cinematic lighting" if style and style.lower() != "none" else prompt
+        encoded_prompt = urllib.parse.quote(enhanced_prompt)
+        
+        image_url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?width={width}&height={height}&seed={uuid.uuid4().int % 100000}&nologo=true"
+        
+        images_dir = os.path.join(os.getcwd(), "data", "generated_images")
+        os.makedirs(images_dir, exist_ok=True)
+        
+        img_id = str(uuid.uuid4())[:8]
+        filename = f"gen_img_{img_id}.jpg"
+        file_path = os.path.join(images_dir, filename)
+        
+        req = urllib.request.Request(image_url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, timeout=30) as response, open(file_path, 'wb') as out_file:
+            out_file.write(response.read())
+            
+        web_path = f"/generated_images/{filename}"
+        return f"IMAGE_GEN_RESULT:\n![Generated AI Image: {prompt}]({web_path})\n\nSuccessfully generated high-resolution AI image for prompt: '{prompt}'."
+    except Exception as e:
+        return f"Failed to generate image: {str(e)}"
+
 # A dictionary mapping function names to the actual python functions
 AVAILABLE_TOOLS = {
     "search_internet": search_internet,
@@ -626,7 +657,8 @@ AVAILABLE_TOOLS = {
     "get_user_memory": get_user_memory,
     "create_interactive_chart": create_interactive_chart,
     "generate_diagram": generate_diagram,
-    "export_chat_document": export_chat_document
+    "export_chat_document": export_chat_document,
+    "generate_image": generate_image
 }
 
 # OpenAI/Groq Tool Definitions Schema
@@ -1153,6 +1185,35 @@ TOOLS_SCHEMA = [
                     }
                 },
                 "required": ["filename", "format_type", "content"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "generate_image",
+            "description": "Generates a high-resolution AI image (DALL-E / Flux style) based on a text prompt description, saves it locally, and displays it directly in chat.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "prompt": {
+                        "type": "string",
+                        "description": "Detailed visual description of the image to generate."
+                    },
+                    "width": {
+                        "type": "integer",
+                        "description": "Image width in pixels (default: 1024)."
+                    },
+                    "height": {
+                        "type": "integer",
+                        "description": "Image height in pixels (default: 1024)."
+                    },
+                    "style": {
+                        "type": "string",
+                        "description": "Art style (e.g. 'photorealistic', 'anime', '3d render', 'cyberpunk', 'oil painting', 'digital art')."
+                    }
+                },
+                "required": ["prompt"]
             }
         }
     }

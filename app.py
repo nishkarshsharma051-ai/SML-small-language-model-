@@ -240,6 +240,12 @@ def serve_generated_ui(filename):
     return send_from_directory(uis_dir, filename)
 
 
+@app.route("/generated_images/<path:filename>")
+def serve_generated_image(filename):
+    images_dir = os.path.join(os.getcwd(), "data", "generated_images")
+    return send_from_directory(images_dir, filename)
+
+
 if __name__ == "__main__":
     host = os.getenv("HOST", "127.0.0.1")
     port = int(os.getenv("PORT", "5002"))
