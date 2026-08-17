@@ -129,6 +129,12 @@
                             <span class="status-subtitle">Hybrid Cloud & Local Engine</span>
                         </div>
                     </div>
+
+                    <div id="hardwareBadge" class="hardware-badge" title="macOS Hardware Diagnostics">
+                        <span id="sysCpuLabel">CPU --%</span>
+                        <span class="dot-sep">•</span>
+                        <span id="sysRamLabel">RAM --%</span>
+                    </div>
                 </div>
 
                 <div class="topbar-right">
@@ -250,6 +256,10 @@
                     <div class="input-actions">
                         <button id="stopGenBtn" class="action-circle-btn stop-btn hidden" title="Stop generating">
                             <svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="7" width="10" height="10" rx="1.5"></rect></svg>
+                        </button>
+
+                        <button id="enhancePromptBtn" class="action-circle-btn" title="✨ Polish & Expand Prompt">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
                         </button>
 
                         <button id="attachFileBtn" class="action-circle-btn" title="Upload image, code, or file">
@@ -413,6 +423,30 @@
                     <div class="terminal-header">Terminal Output</div>
                     <pre id="canvasTerminalOutput" class="canvas-terminal">Output will appear here after clicking 'Run Code'...</pre>
                 </div>
+            </div>
+        </div>
+    <!-- Web Reader Inspector Modal -->
+    <div id="browserInspectorModal" class="manus-ui-modal hidden">
+        <div class="manus-ui-backdrop" onclick="closeBrowserInspectorModal()"></div>
+        <div class="manus-ui-panel canvas-panel">
+            <header class="manus-ui-header">
+                <div class="manus-ui-title-group">
+                    <div class="manus-badge">🌐 VISUAL WEB INSPECTOR</div>
+                    <h3>Web Reader & Content Extractor</h3>
+                </div>
+                <div class="manus-ui-actions">
+                    <button class="manus-icon-btn" onclick="closeBrowserInspectorModal()" title="Close Inspector">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </header>
+            <div class="settings-body">
+                <div style="display:flex; gap:8px;">
+                    <input type="text" id="inspectorUrlInput" placeholder="Enter website URL (e.g. https://wikipedia.org)" class="settings-select" style="flex:1;">
+                    <button id="inspectUrlBtn" class="settings-btn-primary">Browse Page</button>
+                </div>
+                <hr style="border:0; border-top:1px solid var(--glass-border); margin:12px 0;">
+                <pre id="inspectorContentOutput" class="canvas-terminal" style="height:350px;">Enter a URL above to fetch readable web content...</pre>
             </div>
         </div>
     </div>

@@ -1191,3 +1191,70 @@ if (attachFileBtn && fileUploadInput) {
     }
   });
 }
+
+/* ─── Hardware Health Polling & Prompt Polish ────────────── */
+const sysCpuLabel = document.getElementById('sysCpuLabel');
+const sysRamLabel = document.getElementById('sysRamLabel');
+const enhancePromptBtn = document.getElementById('enhancePromptBtn');
+
+async function updateSystemHealth() {
+  try {
+    const res = await fetch('/api/system_health');
+    const d = await res.json();
+    if (d.status === 'ok' && d.health) {
+      if (sysCpuLabel && d.health.cpu_usage) sysCpuLabel.textContent = `CPU ${d.health.cpu_usage}`;
+      if (sysRamLabel && d.health.ram_utilization) sysRamLabel.textContent = `RAM ${d.health.ram_utilization}`;
+    }
+  } catch {}
+}
+setInterval(updateSystemHealth, 5000);
+updateSystemHealth();
+
+if (enhancePromptBtn) {
+  enhancePromptBtn.addEventListener('click', async () => {
+    const promptText = userInput.value.trim();
+    if (!promptText) return;
+    try {
+      const res = await fetch('/api/enhance_prompt', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ prompt: promptText })
+      });
+      const d = await res.json();
+      if (d.status === 'ok' && d.enhanced) {
+        userInput.value = d.enhanced;
+        userInput.focus();
+      }
+    } catch {}
+  });
+}
+
+/* ─── Visual Web Inspector Handlers ─────────────────────── */
+const browserInspectorModal = document.getElementById('browserInspectorModal');
+const inspectorUrlInput = document.getElementById('inspectorUrlInput');
+const inspectUrlBtn = document.getElementById('inspectUrlBtn');
+const inspectorContentOutput = document.getElementById('inspectorContentOutput');
+
+function closeBrowserInspectorModal() {
+  if (browserInspectorModal) browserInspectorModal.classList.add('hidden');
+}
+window.closeBrowserInspectorModal = closeBrowserInspectorModal;
+
+if (inspectUrlBtn && inspectorUrlInput) {
+  inspectUrlBtn.addEventListener('click', async () => {
+    const url = inspectorUrlInput.value.trim();
+    if (!url) return;
+    inspectorContentOutput.textContent = `Browsing ${url}...`;
+    try {
+      const res = await fetch('/api/browse_page', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ url })
+      });
+      const d = await res.json();
+      inspectorContentOutput.textContent = d.content || d.error || 'Failed to fetch content.';
+    } catch (e) {
+      inspectorContentOutput.textContent = 'Error fetching URL: ' + e.message;
+    }
+  });
+}
