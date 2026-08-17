@@ -199,6 +199,12 @@ class TingLingLingBrain:
 
     def load(self):
         """Loads the best available local model weights."""
+        if self.use_cloud_primary:
+            self._loaded = True
+            self.source = "Cloud"
+            print("[Brain] Cloud primary brain is online.")
+            return True
+            
         if self._load_hf_local():
             self._loaded = True
             self.source = "Local-HF"
@@ -344,7 +350,7 @@ class TingLingLingBrain:
         messages.append({"role": "user", "content": question})
         
         payload = {
-            "model": os.getenv("CLOUD_MODEL_ID", "llama-3.3-70b-versatile"),
+            "model": os.getenv("CLOUD_MODEL_ID", "qwen/qwen3.6-27b"),
             "messages": messages,
             "temperature": 0.7,
             "max_tokens": 1024
@@ -355,7 +361,14 @@ class TingLingLingBrain:
 
         # Loop up to 5 times for tool execution
         for _ in range(5):
-            response = requests.post(url, headers=headers, json=payload, timeout=30)
+            response = None
+            for attempt in range(3):
+                response = requests.post(url, headers=headers, json=payload, timeout=30)
+                if response.status_code == 429 and attempt < 2:
+                    time.sleep(3)
+                    continue
+                break
+                
             if response.status_code != 200:
                 raise Exception(f"Cloud Engine Error: {response.status_code} - {response.text}")
             
@@ -483,6 +496,9 @@ class TingLingLingBrain:
     def _ask_local(self, question, history=None):
         """Inference loop for the fine-tuned local SLM."""
         with self.lock:
+            if not self.local_tokenizer or not self.local_model:
+                return "Local scratch character model is offline or not loaded."
+                
             # Keep the offline prompt lightweight and chat-like so the local model
             # has a better chance of responding naturally.
             prompt_lines = []
@@ -517,6 +533,8 @@ class TingLingLingBrain:
     def _ask_hf_local(self, question, history=None):
         """Inference loop for a local Hugging Face causal LM."""
         with self.lock:
+            if not self.hf_tokenizer or not self.hf_model:
+                return "Local Hugging Face model is offline or not loaded."
             system_content = self.system_instruction + f"\n\nCurrent Local Time: {time.strftime('%Y-%m-%d %H:%M:%S %Z')}"
             messages = [{"role": "system", "content": system_content}]
             for turn in (history or [])[-10:]:
