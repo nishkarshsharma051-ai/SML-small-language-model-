@@ -180,6 +180,72 @@ def generate_markdown_report(title: str, content: str) -> str:
     except Exception as e:
         return f"Failed to generate report: {str(e)}"
 
+def read_pdf_file(filepath: str) -> str:
+    """Reads and extracts text content from a PDF file."""
+    try:
+        from pypdf import PdfReader
+        if not os.path.exists(filepath):
+            return f"Error: PDF file '{filepath}' does not exist."
+        reader = PdfReader(filepath)
+        text = ""
+        for i, page in enumerate(reader.pages):
+            page_text = page.extract_text() or ""
+            text += f"\n--- Page {i+1} ---\n" + page_text
+        if not text.strip():
+            return "PDF file opened, but contains no extractable text (it might be scanned images)."
+        return f"Successfully extracted {len(reader.pages)} pages from '{filepath}':\n{text[:4000]}"
+    except Exception as e:
+        return f"Failed to read PDF file: {str(e)}"
+
+def create_pdf_document(filename: str, title: str, content: str) -> str:
+    """Creates a styled PDF document and saves it in data/reports directory for download."""
+    try:
+        from reportlab.lib.pagesizes import letter
+        from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+        import time
+        
+        reports_dir = os.path.join(os.getcwd(), "data", "reports")
+        os.makedirs(reports_dir, exist_ok=True)
+        if not filename.endswith(".pdf"):
+            filename += f"_{int(time.time())}.pdf"
+        filepath = os.path.join(reports_dir, filename)
+        
+        doc = SimpleDocTemplate(filepath, pagesize=letter)
+        styles = getSampleStyleSheet()
+        story = []
+        
+        title_style = ParagraphStyle(
+            'DocTitle',
+            parent=styles['Heading1'],
+            fontSize=22,
+            leading=26,
+            textColor='#1e293b',
+            spaceAfter=12
+        )
+        body_style = ParagraphStyle(
+            'DocBody',
+            parent=styles['BodyText'],
+            fontSize=11,
+            leading=16,
+            textColor='#334155',
+            spaceAfter=8
+        )
+        
+        story.append(Paragraph(title, title_style))
+        story.append(Spacer(1, 12))
+        
+        for paragraph in content.split('\n\n'):
+            if paragraph.strip():
+                clean_p = paragraph.replace('\n', '<br/>')
+                story.append(Paragraph(clean_p, body_style))
+                story.append(Spacer(1, 8))
+                
+        doc.build(story)
+        return f"PDF generated successfully!\nFile path: /reports/{filename}\nFull path: {filepath}"
+    except Exception as e:
+        return f"Failed to create PDF document: {str(e)}"
+
 def learn_from_interaction(instruction: str, response: str) -> str:
     """Appends a new interaction to the training dataset for future self-improvement."""
     try:
@@ -877,7 +943,9 @@ AVAILABLE_TOOLS = {
     "get_tech_news_briefing": get_tech_news_briefing,
     "summarize_file": summarize_file,
     "deep_research": deep_research,
-    "generate_markdown_report": generate_markdown_report
+    "generate_markdown_report": generate_markdown_report,
+    "read_pdf_file": read_pdf_file,
+    "create_pdf_document": create_pdf_document
 }
 
 # OpenAI/Groq Tool Definitions Schema
@@ -1571,6 +1639,48 @@ TOOLS_SCHEMA = [
                     }
                 },
                 "required": ["title", "content"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "read_pdf_file",
+            "description": "Reads and extracts text from any PDF document file on disk.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "filepath": {
+                        "type": "string",
+                        "description": "Path to the PDF file to read."
+                    }
+                },
+                "required": ["filepath"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "create_pdf_document",
+            "description": "Generates a formatted PDF document and saves it in data/reports for download.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "filename": {
+                        "type": "string",
+                        "description": "Desired PDF filename (e.g. report.pdf)."
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "Document title."
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "Text content for the PDF document."
+                    }
+                },
+                "required": ["filename", "title", "content"]
             }
         }
     }
