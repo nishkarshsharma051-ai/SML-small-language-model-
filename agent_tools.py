@@ -511,6 +511,94 @@ def translate_file(file_path: str, target_language: str, output_path: str = None
     except Exception as e:
         return f"Error opening file for translation: {str(e)}"
 
+MEMORY_FILE = os.path.join(os.getcwd(), "data", "user_memory.json")
+
+def save_user_memory(memory_key: str, memory_value: str) -> str:
+    """Saves a user memory or preference persistently (e.g. 'coding_preference': 'Python with type hints', 'name': 'Nishkarsh')."""
+    try:
+        os.makedirs(os.path.dirname(MEMORY_FILE), exist_ok=True)
+        data = {}
+        if os.path.exists(MEMORY_FILE):
+            try:
+                with open(MEMORY_FILE, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+            except Exception:
+                data = {}
+        data[memory_key] = memory_value
+        with open(MEMORY_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
+        return f"Successfully stored memory: {memory_key} = '{memory_value}'"
+    except Exception as e:
+        return f"Error saving memory: {str(e)}"
+
+def get_user_memory() -> str:
+    """Retrieves all stored user memories and preferences."""
+    try:
+        if not os.path.exists(MEMORY_FILE):
+            return "No custom user memories saved yet."
+        with open(MEMORY_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        if not data:
+            return "User memory is currently empty."
+        return "User Preferences & Memories:\n" + "\n".join(f"- {k}: {v}" for k, v in data.items())
+    except Exception as e:
+        return f"Error retrieving user memory: {str(e)}"
+
+def create_interactive_chart(chart_type: str, title: str, labels: list, data_points: list, dataset_label: str = "Data") -> str:
+    """Creates a ChatGPT-style interactive data chart (bar, line, pie, doughnut, radar) rendered directly in chat."""
+    try:
+        chart_config = {
+            "type": chart_type.lower(),
+            "data": {
+                "labels": labels,
+                "datasets": [{
+                    "label": dataset_label,
+                    "data": data_points,
+                    "backgroundColor": [
+                        "rgba(56, 189, 248, 0.6)", "rgba(168, 85, 247, 0.6)",
+                        "rgba(236, 72, 153, 0.6)", "rgba(34, 197, 94, 0.6)",
+                        "rgba(251, 146, 60, 0.6)"
+                    ],
+                    "borderColor": "rgba(255, 255, 255, 0.8)",
+                    "borderWidth": 1
+                }]
+            },
+            "options": {
+                "responsive": True,
+                "plugins": {
+                    "title": {"display": True, "text": title, "color": "#ffffff"}
+                }
+            }
+        }
+        return f"CHART_RENDER_BLOCK:\n```chartjson\n{json.dumps(chart_config, indent=2)}\n```\nRendered interactive {chart_type} chart: '{title}'."
+    except Exception as e:
+        return f"Error building chart: {str(e)}"
+
+def generate_diagram(diagram_type: str, diagram_code: str) -> str:
+    """Generates a ChatGPT-style architecture diagram, flowchart, sequence diagram, or mindmap using Mermaid.js."""
+    try:
+        clean_code = diagram_code.strip()
+        return f"DIAGRAM_RENDER_BLOCK:\n```mermaid\n{clean_code}\n```\nRendered interactive {diagram_type} diagram."
+    except Exception as e:
+        return f"Error generating diagram: {str(e)}"
+
+def export_chat_document(filename: str, format_type: str, content: str) -> str:
+    """Exports any chat output, code, essay, report, or data file to disk for downloading/sharing."""
+    try:
+        exports_dir = os.path.join(os.getcwd(), "data", "exports")
+        os.makedirs(exports_dir, exist_ok=True)
+        ext = format_type.strip().lower().replace(".", "")
+        if not filename.endswith(f".{ext}"):
+            full_filename = f"{filename}.{ext}"
+        else:
+            full_filename = filename
+        dest_path = os.path.join(exports_dir, full_filename)
+        with open(dest_path, "w", encoding="utf-8") as f:
+            f.write(content)
+        return f"Successfully exported document to 'data/exports/{full_filename}' ({len(content)} characters)."
+    except Exception as e:
+        return f"Error exporting document: {str(e)}"
+
 # A dictionary mapping function names to the actual python functions
 AVAILABLE_TOOLS = {
     "search_internet": search_internet,
@@ -533,7 +621,12 @@ AVAILABLE_TOOLS = {
     "read_file": read_file,
     "write_file": write_file,
     "edit_file": edit_file,
-    "translate_file": translate_file
+    "translate_file": translate_file,
+    "save_user_memory": save_user_memory,
+    "get_user_memory": get_user_memory,
+    "create_interactive_chart": create_interactive_chart,
+    "generate_diagram": generate_diagram,
+    "export_chat_document": export_chat_document
 }
 
 # OpenAI/Groq Tool Definitions Schema
@@ -946,6 +1039,120 @@ TOOLS_SCHEMA = [
                     }
                 },
                 "required": ["file_path", "target_language"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "save_user_memory",
+            "description": "Saves a user memory or preference persistently (e.g. 'coding_style': 'Python 3.9', 'language': 'English').",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "memory_key": {
+                        "type": "string",
+                        "description": "Key or label for the preference/memory."
+                    },
+                    "memory_value": {
+                        "type": "string",
+                        "description": "Value or detail to remember."
+                    }
+                },
+                "required": ["memory_key", "memory_value"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_user_memory",
+            "description": "Retrieves all saved user preferences and long-term memories.",
+            "parameters": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "create_interactive_chart",
+            "description": "Renders a ChatGPT-style interactive data chart (bar, line, pie, doughnut, radar) directly in the chat.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "chart_type": {
+                        "type": "string",
+                        "description": "Type of chart: 'bar', 'line', 'pie', 'doughnut', or 'radar'."
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "Title of the chart."
+                    },
+                    "labels": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                        "description": "List of label strings for X-axis or categories."
+                    },
+                    "data_points": {
+                        "type": "array",
+                        "items": {"type": "number"},
+                        "description": "List of numeric values corresponding to labels."
+                    },
+                    "dataset_label": {
+                        "type": "string",
+                        "description": "Name of the dataset (e.g. 'Revenue', 'Score')."
+                    }
+                },
+                "required": ["chart_type", "title", "labels", "data_points"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "generate_diagram",
+            "description": "Generates a ChatGPT-style architecture diagram, flowchart, sequence diagram, or mindmap using Mermaid.js syntax.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "diagram_type": {
+                        "type": "string",
+                        "description": "Type of diagram (e.g. 'flowchart', 'sequence', 'architecture', 'mindmap')."
+                    },
+                    "diagram_code": {
+                        "type": "string",
+                        "description": "The exact Mermaid.js diagram code string (e.g. 'graph TD; A-->B;')."
+                    }
+                },
+                "required": ["diagram_type", "diagram_code"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "export_chat_document",
+            "description": "Exports chat responses, essays, reports, code snippets, or data files into downloadable files (.md, .txt, .html, .py, .csv, .json).",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "filename": {
+                        "type": "string",
+                        "description": "The target filename (e.g. 'report.md', 'script.py', 'data.json')."
+                    },
+                    "format_type": {
+                        "type": "string",
+                        "description": "File format extension (e.g. 'md', 'py', 'txt', 'html', 'json')."
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "Full document or code content to export."
+                    }
+                },
+                "required": ["filename", "format_type", "content"]
             }
         }
     }

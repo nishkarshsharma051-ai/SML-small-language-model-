@@ -557,8 +557,14 @@ function renderMarkdown(text) {
     let content = p.content;
     if (p.type === 'code') {
       content = content.replace(/```(\w*)\n?([\s\S]*?)```/g, (m, lang, code) => {
-        const language = lang.trim() || 'code';
+        const language = lang.trim().toLowerCase() || 'code';
         const cleanCode = code.trim();
+        if (language === 'chartjson') {
+          return `<div class="chart-container-wrapper" style="position:relative; width:100%; max-width:640px; margin:16px 0; background:rgba(15,23,42,0.8); padding:16px; border-radius:12px; border:1px solid rgba(255,255,255,0.1);"><canvas class="interactive-chart-canvas" data-config="${escapeAttr(cleanCode)}"></canvas></div>`;
+        }
+        if (language === 'mermaid') {
+          return `<div class="mermaid-diagram-wrapper" style="margin:16px 0; background:rgba(15,23,42,0.8); padding:16px; border-radius:12px; border:1px solid rgba(255,255,255,0.1);"><div class="mermaid">${escapeHtml(cleanCode)}</div></div>`;
+        }
         return `<div class="code-wrapper">
                   <div class="code-header">
                     <span>${language}</span>
@@ -630,6 +636,9 @@ function appendMessage(role, text) {
     });
   }
 
+  // Apply Visualizations (Charts & Mermaid Diagrams)
+  renderVisualizations(el);
+
   scrollBottom();
   return el;
 }
@@ -699,6 +708,9 @@ function finalizeStreamingAI(el, text, source = null) {
     });
   }
 
+  // Apply Visualizations (Charts & Mermaid Diagrams)
+  renderVisualizations(el);
+
   el.querySelectorAll('.action-btn').forEach(btn => { btn.dataset.text = text || ''; });
 }
 
@@ -731,6 +743,37 @@ function closeManusModal() {
 }
 window.openManusModal = openManusModal;
 window.closeManusModal = closeManusModal;
+
+/* ─── Interactive Charts & Mermaid Visualization Renderer ───── */
+function renderVisualizations(el) {
+  if (!el) return;
+  if (window.Chart) {
+    el.querySelectorAll('.interactive-chart-canvas').forEach(canvas => {
+      if (canvas.dataset.rendered) return;
+      canvas.dataset.rendered = "true";
+      try {
+        const configStr = canvas.dataset.config;
+        if (configStr) {
+          const config = JSON.parse(configStr);
+          new Chart(canvas.getContext('2d'), config);
+        }
+      } catch(e) {
+        console.error("Chart render error:", e);
+      }
+    });
+  }
+  if (window.mermaid) {
+    try {
+      const nodes = el.querySelectorAll('.mermaid');
+      if (nodes && nodes.length > 0) {
+        mermaid.init(undefined, nodes);
+      }
+    } catch(e) {
+      console.error("Mermaid render error:", e);
+    }
+  }
+}
+window.renderVisualizations = renderVisualizations;
 
 function appendTyping() {
   const el = document.createElement('div');
