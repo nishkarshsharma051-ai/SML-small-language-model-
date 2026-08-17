@@ -108,7 +108,7 @@ try:
             return
         threading.Thread(target=handle_voice_command, daemon=True).start()
         
-    detector = ClapDetector(callback=on_clap, threshold=0.03, required_claps=2)
+    detector = ClapDetector(callback=on_clap, threshold=0.10, required_claps=2)
     detector.start()
 except Exception as e:
     print(f"[App] Clap/Voice detector init error: {e}")

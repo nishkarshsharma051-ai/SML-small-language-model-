@@ -6,7 +6,7 @@ import time
 import numpy as np
 
 class ClapDetector:
-    def __init__(self, callback, threshold=0.03, chunk=1024, rate=44100, required_claps=2):
+    def __init__(self, callback, threshold=0.10, chunk=1024, rate=44100, required_claps=2):
         self.callback = callback
         self.threshold = threshold
         self.required_claps = required_claps
@@ -32,15 +32,20 @@ class ClapDetector:
     def listen(self):
         last_clap_time = 0
         clap_count = 0
+        start_time = time.time()
         
         try:
-            print(f"[ClapDetector] Listening for {self.required_claps} claps using sounddevice...", flush=True)
+            print(f"[ClapDetector] Listening for {self.required_claps} claps using sounddevice (threshold={self.threshold})...", flush=True)
             with sd.InputStream(samplerate=self.rate, channels=1, dtype='int16') as stream:
                 while self.running:
                     data, _ = stream.read(self.chunk)
                     block = data.tobytes()
                     rms = self.get_rms(block)
                     current_time = time.time()
+                    
+                    # Ignore initial mic buffer spikes during startup warmup
+                    if current_time - start_time < 2.0:
+                        continue
                     
                     if rms > self.threshold:
                         if current_time - last_clap_time > 0.3:
