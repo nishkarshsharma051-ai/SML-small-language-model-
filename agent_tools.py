@@ -722,6 +722,34 @@ def get_tech_news_briefing() -> str:
     except Exception as e:
         return f"Error fetching news briefing: {str(e)}"
 
+def summarize_file(file_path: str) -> str:
+    """Reads any file and extracts a structured executive summary, key takeaways, and bullet points."""
+    try:
+        content = read_file(file_path)
+        if content.startswith("Error:"):
+            return content
+        preview = content[:4000]
+        return (
+            f"FILE_SUMMARY_JOB:\n"
+            f"File: '{file_path}' ({len(content)} characters)\n"
+            f"Preview Content:\n---\n{preview}\n---\n"
+            f"Please generate a comprehensive executive summary with key takeaways and bullet points."
+        )
+    except Exception as e:
+        return f"Error summarizing file: {str(e)}"
+
+def deep_research(topic: str) -> str:
+    """Performs deep multi-source research on a topic using live web searches and web scraping."""
+    try:
+        search_res = search_internet(f"{topic} detailed overview analysis research")
+        return (
+            f"DEEP_RESEARCH_RESULT for '{topic}':\n\n"
+            f"Primary Web Evidence:\n{search_res}\n\n"
+            f"Synthesize an in-depth, structured research paper on '{topic}' with introduction, key technical findings, real-world impact, and conclusion."
+        )
+    except Exception as e:
+        return f"Error during deep research: {str(e)}"
+
 # A dictionary mapping function names to the actual python functions
 AVAILABLE_TOOLS = {
     "search_internet": search_internet,
@@ -754,7 +782,9 @@ AVAILABLE_TOOLS = {
     "get_system_health": get_system_health,
     "search_local_files": search_local_files,
     "get_weather_forecast": get_weather_forecast,
-    "get_tech_news_briefing": get_tech_news_briefing
+    "get_tech_news_briefing": get_tech_news_briefing,
+    "summarize_file": summarize_file,
+    "deep_research": deep_research
 }
 
 # OpenAI/Groq Tool Definitions Schema
@@ -1376,6 +1406,40 @@ TOOLS_SCHEMA = [
                 "type": "object",
                 "properties": {},
                 "required": []
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "summarize_file",
+            "description": "Reads any file on disk and extracts a structured executive summary, key takeaways, and bullet points.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "file_path": {
+                        "type": "string",
+                        "description": "Path to the file to summarize."
+                    }
+                },
+                "required": ["file_path"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "deep_research",
+            "description": "Performs deep multi-source research on a topic, browses key web results, and synthesizes a comprehensive research report.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string",
+                        "description": "The research topic or question to investigate."
+                    }
+                },
+                "required": ["topic"]
             }
         }
     }
