@@ -630,6 +630,98 @@ def generate_image(prompt: str, width: int = 1024, height: int = 1024, style: st
     except Exception as e:
         return f"Failed to generate image: {str(e)}"
 
+def get_system_health() -> str:
+    """Retrieves live macOS system diagnostics: CPU usage, RAM consumption, Disk space, Battery level, and Uptime."""
+    try:
+        import psutil
+        cpu_usage = psutil.cpu_percent(interval=0.5)
+        mem = psutil.virtual_memory()
+        disk = psutil.disk_usage('/')
+        battery = psutil.sensors_battery()
+        
+        mem_used_gb = round(mem.used / (1024**3), 2)
+        mem_total_gb = round(mem.total / (1024**3), 2)
+        disk_free_gb = round(disk.free / (1024**3), 2)
+        disk_total_gb = round(disk.total / (1024**3), 2)
+        
+        batt_str = f"{battery.percent}% ({'Plugged In' if battery.power_plugged else 'On Battery'})" if battery else "N/A"
+        
+        return (
+            f"🖥️ macOS System Health Diagnostics:\n"
+            f"  - CPU Utilization: {cpu_usage}%\n"
+            f"  - RAM Usage: {mem_used_gb} GB / {mem_total_gb} GB ({mem.percent}%)\n"
+            f"  - Disk Space Available: {disk_free_gb} GB free of {disk_total_gb} GB ({disk.percent}% used)\n"
+            f"  - Battery Status: {batt_str}"
+        )
+    except Exception as e:
+        try:
+            top_out = subprocess.check_output("top -l 1 | grep -E '^CPU|^PhysMem'", shell=True, text=True)
+            df_out = subprocess.check_output("df -h /", shell=True, text=True)
+            return f"macOS System Diagnostics:\n{top_out.strip()}\nDisk Usage:\n{df_out.strip()}"
+        except Exception as ex:
+            return f"Error retrieving system diagnostics: {str(e)}"
+
+def search_local_files(search_query: str, root_dir: str = None, extension: str = None) -> str:
+    """Searches local filesystem for files matching a keyword, query, or file extension."""
+    try:
+        search_root = os.path.abspath(root_dir) if root_dir else os.getcwd()
+        matches = []
+        clean_ext = extension.strip().lower().lstrip(".") if extension else None
+        
+        for root, dirs, files in os.walk(search_root):
+            dirs[:] = [d for d in dirs if not d.startswith(".") and d not in ("node_modules", "__pycache__", "venv")]
+            for file in files:
+                if search_query.lower() in file.lower():
+                    if not clean_ext or file.lower().endswith(f".{clean_ext}"):
+                        rel_path = os.path.relpath(os.path.join(root, file), search_root)
+                        matches.append(rel_path)
+                        if len(matches) >= 25:
+                            break
+            if len(matches) >= 25:
+                break
+                
+        if not matches:
+            return f"No files matching '{search_query}' found in '{search_root}'."
+        return f"Found {len(matches)} matching file(s) in '{search_root}':\n" + "\n".join(f"  - {m}" for m in matches)
+    except Exception as e:
+        return f"Error searching files: {str(e)}"
+
+def get_weather_forecast(city: str) -> str:
+    """Fetches real-time live weather forecast, temperature, humidity, and condition for any city worldwide."""
+    try:
+        import urllib.parse
+        import urllib.request
+        clean_city = urllib.parse.quote(city.strip())
+        url = f"https://wttr.in/{clean_city}?format=j1"
+        
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, timeout=10) as response:
+            data = json.loads(response.read().decode('utf-8'))
+            
+        current = data['current_condition'][0]
+        temp_c = current['temp_C']
+        temp_f = current['temp_F']
+        desc = current['weatherDesc'][0]['value']
+        humidity = current['humidity']
+        wind_speed = current['windspeedKmph']
+        
+        return (
+            f"🌤️ Live Weather Report for {city.title()}:\n"
+            f"  - Condition: {desc}\n"
+            f"  - Temperature: {temp_c}°C ({temp_f}°F)\n"
+            f"  - Humidity: {humidity}%\n"
+            f"  - Wind Speed: {wind_speed} km/h"
+        )
+    except Exception as e:
+        return search_internet(f"current weather in {city}")
+
+def get_tech_news_briefing() -> str:
+    """Fetches live top technology and AI news headlines."""
+    try:
+        return search_internet("latest artificial intelligence and tech news today")
+    except Exception as e:
+        return f"Error fetching news briefing: {str(e)}"
+
 # A dictionary mapping function names to the actual python functions
 AVAILABLE_TOOLS = {
     "search_internet": search_internet,
@@ -658,7 +750,11 @@ AVAILABLE_TOOLS = {
     "create_interactive_chart": create_interactive_chart,
     "generate_diagram": generate_diagram,
     "export_chat_document": export_chat_document,
-    "generate_image": generate_image
+    "generate_image": generate_image,
+    "get_system_health": get_system_health,
+    "search_local_files": search_local_files,
+    "get_weather_forecast": get_weather_forecast,
+    "get_tech_news_briefing": get_tech_news_briefing
 }
 
 # OpenAI/Groq Tool Definitions Schema
@@ -1214,6 +1310,72 @@ TOOLS_SCHEMA = [
                     }
                 },
                 "required": ["prompt"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_system_health",
+            "description": "Retrieves live macOS system performance diagnostics: CPU usage, RAM utilization, Disk free space, and Battery status.",
+            "parameters": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_local_files",
+            "description": "Searches the local filesystem for files matching a keyword, query string, or specific file extension.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "search_query": {
+                        "type": "string",
+                        "description": "Keyword or query string to search for in filenames."
+                    },
+                    "root_dir": {
+                        "type": "string",
+                        "description": "Directory path to start searching from (default: current workspace)."
+                    },
+                    "extension": {
+                        "type": "string",
+                        "description": "Optional file extension to filter by (e.g. 'py', 'json', 'txt')."
+                    }
+                },
+                "required": ["search_query"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_weather_forecast",
+            "description": "Fetches real-time live weather forecast, temperature, humidity, and wind speed for any city worldwide.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "city": {
+                        "type": "string",
+                        "description": "Name of the city (e.g. 'New Delhi', 'London', 'San Francisco', 'Tokyo')."
+                    }
+                },
+                "required": ["city"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_tech_news_briefing",
+            "description": "Fetches live top technology, AI, and science news headlines.",
+            "parameters": {
+                "type": "object",
+                "properties": {},
+                "required": []
             }
         }
     }
