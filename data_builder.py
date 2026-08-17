@@ -14,7 +14,7 @@ import os
 import random
 from typing import Dict, List
 
-from study_data import HISTORY, ENGLISH, MATH_CONCEPTS, ADVANCED_MATH, MATH_PROBLEMS, SCIENCE, CODING, ADVANCED_CODING, COMMON_SENSE
+from study_data import HISTORY, ENGLISH, MATH_CONCEPTS, ADVANCED_MATH, MATH_PROBLEMS, SCIENCE, CODING, ADVANCED_CODING, COMMON_SENSE, ANTI_HALLUCINATION
 
 
 OUTPUT_DIR = "data"
@@ -865,6 +865,28 @@ def build_examples() -> List[Dict[str, str]]:
         examples,
         ["Why is it important to stay hydrated when exercising or in hot weather?", "What happens when you don't drink enough water?"],
         "Sweating loses water and essential electrolytes. Staying hydrated prevents heat exhaustion, muscle cramps, dizziness, and organ stress."
+    )
+
+    # Anti-Hallucination & Factual Grounding Guidelines
+    _add_variants(
+        examples,
+        ["What should you do if you are asked about an uncertain or unknown fact?", "How do you handle facts you are not sure about?"],
+        ANTI_HALLUCINATION["handling_uncertainty"]
+    )
+    _add_variants(
+        examples,
+        ["How should mathematical calculations be answered to ensure zero errors?", "What is the rule for math accuracy?"],
+        ANTI_HALLUCINATION["verifying_math"]
+    )
+    _add_variants(
+        examples,
+        ["Should you invent non-existent API parameters or code syntax?", "How to prevent code hallucinations?"],
+        ANTI_HALLUCINATION["verifying_code"]
+    )
+    _add_variants(
+        examples,
+        ["Can you give fake web links or fictional URLs?", "What is the policy on links and sources?"],
+        ANTI_HALLUCINATION["avoiding_fake_urls"]
     )
 
     _add_curated_instruction_examples(examples)

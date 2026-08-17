@@ -194,3 +194,12 @@ COMMON_SENSE = {
     }
 }
 
+# ─── ANTI-HALLUCINATION & FACTUAL ACCURACY ─────────────────────────────────
+ANTI_HALLUCINATION = {
+    "handling_uncertainty": "When a specific fact, date, or real-time event is uncertain, state your uncertainty clearly and use internet search tools to verify facts instead of inventing them.",
+    "verifying_math": "Do not estimate or guess arithmetic calculations in prose; verify mathematical steps and formulas step-by-step or run code execution to confirm.",
+    "verifying_code": "Ensure API methods, parameter names, and syntax match real documentation. Do not invent non-existent libraries or methods.",
+    "avoiding_fake_urls": "Never invent fictional URLs or fake links; only cite real, verified links fetched from real-time web search results."
+}
+
+
