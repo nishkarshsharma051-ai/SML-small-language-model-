@@ -415,43 +415,16 @@ class TingLingLingBrain:
     def ask_stream(self, question, force_local=False, history=None, request_id: Optional[str] = None):
         """
         Stream an answer in chunks. Returns (request_id, generator).
-
-        Streaming is implemented for the local HF model. Other paths fall back to a
-        single-chunk response.
         """
         rid, cancel_ev = self._new_cancel_event(request_id)
 
         def cleanup():
             self._clear_cancel_event(rid)
 
-        # Prefer the same load behavior as ask()
-        if not self.hf_loaded:
+        def stream_generator():
             try:
-                self._load_hf_local()
-            except Exception:
-                pass
-        if not self._loaded:
-            try:
-                self.load()
-            except Exception:
-                pass
-
-        # Stream from local model
-        if self.hf_loaded:
-            return rid, self._ask_hf_local_stream(question, history=history, cancel_event=cancel_ev, cleanup=cleanup)
-
-        if self._loaded:
-            def one_local():
-                try:
-                    yield self._ask_local(question, history=history)
-                finally:
-                    cleanup()
-            return rid, one_local()
-
-        def none():
-            try:
-                # If everything fails, attempt Cloud once (single chunk) before giving up.
-                if os.getenv("CLOUD_API_KEY"):
+                # 1. Try Cloud Engine if use_cloud_primary and not force_local
+                if self.use_cloud_primary and not force_local:
                     try:
                         ans = self._ask_cloud_engine(question, history=history)
                         if ans:
@@ -459,12 +432,37 @@ class TingLingLingBrain:
                             self._append_teacher_log(question, ans, teacher="cloud")
                             yield self._normalize_answer(self._clean_identity_leaks(ans))
                             return
-                    except Exception:
-                        pass
-                yield self._fallback_reply(question, "all model paths failed")
+                    except Exception as e:
+                        print(f"[Brain] ask_stream Cloud Engine failed: {e}")
+
+                # 2. Try Local HF Model
+                if self.hf_loaded:
+                    for chunk in self._ask_hf_local_stream(question, history=history, cancel_event=cancel_ev):
+                        yield chunk
+                    return
+
+                # 3. Try Local Character Model if loaded
+                if self.local_tokenizer and self.local_model:
+                    yield self._ask_local(question, history=history)
+                    return
+
+                # 4. Ultimate Fallback to Cloud Engine
+                if self.use_cloud_primary:
+                    try:
+                        ans = self._ask_cloud_engine(question, history=history)
+                        if ans:
+                            self.source = "Cloud"
+                            self._append_teacher_log(question, ans, teacher="cloud")
+                            yield self._normalize_answer(self._clean_identity_leaks(ans))
+                            return
+                    except Exception as e:
+                        print(f"[Brain] ask_stream Cloud fallback failed: {e}")
+
+                yield "Local model weights are not loaded. Please switch to Cloud Mode in Settings or load local model weights."
             finally:
                 cleanup()
-        return rid, none()
+
+        return rid, stream_generator()
 
     def _format_history(self, question, history=None):
         """
