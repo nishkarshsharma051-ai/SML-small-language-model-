@@ -358,6 +358,97 @@ def serve_report_file(filename):
     return send_from_directory(reports_dir, filename)
 
 
+@app.route("/api/run_code", methods=["POST"])
+def run_code_api():
+    data = request.get_json(silent=True) or {}
+    code = data.get("code", "")
+    if not code:
+        return jsonify({"error": "Empty code"}), 400
+    try:
+        from agent_tools import execute_python_code
+        output = execute_python_code(code)
+        return jsonify({"status": "ok", "output": output})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/upload", methods=["POST"])
+def upload_file_api():
+    if "file" not in request.files:
+        return jsonify({"error": "No file uploaded"}), 400
+    file = request.files["file"]
+    if file.filename == "":
+        return jsonify({"error": "No file selected"}), 400
+    try:
+        uploads_dir = os.path.join(os.getcwd(), "data", "uploads")
+        os.makedirs(uploads_dir, exist_ok=True)
+        filename = f"{int(time.time())}_{file.filename}"
+        filepath = os.path.join(uploads_dir, filename)
+        file.save(filepath)
+        
+        content_preview = ""
+        ext = os.path.splitext(filename)[1].lower()
+        if ext in [".txt", ".py", ".js", ".html", ".css", ".json", ".md", ".csv"]:
+            try:
+                with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+                    content_preview = f.read(3000)
+            except Exception:
+                content_preview = ""
+                
+        return jsonify({
+            "status": "ok",
+            "filename": file.filename,
+            "saved_path": filepath,
+            "url": f"/uploads/{filename}",
+            "content_preview": content_preview
+        })
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/uploads/<path:filename>")
+def serve_upload_file(filename):
+    uploads_dir = os.path.join(os.getcwd(), "data", "uploads")
+    return send_from_directory(uploads_dir, filename)
+
+
+@app.route("/api/voice_macros", methods=["GET", "POST", "DELETE"])
+def voice_macros_api():
+    macro_file = os.path.join(os.getcwd(), "data", "voice_macros.json")
+    os.makedirs(os.path.join(os.getcwd(), "data"), exist_ok=True)
+    
+    macros = {}
+    if os.path.exists(macro_file):
+        try:
+            with open(macro_file, "r", encoding="utf-8") as f:
+                macros = json.load(f)
+        except Exception:
+            macros = {}
+            
+    if request.method == "GET":
+        return jsonify({"status": "ok", "macros": macros})
+        
+    elif request.method == "POST":
+        data = request.get_json(silent=True) or {}
+        phrase = str(data.get("phrase", "")).strip().lower()
+        action = str(data.get("action", "")).strip()
+        if phrase and action:
+            macros[phrase] = action
+            with open(macro_file, "w", encoding="utf-8") as f:
+                json.dump(macros, f, indent=2)
+            return jsonify({"status": "ok", "macros": macros})
+        return jsonify({"error": "Phrase and action required"}), 400
+        
+    elif request.method == "DELETE":
+        data = request.get_json(silent=True) or {}
+        phrase = str(data.get("phrase", "")).strip().lower()
+        if phrase in macros:
+            del macros[phrase]
+            with open(macro_file, "w", encoding="utf-8") as f:
+                json.dump(macros, f, indent=2)
+        return jsonify({"status": "ok", "macros": macros})
+
+
 @app.route("/generated_images/<path:filename>")
 def serve_generated_image(filename):
     images_dir = os.path.join(os.getcwd(), "data", "generated_images")

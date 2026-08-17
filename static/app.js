@@ -1122,3 +1122,72 @@ if (addMemoryBtn) {
     } catch {}
   });
 }
+
+/* ─── Code Canvas & File Upload Handlers ─────────────────── */
+const codeCanvasModal = document.getElementById('codeCanvasModal');
+const openCodeCanvasBtn = document.getElementById('openCodeCanvasBtn');
+const canvasCodeInput = document.getElementById('canvasCodeInput');
+const canvasTerminalOutput = document.getElementById('canvasTerminalOutput');
+const runCanvasCodeBtn = document.getElementById('runCanvasCodeBtn');
+
+const attachFileBtn = document.getElementById('attachFileBtn');
+const fileUploadInput = document.getElementById('fileUploadInput');
+
+function closeCodeCanvasModal() {
+  if (codeCanvasModal) codeCanvasModal.classList.add('hidden');
+}
+window.closeCodeCanvasModal = closeCodeCanvasModal;
+
+if (openCodeCanvasBtn) {
+  openCodeCanvasBtn.addEventListener('click', () => {
+    if (codeCanvasModal) codeCanvasModal.classList.remove('hidden');
+  });
+}
+
+if (runCanvasCodeBtn) {
+  runCanvasCodeBtn.addEventListener('click', async () => {
+    const code = canvasCodeInput.value.trim();
+    if (!code) return;
+    canvasTerminalOutput.textContent = 'Running code in Python sandbox...';
+    try {
+      const res = await fetch('/api/run_code', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ code })
+      });
+      const d = await res.json();
+      canvasTerminalOutput.textContent = d.output || d.error || 'Execution finished.';
+    } catch (e) {
+      canvasTerminalOutput.textContent = 'Execution error: ' + e.message;
+    }
+  });
+}
+
+if (attachFileBtn && fileUploadInput) {
+  attachFileBtn.addEventListener('click', () => fileUploadInput.click());
+  fileUploadInput.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    try {
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData
+      });
+      const d = await res.json();
+      if (d.status === 'ok') {
+        const attachNotice = `[Attached File: ${d.filename}]\nPath: ${d.saved_path}\n` + 
+          (d.content_preview ? `Content Preview:\n\`\`\`\n${d.content_preview}\n\`\`\`\n` : '');
+        userInput.value = (userInput.value ? userInput.value + '\n\n' : '') + attachNotice;
+        userInput.focus();
+      } else {
+        alert("Upload failed: " + (d.error || 'Unknown error'));
+      }
+    } catch (err) {
+      alert("File upload error: " + err.message);
+    }
+  });
+}
