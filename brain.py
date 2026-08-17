@@ -314,11 +314,21 @@ class TingLingLingBrain:
                 pass
 
         # If Local answer is good, return it
-        if local_ans and not self._is_response_bad(local_ans):
+        if local_ans and not self._is_response_bad(local_ans) and "offline or not loaded" not in local_ans:
             self.source = "Local-HF" if self.hf_loaded else "Local"
             return self._normalize_answer(self._clean_identity_leaks(local_ans))
 
-        return "I'm sorry, my brain is completely offline."
+        # 3. Ultimate Fallback to Cloud Primary if local model is offline/unavailable
+        if self.use_cloud_primary:
+            try:
+                teacher_ans = self._ask_cloud_engine(question, history=history)
+                if teacher_ans:
+                    self.source = "Cloud"
+                    return self._normalize_answer(self._clean_identity_leaks(teacher_ans))
+            except Exception as e:
+                print(f"[Brain] Cloud fallback failed: {e}")
+
+        return "Local model weights are not loaded. Please switch to Cloud Mode in Settings or load local model weights."
 
     def _trigger_auto_tune(self):
         """Asynchronously trigger the background training bridge."""
