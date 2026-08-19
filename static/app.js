@@ -859,6 +859,9 @@ try {
   const savedTheme = localStorage.getItem('themePreference');
   if (savedTheme) {
     document.body.className = savedTheme;
+    if (savedTheme === 'theme-light') {
+      document.body.setAttribute('data-theme', 'light');
+    }
     currentThemeIdx = themes.indexOf(savedTheme) !== -1 ? themes.indexOf(savedTheme) : 0;
   }
 } catch {}
@@ -868,6 +871,11 @@ if (themeToggleBtn) {
     currentThemeIdx = (currentThemeIdx + 1) % themes.length;
     const newTheme = themes[currentThemeIdx];
     document.body.className = newTheme === 'default' ? '' : newTheme;
+    if (newTheme === 'theme-light') {
+      document.body.setAttribute('data-theme', 'light');
+    } else {
+      document.body.removeAttribute('data-theme');
+    }
     try { localStorage.setItem('themePreference', document.body.className); } catch {}
   });
 }

@@ -50,6 +50,27 @@
   --shadow-glow: 0 0 24px var(--accent-glow);
 }
 
+/* Light Theme Overrides */
+body[data-theme="light"] {
+  --bg: #f8fafc;
+  --bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  --sidebar-bg: rgba(255, 255, 255, 0.88);
+  --glass-bg: rgba(0, 0, 0, 0.035);
+  --glass-bg-hover: rgba(0, 0, 0, 0.07);
+  --glass-border: rgba(0, 0, 0, 0.12);
+  --glass-border-focus: rgba(37, 99, 235, 0.5);
+  --text: #0f172a;
+  --text-muted: #334155;
+  --text-dim: #64748b;
+  --accent: #2563eb;
+  --accent-purple: #4f46e5;
+  --accent-glow: rgba(37, 99, 235, 0.2);
+  --user-bubble-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

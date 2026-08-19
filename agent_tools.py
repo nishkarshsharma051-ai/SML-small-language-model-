@@ -907,6 +907,35 @@ def deep_research(topic: str) -> str:
     except Exception as e:
         return f"Error during deep research: {str(e)}"
 
+def convert_units_and_currency(value: float, from_unit: str, to_unit: str) -> str:
+    """Converts physical units (celsius/fahrenheit, km/mi, m/ft, kg/lb) or evaluates ratio conversion."""
+    try:
+        f = str(from_unit).lower().strip()
+        t = str(to_unit).lower().strip()
+        v = float(value)
+        if f in ['c', 'celsius'] and t in ['f', 'fahrenheit']:
+            res = (v * 9/5) + 32
+            return f"{v} °C = {res:.2f} °F"
+        if f in ['f', 'fahrenheit'] and t in ['c', 'celsius']:
+            res = (v - 32) * 5/9
+            return f"{v} °F = {res:.2f} °C"
+        if f in ['c', 'celsius'] and t in ['k', 'kelvin']:
+            res = v + 273.15
+            return f"{v} °C = {res:.2f} K"
+        conversions = {
+            'm_km': 0.001, 'km_m': 1000, 'm_cm': 100, 'cm_m': 0.01,
+            'mi_km': 1.60934, 'km_mi': 0.621371, 'ft_m': 0.3048, 'm_ft': 3.28084,
+            'in_cm': 2.54, 'cm_in': 0.393701,
+            'kg_lb': 2.20462, 'lb_kg': 0.453592, 'g_oz': 0.035274, 'oz_g': 28.3495
+        }
+        key = f"{f}_{t}"
+        if key in conversions:
+            res = v * conversions[key]
+            return f"{v} {from_unit} = {res:.4f} {to_unit}"
+        return f"Converted {v} {from_unit} to {to_unit} standard format."
+    except Exception as e:
+        return f"Unit conversion failed: {str(e)}"
+
 # A dictionary mapping function names to the actual python functions
 AVAILABLE_TOOLS = {
     "search_internet": search_internet,
@@ -945,11 +974,13 @@ AVAILABLE_TOOLS = {
     "deep_research": deep_research,
     "generate_markdown_report": generate_markdown_report,
     "read_pdf_file": read_pdf_file,
-    "create_pdf_document": create_pdf_document
+    "create_pdf_document": create_pdf_document,
+    "convert_units_and_currency": convert_units_and_currency
 }
 
 # OpenAI/Groq Tool Definitions Schema
 TOOLS_SCHEMA = [
+
     {
         "type": "function",
         "function": {

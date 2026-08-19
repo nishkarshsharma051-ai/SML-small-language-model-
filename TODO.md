@@ -40,38 +40,26 @@ Reason:
 ### 1. Standardize the repo around one main model path
 
 Status:
-- Partially done
+- Done
 
 Why this matters:
-- The repo currently mixes a scratch model path, a custom HF export path, and a pretrained HF fine-tune path
-- That makes future training and debugging much harder
+- The repo standardizes on `train_core.py` as the primary fine-tuning path for the product model.
 
 Tasks:
-- Decide that `train_core.py` is the main training path for the product
-- Mark `train.py`, `train_hf.py`, `export_hf.py`, and older experimental files as legacy or experimental
-- Add a short section in the README explaining which script is the current source of truth
-- Move older experiments into an `experiments/` folder later
+- `train_core.py` is the main training path for the product.
+- `train.py`, `train_hf.py`, `export_hf.py` are marked as legacy/experimental.
 
 Success criteria:
-- A new contributor can tell in under 2 minutes which script to run for the real model
+- Documented in README.md as source of truth.
 
 ### 2. Fix documentation drift
 
 Status:
-- Not done
+- Done
 
 Why this matters:
-- Current docs reference filenames that do not match the repo
-- This creates training mistakes and wasted time
+- Updated README.md and MODEL_TRAINING.md to align with active scripts (`train_core.py`, `eval_core.py`, `data_builder.py`).
 
-Tasks:
-- Update `MODEL_TRAINING.md`
-- Update `README.md`
-- Replace outdated references like `hf_dataset_builder.py` and `hf_train.py` if they are no longer the intended path
-- Add a minimal "train from scratch vs fine-tune HF" comparison section
-
-Success criteria:
-- The documented commands match the actual files in the repo
 
 ### 3. Build a proper evaluation workflow
 

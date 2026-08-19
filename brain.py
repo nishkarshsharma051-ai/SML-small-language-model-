@@ -97,6 +97,24 @@ class TingLingLingBrain:
         if custom_prompt and str(custom_prompt).strip():
             self.system_instruction = str(custom_prompt).strip()
 
+    def get_providers(self) -> dict:
+        active = getattr(self, "active_provider", "cloud")
+        return {
+            "active": active,
+            "available": [
+                {"id": "cloud", "name": "Groq / Cloud API (Fast)", "status": "online" if self.use_cloud_primary else "offline"},
+                {"id": "local", "name": "Local HF LoRA Model", "status": "online" if self.hf_loaded else "not_loaded"},
+                {"id": "ollama", "name": "Ollama Local Server", "status": "offline"}
+            ]
+        }
+
+    def set_provider(self, provider_id: str) -> bool:
+        valid = ["cloud", "local", "ollama"]
+        if provider_id in valid:
+            self.active_provider = provider_id
+            return True
+        return False
+
     def _history_role_to_chat_role(self, role: Any) -> str:
         value = str(role or "").strip().lower()
         if value in {"assistant", "ai", "bot", "model"}:

@@ -257,6 +257,41 @@ def system_prompt_api():
     return jsonify({"system_prompt": brain.get_system_instruction()})
 
 
+@app.route("/api/providers", methods=["GET", "POST"])
+def providers_api():
+    if request.method == "POST":
+        data = request.get_json(silent=True) or {}
+        provider_id = str(data.get("provider", "")).strip().lower()
+        if provider_id:
+            ok = brain.set_provider(provider_id)
+            if ok:
+                return jsonify({"status": "ok", "providers": brain.get_providers()})
+            return jsonify({"error": "Invalid provider ID"}), 400
+        return jsonify({"error": "Provider ID required"}), 400
+    return jsonify({"status": "ok", "providers": brain.get_providers()})
+
+
+@app.route("/api/theme", methods=["GET", "POST"])
+def theme_api():
+    theme_file = os.path.join(os.getcwd(), "data", "theme_pref.json")
+    os.makedirs(os.path.join(os.getcwd(), "data"), exist_ok=True)
+    if request.method == "POST":
+        data = request.get_json(silent=True) or {}
+        mode = str(data.get("theme", "dark")).strip().lower()
+        with open(theme_file, "w", encoding="utf-8") as f:
+            json.dump({"theme": mode}, f)
+        return jsonify({"status": "ok", "theme": mode})
+    current = "dark"
+    if os.path.exists(theme_file):
+        try:
+            with open(theme_file, "r", encoding="utf-8") as f:
+                current = json.load(f).get("theme", "dark")
+        except Exception:
+            current = "dark"
+    return jsonify({"status": "ok", "theme": current})
+
+
+
 @app.route("/api/voices", methods=["GET"])
 def list_voices_api():
     try:
